@@ -15,4 +15,4 @@ As a **role**, I can **capability** so that **received_benefit**.
 - Story 2
 - Story 3
 
-### Linked Stories and EPICs
+### Linked Stories
