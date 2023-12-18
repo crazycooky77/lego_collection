@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from lego_collection.views import hello_world
+from lego_collection.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', hello_world, name='hello world')
+    path('', hello_world, name='hello_world'),
+    path('sign-up/', CreateUser.as_view(), name='sign_up'),
+    path('user-list', user_list, name='user_list')
 ]
