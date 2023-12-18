@@ -28,7 +28,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     privacy = models.CharField(max_length=20, default='Private')
     access = ArrayField(models.IntegerField(), default=None, blank=True, null=True)
-    collection_owner = models.IntegerField(default=None, blank=True, null=True)
+    collection_id = models.IntegerField(default=None, blank=True, null=True)
     account_type = models.CharField(max_length=20)
     is_active = models.BooleanField(default=True)
 
