@@ -38,3 +38,14 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class LegoSets(models.Model):
+    set_number = models.IntegerField()
+    set_name = models.CharField(max_length=200)
+    set_picture = models.ImageField(blank=True, null=True)
+    nr_of_pieces = models.IntegerField(blank=True, null=True)
+    build_status = models.CharField(max_length=50)
+    set_location = models.CharField(max_length=100, blank=True, null=True)
+    missing_pieces = ArrayField(models.IntegerField(), default=None, blank=True, null=True)
+    favourited = models.BooleanField()
