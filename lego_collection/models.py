@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.postgres.fields import ArrayField
+from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
@@ -22,15 +23,25 @@ class UserManager(BaseUserManager):
 
 # Create your models here
 class CustomUser(AbstractUser):
+
+    class Privacy(models.TextChoices):
+        PRIVATE = 'PRV', _('Private')
+        PUBLIC = 'PUB', _('Public')
+        SHARED = 'SH', _('Shared')
+
+    class Account(models.TextChoices):
+        LC = 'LC', _('Lego Collection')
+        FACEBOOK = 'FB', _('Facebook')
+        GOOGLE = 'GGL', _('Google')
+
     first_name = None
     last_name = None
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
-    privacy = models.CharField(max_length=20, default='Private')
-    access = ArrayField(models.IntegerField(), default=None, blank=True, null=True)
-    account_type = models.CharField(max_length=20)
+    privacy = models.CharField(max_length=20, choices=Privacy.choices, default=Privacy.SHARED)
+    access = ArrayField(models.IntegerField(default=None, blank=True, null=True))
+    account_type = models.CharField(max_length=20, choices=Account.choices)
     is_active = models.BooleanField(default=True)
-    collection = models.ForeignKey('LegoCollection', on_delete=models.SET_NULL, default=None, blank=True, null=True)
 
     REQUIRED_FIELDS = ['email', 'privacy']
 
@@ -48,12 +59,19 @@ class LegoSet(models.Model):
 
 
 class LegoCollection(models.Model):
+
+    class Status(models.TextChoices):
+        NEW = 'NEW', _('New (Owned)')
+        BUILD_NEXT = 'BN', _('Build Next')
+        STORED = 'STORED', _('Stored')
+        WISH_LIST = 'WL', _('Wish List')
+
     collection_id = models.AutoField(primary_key=True)
     collection_name = models.CharField(max_length=100)
-    collection_owner = models.ForeignKey('CustomUser', on_delete=models.CASCADE)
+    collection_owner = models.OneToOneField('CustomUser', on_delete=models.CASCADE)
     set = models.ForeignKey('LegoSet', on_delete=models.CASCADE)
     missing_pieces = ArrayField(models.IntegerField(), default=None, blank=True, null=True)
-    build_status = models.CharField(max_length=50)
+    build_status = models.CharField(max_length=50, choices=Status.choices)
     set_location = models.CharField(max_length=100, blank=True, null=True)
     favourited = models.BooleanField()
     shared = models.CharField(max_length=20, default=None, blank=True, null=True)
