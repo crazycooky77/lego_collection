@@ -86,10 +86,7 @@ WSGI_APPLICATION = 'ci_project4.wsgi.application'
 
 if development:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+        'default': dj_database_url.parse(os.environ.get('LOCAL_DB_URL'))
     }
 else:
     DATABASES = {
