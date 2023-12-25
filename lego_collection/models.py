@@ -81,5 +81,8 @@ class LegoCollection(models.Model):
     favourited = models.BooleanField()
     shared = models.CharField(max_length=20, default=None, blank=True, null=True)
 
+    class Meta:
+        ordering = ['collection_id', 'build_status', 'set']
+
     def __str__(self):
         return f'{self.collection_id} | {self.collection_name}'
