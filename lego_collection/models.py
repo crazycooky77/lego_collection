@@ -57,6 +57,11 @@ class LegoSet(models.Model):
     set_picture = models.ImageField(blank=True, null=True)
     nr_of_pieces = models.IntegerField(blank=True, null=True)
 
+    class Meta:
+        ordering = ['set_number']
+
+    def __str__(self):
+        return f'{self.set_number} | {self.set_name}'
 
 class LegoCollection(models.Model):
 
@@ -75,3 +80,6 @@ class LegoCollection(models.Model):
     set_location = models.CharField(max_length=100, blank=True, null=True)
     favourited = models.BooleanField()
     shared = models.CharField(max_length=20, default=None, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.collection_id} | {self.collection_name}'
