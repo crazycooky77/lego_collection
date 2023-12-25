@@ -13,13 +13,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from django.conf.global_settings import CSRF_TRUSTED_ORIGINS
+
 
 development = (os.environ.get
                ('DEVELOPMENT', False))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -32,9 +33,10 @@ DEBUG = development
 
 if development:
     ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
+    CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1', 'https://0.0.0.0']
 else:
     ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
-
+    CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('HEROKU_HOSTNAME')]
 
 # Application definition
 
@@ -80,7 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project4.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -92,7 +93,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -112,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -123,7 +122,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
