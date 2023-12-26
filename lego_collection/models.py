@@ -63,6 +63,7 @@ class LegoSet(models.Model):
     def __str__(self):
         return f'{self.set_number} | {self.set_name}'
 
+
 class LegoCollection(models.Model):
 
     class Status(models.TextChoices):
@@ -73,9 +74,10 @@ class LegoCollection(models.Model):
 
     collection_id = models.AutoField(primary_key=True)
     collection_name = models.CharField(max_length=100)
+    collection_pic = models.ImageField(blank=True, null=True)
     collection_owner = models.OneToOneField('CustomUser', on_delete=models.CASCADE)
     set = models.ForeignKey('LegoSet', on_delete=models.CASCADE)
-    missing_pieces = ArrayField(models.IntegerField(), default=None, blank=True, null=True)
+    missing_pieces = models.CharField(max_length=500, default=None, blank=True, null=True)
     build_status = models.CharField(max_length=50, choices=Status.choices)
     set_location = models.CharField(max_length=100, blank=True, null=True)
     favourited = models.BooleanField()
