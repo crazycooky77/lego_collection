@@ -19,8 +19,7 @@ from django.urls import path
 from lego_collection.views import *
 
 urlpatterns = [
+    path('', homepage_view, name='home'),
     path('admin/', admin.site.urls),
-    path('', hello_world, name='hello_world'),
-    path('sign-up/', CreateUser.as_view(), name='sign_up'),
-    path('user-list', user_list, name='user_list')
+    path('sign-up/', CreateUser.as_view(), name='sign_up')
 ]
