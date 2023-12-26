@@ -10,14 +10,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-     <link rel='stylesheet' href='{% static "css/style.css" %}'>
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <title>Lego Collection</title>
     <link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
 </head>
 <body>
-    <h1>Welcome to Your online Lego Collection</h1>
-    <nav></nav>
+    <h1>Welcome to Your Online Lego Collection</h1>
+    <nav>
+        <div id="grad">
+            <button><a href="/">Home</a></button>
+            <button><a href="/collections">Collections</a></button>
+            <button><a href="/profile">Profile</a></button>
+            <button><a href="/shared">Shared</a></button>
+        </div>
+    </nav>
     <main>
         {% block content %}
         <!-- Content Goes here -->
