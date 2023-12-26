@@ -1,5 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Solid&display=swap');
 
 * {
+    font-family: 'Londrina Solid', sans-serif;
+    font-size: 24px;
+}
+
+h1 {
     font-family: 'Londrina Outline', sans-serif;
+    font-size: 75px;
+    text-align: center;
+}
+
+#grad {
+    height: 100px;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(to left, red, orange , yellow, green, cyan, blue, mediumpurple, hotpink); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(to right, red, orange, yellow, green, cyan, blue, mediumpurple,  hotpink); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(to right, red, orange, yellow, green, cyan, blue, mediumpurple, hotpink); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, red, orange , yellow, green, cyan, blue, mediumpurple, hotpink); /* Standard syntax (must be last) */
+}
+
+nav div {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+nav a {
+    font-size: 35px;
+    text-decoration: none;
+    color: black
+}
+
+nav a:active {
+        color: white;
+}
+
+nav button {
+    margin: 20px 10px 20px 10px;
+    background: transparent;
+    border: solid black 3px;
+    border-top: dashed black 10px;
+}
+
+nav button:hover {
+    border-top: solid black 3px;
+    border-bottom: dashed black 10px;
+}
+
+nav button:active {
+    border: solid white 3px;
+    border-bottom: dashed white 10px;
+}
+
+footer p {
+    font-size: 16px;
 }
