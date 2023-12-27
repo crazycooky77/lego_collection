@@ -1,6 +1,7 @@
 coverage==7.3.2
 dj-database-url==2.1.0
 Django==4.2.1
+django-allauth==0.59.0
 gunicorn==21.2.0
 pillow==10.1.0
 postgres==4.0

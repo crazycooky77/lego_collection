@@ -1,0 +1,37 @@
+<div class="profile">
+    <h2>Profile</h2>
+
+    {% if user.is_authenticated %}
+        <div class="profile-details">
+            <p>Username: </p>
+            <p>Sets owned: </p>
+            <p>Wish list: </p>
+            <p>Viewable collections: </p>
+            <form method="POST" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <button type="submit">Log Out</button>
+            </form>
+        </div>
+
+    {% else %}
+        <form method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <label for="id_login"></label>
+            <input type="text" id="id_login" placeholder="username" name="login">
+            <label for="id_password"></label>
+            <input type="password" id="id_password" placeholder="password" name="password">
+            <br>
+            <button type="submit">Log In</button>
+        </form>
+        <div class="profile-buttons">
+            <button>Create Account</button>
+            <br>
+            <button>Forgot Username</button>
+            <br>
+            <button>Forgot Password</button>
+        </div>
+    {% endif %}
+</div>
