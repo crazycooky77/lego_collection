@@ -20,9 +20,9 @@ from lego_collection.views import *
 
 urlpatterns = [
     path('', homepage_view, name='home'),
+    path('', include('allauth.urls'), name='login'),
     path('admin/', admin.site.urls),
     path('collections/', collections_view, name='collections'),
-    path('', include('allauth.urls'), name='login'),
     path('profile/', profile_view, name='profile'),
     path('shared/', shared_view, name='shared'),
     path('sign-up/', CreateUser.as_view(), name='sign_up')

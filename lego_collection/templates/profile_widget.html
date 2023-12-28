@@ -19,6 +19,21 @@
     {% else %}
         <form method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="form-error">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="form-error">
+                        {{ error|escape }}
+                    </div>
+                {% endfor %}
+                <br>
+            {% endif %}
             <label for="id_login"></label>
             <input type="text" id="id_login" placeholder="username" name="login">
             <label for="id_password"></label>

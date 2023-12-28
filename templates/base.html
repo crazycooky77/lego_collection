@@ -1,6 +1,9 @@
 {% load static %}
 
 {% url 'home' as home_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +29,11 @@
         </div>
     </nav>
     <main>
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
+        <div class="container">
+            {% block content %}
+            <!-- Content Goes here -->
+            {% endblock content %}
+        </div>
     </main>
 </body>
 <footer>

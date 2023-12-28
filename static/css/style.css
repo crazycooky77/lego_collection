@@ -64,6 +64,7 @@ footer p {
 .container {
     display: flex;
     text-align: center;
+    justify-content: center;
 }
 
 .mid {
@@ -114,4 +115,8 @@ footer p {
 .profile-details form {
     border: none;
     padding: 0;
+}
+
+.form-error {
+    color: red;
 }
