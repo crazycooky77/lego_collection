@@ -64,10 +64,10 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-DEFAULT_FROM_EMAIL = 'escaros@elenaris-cookies.eu'
-EMAIL_HOST = 'webspace20.do.de'
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PW')
-EMAIL_HOST_USER = 'web240p1'
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_PORT = 587
 EMAIL_SUBJECT_PREFIX = '[Lego Collection]'
 EMAIL_USE_TLS = True
