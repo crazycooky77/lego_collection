@@ -120,3 +120,29 @@ footer p {
 .form-error {
     color: red;
 }
+
+.profile .border {
+    border: solid black 2px;
+    padding: 10px;
+}
+
+.visible-link {
+    text-decoration: underline;
+    color: red;
+}
+
+.profile .partial-border {
+    border: solid black 2px;
+    border-bottom: none;
+    padding: 10px;
+}
+
+.pass-req {
+    text-align: left;
+    margin-bottom: -20px;
+    margin-top: 0;
+}
+
+li {
+    text-align: left;
+}

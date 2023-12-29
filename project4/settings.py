@@ -57,7 +57,20 @@ INSTALLED_APPS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/collections'
 LOGOUT_REDIRECT_URL = ''
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+ACCOUNT_UNIQUE_EMAIL = True
+
 ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+DEFAULT_FROM_EMAIL = 'escaros@elenaris-cookies.eu'
+EMAIL_HOST = 'webspace20.do.de'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PW')
+EMAIL_HOST_USER = 'web240p1'
+EMAIL_PORT = 587
+EMAIL_SUBJECT_PREFIX = '[Lego Collection]'
+EMAIL_USE_TLS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

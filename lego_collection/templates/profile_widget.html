@@ -1,7 +1,7 @@
 <div class="profile">
-    <h2>Profile</h2>
 
     {% if user.is_authenticated %}
+        <h2>Profile</h2>
         <div class="profile-details">
             <p>Username: </p>
             <p>Sets owned: </p>
@@ -17,6 +17,7 @@
         </div>
 
     {% else %}
+        <h2>Log In</h2>
         <form method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             {% if form.errors %}
@@ -42,11 +43,9 @@
             <button type="submit">Log In</button>
         </form>
         <div class="profile-buttons">
-            <button>Create Account</button>
+            <button><a href="{% url 'account_signup' %}">Create Account</a></button>
             <br>
-            <button>Forgot Username</button>
-            <br>
-            <button>Forgot Password</button>
+            <button><a href="{% url 'account_reset_password' %}">Forgot Username/Password</a></button>
         </div>
     {% endif %}
 </div>
