@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load allauth i18n %}
+
+{% block content %}
+    <div class="profile">
+        <h2>Create Account</h2>
+        <div class="partial-border">
+            Already have an account? Then please <a href="{{ login_url }}" class="visible-link">sign in</a>.
+            <br>
+            <br>
+            Forgot your username or password? Then please <a href="/password/reset" class="visible-link">reset your password</a>.
+        </div>
+        {% url 'account_signup' as action_url %}
+        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+            {% slot body %}
+                {% csrf_token %}
+                 {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="form-error">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="form-error">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                <br>
+                {% endif %}
+                <label for="id_username"></label>
+                <input type="text" id="id_username" placeholder="username" name="username">
+                <label for="id_email"></label>
+                <input type="email" id="id_email" placeholder="email address" name="email">
+                <label for="id_password1"></label>
+                <input type="password" id="id_password1" placeholder="enter password" name="password1">
+                <label for="id_password2"></label>
+                <input type="password" id="id_password2" placeholder="re-enter password" name="password2">
+                <p class="pass-req">
+                    Note, your password:
+                    <ul>
+                        <li>can’t be too similar to your other personal information
+                        <li>must contain at least 8 characters</li>
+                        <li>can’t be a commonly used password</li>
+                        <li>can’t be entirely numeric</li>
+                    </ul>
+                </p>
+                {% if redirect_field_value %}
+                    <input type="hidden"
+                           name="{{ redirect_field_name }}"
+                           value="{{ redirect_field_value }}" />
+                {% endif %}
+            {% endslot %}
+            {% slot actions %}
+                {% element button tags="prominent,signup" type="submit" %}
+                    {% trans "Sign Up" %}
+                {% endelement %}
+            {% endslot %}
+        {% endelement %}
+        {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+    </div>
+{% endblock content %}
