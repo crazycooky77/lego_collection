@@ -3,7 +3,7 @@
     {% if user.is_authenticated %}
         <h2>Profile</h2>
         <div class="profile-details">
-            <p>Username: </p>
+            <p>Username: {{request.user.username}}</p>
             <p>Sets owned: </p>
             <p>Wish list: </p>
             <p>Viewable collections: </p>
