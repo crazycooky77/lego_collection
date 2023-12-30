@@ -3,57 +3,61 @@
 {% load allauth %}
 
 {% block content %}
-    <div class="profile">
-        <h2>Profile</h2>
-        <div class="profile-details">
-            <br>
-            {% if form.errors %}
-                {% for field in form %}
-                    {% for error in field.errors %}
+    {% if user.is_authenticated %}
+        <div class="profile">
+            <h2>Profile</h2>
+            <div class="profile-details">
+                <br>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="form-error">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
                         <div class="form-error">
                             {{ error|escape }}
                         </div>
                     {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <div class="form-error">
-                        {{ error|escape }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-            <p>Username: {{request.user.username}}</p>
-            {% url 'account_email' as action_url %}
-            {% element form method="post" action=action_url %}
-                {% slot body %}
-                    {% csrf_token %}
-                    Current Email: {{request.user.email}}
-                    <div class="profile-email">
-                        {% element field name="email" value=form.email.value errors=form.email.errors type="email" %}
-                            {% slot label %}
-                                {% translate "Change Email" %}:
-                            {% endslot %}
-                        {% endelement %}
-                        {% slot actions %}
-                            {% element button name="action_add" type="submit" onclick="update_email"%}
-                                {% trans "Save" %}
-                            {% endelement %}
-                        {% endslot %}
-                {% endslot %}
-            {% endelement %}
-                    </div>
-            <p class="profile-margin">Password: </p>
-            <p>Privacy: {{request.user.privacy}}</p>
-            <p>Collection: </p>
-            <p>Sets owned: </p>
-            <p>Wish list: </p>
-            <p>Viewable collections: </p>
-            <form method="POST" action="{% url 'account_logout' %}">
-                {% csrf_token %}
-                {% if redirect_field_value %}
-                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                 {% endif %}
-                <button type="submit">Log Out</button>
-            </form>
+                <p>Username: {{request.user.username}}</p>
+                {% url 'account_email' as action_url %}
+                {% element form method="post" action=action_url %}
+                    {% slot body %}
+                        {% csrf_token %}
+                        Current Email: {{request.user.email}}
+                        <div class="profile-email">
+                            {% element field name="email" value=form.email.value errors=form.email.errors type="email" %}
+                                {% slot label %}
+                                    {% translate "Change Email" %}:
+                                {% endslot %}
+                            {% endelement %}
+                            {% slot actions %}
+                                {% element button name="action_add" type="submit" onclick="update_email"%}
+                                    {% trans "Save" %}
+                                {% endelement %}
+                            {% endslot %}
+                    {% endslot %}
+                {% endelement %}
+                        </div>
+                <p class="profile-margin">Password: </p>
+                <p>Privacy: {{request.user.privacy}}</p>
+                <p>Collection: </p>
+                <p>Sets owned: </p>
+                <p>Wish list: </p>
+                <p>Viewable collections: </p>
+                <form method="POST" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <button type="submit">Log Out</button>
+                </form>
+            </div>
         </div>
-    </div>
+    {% else %}
+        {% include 'profile_widget.html' %}
+    {% endif %}
 {% endblock content %}
