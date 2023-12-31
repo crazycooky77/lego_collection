@@ -1,3 +1,96 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load account %}
+{% load allauth %}
+
 {% block content %}
-    {% include 'profile.html' %}
+    <div class="profile">
+        <h2>Manage Emails</h2>
+        {% url 'account_email' as email_url %}
+        {% element form form=form action=email_url method="post" %}
+            {% slot body %}
+                {% csrf_token %}
+                {% if emailaddresses|length > 1 %}
+                    {% trans 'The below email addresses are associated with your account' %}
+                {% else %}
+                    {% trans 'The below email address is associated with your account' %}
+                {% endif %}
+                <hr>
+                {% for radio in emailaddress_radios %}
+                    {% with emailaddress=radio.emailaddress %}
+                        {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
+                            {% slot label %}
+                                {{ emailaddress.email }} <br>
+                                {% if emailaddress.verified %}
+                                    {% element badge tags="success,email,verified" %}
+                                        {% translate "Verified" %}
+                                    {% endelement %}
+                                {% else %}
+                                    {% element badge tags="warning,email,unverified" %}
+                                        {% translate "Unverified" %}
+                                    {% endelement %}
+                                {% endif %}
+                                {% if emailaddress.primary %} |
+                                    {% element badge tags="email,primary" %}
+                                        {% translate "Primary" %}
+                                    {% endelement %}
+                                {% endif %}
+                            {% endslot %}
+                        {% endelement %}
+                    {% endwith %}
+                {% endfor %}
+            {% endslot %}
+            {% slot actions %}
+                <div class="email-buttons">
+                    {% element button type="submit" name="action_primary" %}
+                        {% trans 'Make Primary' %}
+                    {% endelement %}
+                </div>
+                <div class="email-buttons">
+                    {% element button tags="secondary" type="submit" name="action_send" %}
+                        {% trans 'Re-send Verification' %}
+                    {% endelement %}
+                </div>
+                {% if emailaddresses|length > 1 %}
+                    <div class="email-buttons">
+                        {% element button tags="danger,delete" type="submit" name="action_remove" %}
+                            {% trans 'Remove' %}
+                        {% endelement %}
+                    </div>
+                {% endif %}
+            {% endslot %}
+        {% endelement %}
+        {% if can_add_email %}
+            <h2>Add Email Address</h2>
+            {% url 'account_email' as action_url %}
+            {% element form form=form method="post" action=action_url %}
+                Hoi bef bod
+                {% slot body %}
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="form-error">
+                                    {{ error|escape }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="form-error">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <label for="id_email"></label>
+                    <input type="email" id="id_email" placeholder="email address" name="email" style="margin-right: 25px;">
+                {% endslot %}
+                befac
+                {% slot actions %}
+                    {% element button name="action_add" type="submit" %}
+                        {% trans "Add Email" %}
+                    {% endelement %}
+                {% endslot %}
+            {% endelement %}
+        {% endif %}
+    </div>
 {% endblock content %}

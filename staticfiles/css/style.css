@@ -95,13 +95,13 @@ footer p {
     padding: 15px;
 }
 
-.profile-buttons {
+.widget-buttons {
     border: solid black 2px;
     border-top: none;
     padding-bottom: 15px;
 }
 
-.profile-buttons button {
+.widget-buttons button {
     margin-top: 15px;
 }
 
@@ -156,4 +156,18 @@ li {
     justify-content: space-between;
     align-items: baseline;
     margin-right: 20px;
+}
+
+hr {
+    border-top: solid black 2px;
+}
+
+.email-buttons button {
+    margin-bottom: 15px;
+}
+
+.profile-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
