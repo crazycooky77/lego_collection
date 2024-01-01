@@ -34,6 +34,24 @@
                 {% endfor %}
                 <br>
             {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <div class="form-error">
+                            {{ message }}
+                        </div>
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                        <div class="form-error">
+                            {{ message }}
+                        </div>
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="form-confirm">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <br>
+            {% endif %}
             <label for="id_login"></label>
             <input type="text" id="id_login" placeholder="username" name="login">
             <label for="id_password"></label>

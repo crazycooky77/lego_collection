@@ -36,7 +36,7 @@ def profile_view(request):
                 messages.error(request, "A user with that username already exists.")
         else:
             username_form = UpdateUsername(instance=request.user)
-        return render(request, 'username_change.html',
+        return render(request, 'profile.html',
                       {'user_form': username_form})
     else:
         return render(request, 'profile.html')
