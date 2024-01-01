@@ -80,15 +80,14 @@
             {% slot actions %}
                 {% for radio in emailaddress_radios %}
                     {% with emailaddress=radio.emailaddress %}
-                        {% if emailaddress.verified %}
-                            {% if emailaddresses|length != forloop.counter %}
-                                <div class="email-buttons">
+                        {% if not emailaddress.verified %}
+                            <div class="email-buttons">
                                 {% element button tags="secondary" type="submit" name="action_send" %}
                                     {% trans 'Re-send Verification' %}
                                 {% endelement %}
-                                </div>
-                            {% endif %}
-                        {% endif%}
+                            </div>
+                            {{ break}}
+                        {% endif %}
                     {% endwith %}
                 {% endfor %}
                 {% if emailaddresses|length > 1 %}
