@@ -8,6 +8,7 @@
             <h2>Profile</h2>
             <div class="profile-details">
                 {% if form.errors %}
+                    <br>
                     {% for field in form %}
                         {% for error in field.errors %}
                             <div class="form-error">
@@ -21,7 +22,21 @@
                         </div>
                     {% endfor %}
                 {% endif %}
-                <p>Username: {{request.user.username}}</p>
+                {% if messages %}
+                    <br>
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="form-error">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="form-confirm">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% include 'username_change.html' %}
                 {% url 'account_email' as action_url %}
                 {% element form method="post" action=action_url %}
                     {% slot body %}
@@ -41,13 +56,13 @@
                     {% endslot %}
                 {% endelement %}
                         </div>
-                <p class="profile-margin">Password: </p>
-                <p>Privacy: {{request.user.privacy}}</p>
+                <p>Privacy: {{ request.user.privacy }} </p>
                 <p>Collection: </p>
                 <p>Sets owned: </p>
                 <p>Wish list: </p>
                 <p>Viewable collections: </p>
                 <div class="profile-buttons">
+                    <button><a href="{% url 'account_change_password' %}">Change Password</a></button>
                     <button><a href="/email">Manage Emails</a></button>
                     <form method="POST" action="{% url 'account_logout' %}">
                         {% csrf_token %}

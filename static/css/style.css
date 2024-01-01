@@ -156,6 +156,7 @@ li {
     justify-content: space-between;
     align-items: baseline;
     margin-right: 20px;
+    margin-bottom: -40px;
 }
 
 hr {
@@ -170,4 +171,25 @@ hr {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-right: 15px;
+    align-items: baseline;
+}
+
+.profile-username {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.username-input {
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.username-input button {
+    margin-left: 20px;
+}
+
+.form-confirm {
+    color: green;
 }

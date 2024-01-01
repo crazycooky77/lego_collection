@@ -1,0 +1,11 @@
+<br>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="profile-username">
+        <label>Username:&nbsp;</label>
+        <div class="username-input">
+            {{ user_form.username }}
+            <button type="submit">Save</button>
+        </div>
+    </div>
+</form>

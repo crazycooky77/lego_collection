@@ -27,7 +27,21 @@
                             {{ error|escape }}
                         </div>
                     {% endfor %}
-                <br>
+                    <br>
+                {% endif %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="form-error">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="form-confirm">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <br>
                 {% endif %}
                 <label for="id_username"></label>
                 <input type="text" id="id_username" placeholder="username" name="username">

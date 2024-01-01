@@ -10,6 +10,35 @@
         {% element form form=form action=email_url method="post" %}
             {% slot body %}
                 {% csrf_token %}
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="form-error">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="form-error">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                    <br>
+                {% endif %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="form-error">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="form-confirm">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <br>
+                {% endif %}
                 {% if emailaddresses|length > 1 %}
                     {% trans 'The below email addresses are associated with your account' %}
                 {% else %}
@@ -67,20 +96,6 @@
                 Hoi bef bod
                 {% slot body %}
                     {% csrf_token %}
-                    {% if form.errors %}
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <div class="form-error">
-                                    {{ error|escape }}
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <div class="form-error">
-                                {{ error|escape }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
                     <label for="id_email"></label>
                     <input type="email" id="id_email" placeholder="email address" name="email" style="margin-right: 25px; margin-top: 15px;">
                 {% endslot %}
