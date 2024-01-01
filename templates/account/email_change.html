@@ -78,16 +78,19 @@
                 {% endfor %}
             {% endslot %}
             {% slot actions %}
-                <div class="email-buttons">
-                    {% element button type="submit" name="action_primary" %}
-                        {% trans 'Make Primary' %}
-                    {% endelement %}
-                </div>
-                <div class="email-buttons">
-                    {% element button tags="secondary" type="submit" name="action_send" %}
-                        {% trans 'Re-send Verification' %}
-                    {% endelement %}
-                </div>
+                {% for radio in emailaddress_radios %}
+                    {% with emailaddress=radio.emailaddress %}
+                        {% if emailaddress.verified %}
+                            {% if emailaddresses|length != forloop.counter %}
+                                <div class="email-buttons">
+                                {% element button tags="secondary" type="submit" name="action_send" %}
+                                    {% trans 'Re-send Verification' %}
+                                {% endelement %}
+                                </div>
+                            {% endif %}
+                        {% endif%}
+                    {% endwith %}
+                {% endfor %}
                 {% if emailaddresses|length > 1 %}
                     <div class="email-buttons">
                         {% element button tags="danger,delete" type="submit" name="action_remove" %}
