@@ -44,6 +44,10 @@
                         <div class="form-error">
                             {{ message }}
                         </div>
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                        <div class="form-error">
+                            {{ message }}
+                        </div>
                     {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                         <div class="form-confirm">
                             {{ message }}
