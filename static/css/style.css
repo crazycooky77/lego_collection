@@ -6,6 +6,11 @@
     font-size: 24px;
 }
 
+body {
+    background: url('../images/background.png') no-repeat;
+	background-size: cover;
+}
+
 h1 {
     font-family: 'Londrina Outline', sans-serif;
     font-size: 75px;
@@ -20,10 +25,10 @@ a {
 #grad {
     height: 100px;
     background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(to left, red, orange , yellow, green, cyan, blue, mediumpurple, hotpink); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(to right, red, orange, yellow, green, cyan, blue, mediumpurple,  hotpink); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(to right, red, orange, yellow, green, cyan, blue, mediumpurple, hotpink); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, red, orange , yellow, green, cyan, blue, mediumpurple, hotpink); /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient(to left, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5),  rgba(255,105,180,0.5)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5) , rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* Standard syntax (must be last) */
 }
 
 nav div {
@@ -175,21 +180,29 @@ hr {
     align-items: baseline;
 }
 
-.profile-username {
+.profile-form {
     display: flex;
     flex-direction: row;
 
 }
 
-.username-input {
+.profile-input {
     justify-content: space-between;
     align-items: baseline;
 }
 
-.username-input button {
+.profile-input button {
     margin-left: 20px;
 }
 
 .form-confirm {
     color: green;
+}
+
+input:valid, input:invalid, select {
+    background-color: pink;
+}
+
+button {
+    background-color: hotpink;
 }
