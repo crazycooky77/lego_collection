@@ -2,10 +2,10 @@
     <br>
     {% csrf_token %}
     <div class="profile-form">
-        <label>Username:&nbsp;</label>
+        <label>Privacy:&nbsp;</label>
         <div class="profile-input">
-            {{ user_form.username }}
-            <button type="submit" name="username-button" value="username-button">Save</button>
+            {{ privacy_form.privacy }}
+            <button type="submit" name="privacy-button" value="privacy-button">Save</button>
         </div>
     </div>
 </form>

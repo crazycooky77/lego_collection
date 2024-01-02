@@ -25,18 +25,11 @@
                 {% if messages %}
                     <br>
                     {% for message in messages %}
-                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
                             <div class="form-error">
                                 {{ message }}
                             </div>
-                        {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-                            <div class="form-error">
-                                {{ message }}
-                            </div>
-                        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
-                            <div class="form-confirm">
-                                {{ message }}
-                        {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO or message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                             <div class="form-confirm">
                                 {{ message }}
                             </div>
@@ -63,7 +56,7 @@
                     {% endslot %}
                 {% endelement %}
                         </div>
-                <p>Privacy: {{ request.user.privacy }} </p>
+                {% include 'privacy_change.html' %}
                 <p>Collection: </p>
                 <p>Sets owned: </p>
                 <p>Wish list: </p>

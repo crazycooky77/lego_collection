@@ -16,3 +16,9 @@ class UpdateUsername(forms.ModelForm):
         except CustomUser.DoesNotExist:
             return username
         raise forms.ValidationError("A user with that username already exists.")
+
+
+class UpdatePrivacy(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['privacy']
