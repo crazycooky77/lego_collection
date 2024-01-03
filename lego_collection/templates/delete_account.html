@@ -1,0 +1,10 @@
+<form method="POST">
+    <br>
+    {% csrf_token %}
+    <div class="profile-form">
+        <div class="profile-buttons">
+            {{ del_form }}
+            <button type="submit" name="delete-button" value="delete-button" onclick="return confirm('Are you sure you want to delete your account? This cannot be undone')">Delete Account</button>
+        </div>
+    </div>
+</form>

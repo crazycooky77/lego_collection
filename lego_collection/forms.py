@@ -22,3 +22,7 @@ class UpdatePrivacy(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['privacy']
+
+
+class DeleteAccount(forms.Form):
+    delete = forms.BooleanField(required=True)
