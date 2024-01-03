@@ -203,6 +203,17 @@ input:valid, input:invalid, select {
     background-color: pink;
 }
 
-button {
+main button {
     background-color: hotpink;
+    border: solid black 1px;
+}
+
+main button:hover {
+    background-color: #FF0080FF;
+    border: solid black 1px;
+}
+
+main button:active, main button:active a {
+    border: solid white 1px;
+    color: white;
 }
