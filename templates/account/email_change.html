@@ -4,7 +4,7 @@
 {% load allauth %}
 
 {% block content %}
-    <div class="profile">
+    <div class="mini-profile">
         <h2>Manage Emails</h2>
         {% url 'account_email' as email_url %}
         {% element form form=form action=email_url method="post" %}
