@@ -1,10 +1,10 @@
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import CustomUser
-from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount
+from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection, ViewCollection
 
 
 # Create your views here.
@@ -19,8 +19,39 @@ class CreateUser(CreateView):
     success_url = reverse_lazy('home')
 
 
+def create_collection(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            create_col_form = CreateCollection(request.POST)
+            if request.POST.get("create-col-button"):
+                if create_col_form.is_valid():
+                    obj = create_col_form.save(commit=False)
+                    obj.collection_owner = request.user
+                    obj.save()
+                    messages.success(request, 'Your collection has been successfully created.')
+                    return redirect('collections')
+        else:
+            create_col_form = CreateCollection()
+        return render(request, 'create_collection.html', {'create_col_form': create_col_form})
+    else:
+        return render(request, 'create_collection.html')
+
+
 def collections_view(request):
-    return render(request, 'collections.html')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            view_col_form = ViewCollection(request.POST)
+
+            if request.POST.get("create-col-button"):
+                if view_col_form.is_valid():
+                    view_col_form.save()
+                    messages.success(request, 'Your collection has been successfully created.')
+                    return redirect('collections')
+        else:
+            view_col_form = CreateCollection()
+        return render(request, 'collections.html', {'view_col_form': view_col_form})
+    else:
+        return render(request, 'collections.html')
 
 
 def profile_view(request):

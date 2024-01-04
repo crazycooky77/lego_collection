@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser
+from .models import CustomUser, Collection, LegoCollection, LegoSet
 
 
 class UpdateUsername(forms.ModelForm):
@@ -26,3 +26,40 @@ class UpdatePrivacy(forms.ModelForm):
 
 class DeleteAccount(forms.Form):
     delete = forms.BooleanField(required=True)
+
+
+class ViewCollection(forms.ModelForm):
+    class Meta:
+        model = LegoCollection
+        fields = ['col_id', 'set', 'missing_pieces', 'build_status', 'set_location', 'favourited', 'shared']
+
+
+class CreateCollection(forms.ModelForm):
+    collection_name = forms.CharField(max_length=100, required=True)
+    collection_pic = forms.ImageField(required=False)
+
+    class Meta:
+        model = Collection
+        fields = ['collection_name', 'collection_pic']
+
+
+class AddSet(forms.ModelForm):
+    build_status = forms.ChoiceField()
+    set_location = forms.CharField(max_length=100)
+    favourited = forms.BooleanField()
+    missing_pieces = forms.CharField(max_length=500)
+
+    class Meta:
+        model = LegoCollection
+        fields = ['set', 'build_status', 'set_location', 'favourited', 'missing_pieces']
+
+
+class CreateSet(forms.ModelForm):
+    set_number = forms.IntegerField()
+    set_name = forms.CharField(max_length=200)
+    set_picture = forms.ImageField()
+    nr_of_pieces = forms.IntegerField()
+
+    class Meta:
+        model = LegoCollection
+        fields = ['set_number', 'set_name', 'set_picture', 'nr_of_pieces']

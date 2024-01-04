@@ -70,33 +70,42 @@ footer p {
     display: flex;
     text-align: center;
     justify-content: center;
+    width: 100%;
+    align-items: flex-start;
 }
 
 .mid {
     display: flex;
-    width: 75%;
+    width: 70%;
     justify-content: center;
     border: solid black 2px;
     margin-right: 15px;
     margin-top: 20px;
 }
 
-.profile {
+.mini-profile {
     display: flex;
     width: 25%;
     justify-content: center;
     flex-direction: column;
 }
 
-.profile input {
+.profile {
+    display: flex;
+    min-width: 25%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.profile input, .mini-profile input {
     margin-bottom: 15px;
 }
 
-.profile h2, .profile form {
+.profile h2, .profile form, .mini-profile h2, .mini-profile form {
     border: solid black 2px;
 }
 
-.profile form {
+.profile form, .mini-profile form {
     padding: 15px;
 }
 
@@ -126,7 +135,7 @@ footer p {
     color: red;
 }
 
-.profile .border {
+.profile .border, .mini-profile .border {
     border: solid black 2px;
     padding: 10px;
 }
@@ -136,7 +145,7 @@ footer p {
     color: red;
 }
 
-.profile .partial-border {
+.profile .partial-border, .mini-profile .partial-border {
     border: solid black 2px;
     border-bottom: none;
     padding: 10px;
@@ -160,7 +169,7 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-right: 20px;
+    margin-right: 45px;
     margin-bottom: -40px;
 }
 
@@ -168,7 +177,7 @@ hr {
     border-top: solid black 2px;
 }
 
-.email-buttons button {
+.email-buttons button, .mid button {
     margin-bottom: 15px;
 }
 
@@ -178,6 +187,11 @@ hr {
     justify-content: space-around;
     margin-right: 15px;
     align-items: baseline;
+}
+
+.profile-buttons button {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .profile-form {
