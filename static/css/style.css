@@ -79,6 +79,7 @@ footer p {
     width: 70%;
     justify-content: center;
     border: solid black 2px;
+    border-radius: 0.2em;
     margin-right: 15px;
     margin-top: 20px;
 }
@@ -103,6 +104,7 @@ footer p {
 
 .profile h2, .profile form, .mini-profile h2, .mini-profile form {
     border: solid black 2px;
+    border-radius: 0.2em;
 }
 
 .profile form, .mini-profile form {
@@ -112,6 +114,7 @@ footer p {
 .widget-buttons {
     border: solid black 2px;
     border-top: none;
+    border-radius: 0.2em;
     padding-bottom: 15px;
 }
 
@@ -121,6 +124,7 @@ footer p {
 
 .profile-details {
     border: solid black 2px;
+    border-radius: 0.2em;
     padding-bottom: 15px;
     padding-left: 15px;
     text-align: left;
@@ -128,6 +132,7 @@ footer p {
 
 .profile-details form {
     border: none;
+    border-radius: 0.2em;
     padding: 0;
 }
 
@@ -137,6 +142,7 @@ footer p {
 
 .profile .border, .mini-profile .border {
     border: solid black 2px;
+    border-radius: 0.2em;
     padding: 10px;
 }
 
@@ -148,6 +154,7 @@ footer p {
 .profile .partial-border, .mini-profile .partial-border {
     border: solid black 2px;
     border-bottom: none;
+    border-radius: 0.2em;
     padding: 10px;
 }
 
@@ -220,14 +227,48 @@ input:valid, input:invalid, select {
 main button {
     background-color: hotpink;
     border: solid black 1px;
+    border-radius: 0.2em;
 }
 
 main button:hover {
     background-color: #FF0080FF;
     border: solid black 1px;
+    border-radius: 0.2em;
 }
 
 main button:active, main button:active a {
     border: solid white 1px;
+    border-radius: 0.2em;
+    color: white;
+}
+
+input[type="file"] {
+    border: 1px solid black;
+    border-radius: 0.2em;
+}
+
+input[type="file"]:hover {
+    background-color: #FF0080FF;
+}
+
+input[type="file"]:active {
+    border: 1px solid white;
+    color: white;
+}
+
+input[type="file"]::file-selector-button {
+    font-family: 'Londrina Solid', sans-serif;
+    border: none;
+    border-right: 1px solid black;
+    border-radius: 0.2em;
+    background-color: hotpink;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #FF0080FF;
+}
+
+input[type="file"]::file-selector-button:active {
+    border-right: 1px solid white;
     color: white;
 }

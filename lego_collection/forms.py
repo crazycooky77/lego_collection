@@ -28,12 +28,6 @@ class DeleteAccount(forms.Form):
     delete = forms.BooleanField(required=True)
 
 
-class ViewCollection(forms.ModelForm):
-    class Meta:
-        model = LegoCollection
-        fields = ['col_id', 'set', 'missing_pieces', 'build_status', 'set_location', 'favourited', 'shared']
-
-
 class CreateCollection(forms.ModelForm):
     collection_name = forms.CharField(max_length=100, required=True)
     collection_pic = forms.ImageField(required=False)

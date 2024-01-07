@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .models import CustomUser
-from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection, ViewCollection
+from .models import CustomUser, Collection, LegoCollection
+from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection
 
 
 # Create your views here.
@@ -39,19 +39,10 @@ def create_collection(request):
 
 def collections_view(request):
     if request.user.is_authenticated:
-        if request.method == 'POST':
-            view_col_form = ViewCollection(request.POST)
-
-            if request.POST.get("create-col-button"):
-                if view_col_form.is_valid():
-                    view_col_form.save()
-                    messages.success(request, 'Your collection has been successfully created.')
-                    return redirect('collections')
-        else:
-            view_col_form = CreateCollection()
-        return render(request, 'collections.html', {'view_col_form': view_col_form})
-    else:
-        return render(request, 'collections.html')
+        collections = Collection.objects.all()
+        sets = LegoCollection.objects.all()
+        context = {'collections': collections, 'sets': sets}
+        return render(request, 'collections.html', context)
 
 
 def profile_view(request):
