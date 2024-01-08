@@ -56,7 +56,7 @@ def create_set(request):
             if request.POST.get("create-set-button"):
                 if create_set_form.is_valid():
                     create_set_form.save()
-                    messages.success(request, 'You successfully created a set. Add it to your collection now with the "Add Set" button.')
+                    messages.success(request, 'You successfully created a set. You can now search for and save it to your collection.')
                     return redirect('add_set')
         else:
             create_set_form = CreateSet()

@@ -5,6 +5,35 @@
         {{ add_set_form.media.css }}
         <form method="POST">
             {% csrf_token %}
+            {% if form.errors %}
+                <br>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="form-error">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="form-error">
+                        {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if messages %}
+                <br>
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                        <div class="form-error">
+                            {{ message }}
+                        </div>
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO or message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="form-confirm">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
             {{ add_set_form.as_p }}
             <div class="mid-buttons">
                 <button type="submit" name="add-set-button" value="add-set-button">Save to Collection</button>

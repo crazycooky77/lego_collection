@@ -5,6 +5,7 @@
     <div class="mid">
         <form method="GET">
             <br>
+            {% csrf_token %}
             {% if user.is_authenticated %}
                 {% if form.errors %}
                     <br>
