@@ -70,39 +70,52 @@ footer p {
     display: flex;
     text-align: center;
     justify-content: center;
+    width: 100%;
+    align-items: flex-start;
 }
 
 .mid {
     display: flex;
-    width: 75%;
+    width: 70%;
     justify-content: center;
     border: solid black 2px;
+    border-radius: 0.2em;
     margin-right: 15px;
     margin-top: 20px;
+    padding-bottom: 20px;
 }
 
-.profile {
+.mini-profile {
     display: flex;
     width: 25%;
     justify-content: center;
     flex-direction: column;
 }
 
-.profile input {
+.profile {
+    display: flex;
+    min-width: 25%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.profile input, .mini-profile input {
     margin-bottom: 15px;
 }
 
-.profile h2, .profile form {
+.profile h2, .profile form, .mini-profile h2, .mini-profile form {
     border: solid black 2px;
+    border-radius: 0.2em;
 }
 
-.profile form {
+.profile form, .mini-profile form {
     padding: 15px;
 }
 
 .widget-buttons {
     border: solid black 2px;
     border-top: none;
+    border-radius: 0.2em;
     padding-bottom: 15px;
 }
 
@@ -112,6 +125,7 @@ footer p {
 
 .profile-details {
     border: solid black 2px;
+    border-radius: 0.2em;
     padding-bottom: 15px;
     padding-left: 15px;
     text-align: left;
@@ -119,6 +133,7 @@ footer p {
 
 .profile-details form {
     border: none;
+    border-radius: 0.2em;
     padding: 0;
 }
 
@@ -126,8 +141,9 @@ footer p {
     color: red;
 }
 
-.profile .border {
+.profile .border, .mini-profile .border {
     border: solid black 2px;
+    border-radius: 0.2em;
     padding: 10px;
 }
 
@@ -136,9 +152,10 @@ footer p {
     color: red;
 }
 
-.profile .partial-border {
+.profile .partial-border, .mini-profile .partial-border {
     border: solid black 2px;
     border-bottom: none;
+    border-radius: 0.2em;
     padding: 10px;
 }
 
@@ -160,7 +177,7 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-right: 20px;
+    margin-right: 45px;
     margin-bottom: -40px;
 }
 
@@ -168,7 +185,7 @@ hr {
     border-top: solid black 2px;
 }
 
-.email-buttons button {
+.email-buttons button, .mid button {
     margin-bottom: 15px;
 }
 
@@ -178,6 +195,11 @@ hr {
     justify-content: space-around;
     margin-right: 15px;
     align-items: baseline;
+}
+
+.profile-buttons button {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .profile-form {
@@ -206,14 +228,120 @@ input:valid, input:invalid, select {
 main button {
     background-color: hotpink;
     border: solid black 1px;
+    border-radius: 0.2em;
 }
 
 main button:hover {
     background-color: #FF0080FF;
     border: solid black 1px;
+    border-radius: 0.2em;
 }
 
 main button:active, main button:active a {
     border: solid white 1px;
+    border-radius: 0.2em;
     color: white;
+}
+
+input[type="file"] {
+    border: 1px solid black;
+    border-radius: 0.2em;
+}
+
+input[type="file"]:hover {
+    background-color: #FF0080FF;
+}
+
+input[type="file"]:active {
+    border: 1px solid white;
+    color: white;
+}
+
+input[type="file"]::file-selector-button {
+    font-family: 'Londrina Solid', sans-serif;
+    border: none;
+    border-right: 1px solid black;
+    border-radius: 0.2em;
+    background-color: hotpink;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #FF0080FF;
+}
+
+input[type="file"]::file-selector-button:active {
+    border-right: 1px solid white;
+    color: white;
+}
+
+.col-img-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.col-img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.col-details {
+    display: flex;
+    justify-content: center;
+}
+
+.col-sets {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.mid-flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.flex-hor {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.col-set-button {
+    display: flex;
+    align-content: flex-end;
+}
+
+.mid form {
+    text-align: left;
+}
+
+.mid-buttons {
+    text-align: center;
+}
+
+.mid-buttons button {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+label.required::before {
+    content: '*';
+}
+
+.select2, .select2-container, .select2-container--default, .select2-container--below, .select2-container--open {
+    width: 100% !important;
+    background-color: pink !important;
+}
+
+.select2-selection__arrow, .select2-container--default, .select2-selection--single, .select2-selection, .select2-results__option, .select2-search--dropdown {
+    background-color: pink !important;
+}
+
+.select2-container--default, .select2-selection--single, .select2-selection__rendered {
+    color: black !important;
 }

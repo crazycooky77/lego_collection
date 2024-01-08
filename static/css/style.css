@@ -82,6 +82,7 @@ footer p {
     border-radius: 0.2em;
     margin-right: 15px;
     margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .mini-profile {
@@ -271,4 +272,76 @@ input[type="file"]::file-selector-button:hover {
 input[type="file"]::file-selector-button:active {
     border-right: 1px solid white;
     color: white;
+}
+
+.col-img-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.col-img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.col-details {
+    display: flex;
+    justify-content: center;
+}
+
+.col-sets {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.mid-flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.flex-hor {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.col-set-button {
+    display: flex;
+    align-content: flex-end;
+}
+
+.mid form {
+    text-align: left;
+}
+
+.mid-buttons {
+    text-align: center;
+}
+
+.mid-buttons button {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+label.required::before {
+    content: '*';
+}
+
+.select2, .select2-container, .select2-container--default, .select2-container--below, .select2-container--open {
+    width: 100% !important;
+    background-color: pink !important;
+}
+
+.select2-selection__arrow, .select2-container--default, .select2-selection--single, .select2-selection, .select2-results__option, .select2-search--dropdown {
+    background-color: pink !important;
+}
+
+.select2-container--default, .select2-selection--single, .select2-selection__rendered {
+    color: black !important;
 }

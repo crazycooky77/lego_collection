@@ -1,29 +1,79 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
     <div class="mid">
         <form method="GET">
             <br>
-            {% if collections %}
-    {% for col in collections %}
-        {{ col.collection_pic }}
-        {{ col.collection_name }}
-    {% endfor %}
-            {% if sets %}
-            {% for set in sets %}
-        {{ set.set }}
-            {{ set.build_status }}
-            {{ set.set_location }}
-            {{ set.favourited }}
-            {% endfor %}
-        {{ set.missing_pieces }}
-            {% else %}
-            No sets in collection
+            {% if user.is_authenticated %}
+                {% if form.errors %}
+                    <br>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="form-error">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="form-error">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if messages %}
+                    <br>
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                            <div class="form-error">
+                                {{ message }}
+                            </div>
+                        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO or message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                            <div class="form-confirm">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if collections %}
+                    {% for col in collections %}
+                        {% if request.user == col.collection_owner %}
+                            <div class="mid-flex">
+                                <div class="flex-hor">
+                                    <div class="col-img-container">
+                                        {% if "placeholder" in col.collection_pic.url %}
+                                            <img class="col-img" src="{% static 'images/col-default.png' %}" alt="placeholder collection image">
+                                        {% else %}
+                                            <img class="col-img" src=" {{ col.collection_pic.url }}" alt="collection image">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-title">
+                                        {{ col.collection_name }}
+                                    </div>
+                                    <div class="col-set-button">
+                                        <button><a href="/add-set">Add Set</a></button>
+                                    </div>
+                                </div>
+                                <div class="col-sets">
+                                    {% if sets %}
+                                        {% for set in sets %}
+                                            {{ set.set }}
+                                            {{ set.build_status }}
+                                            {{ set.set_location }}
+                                            {{ set.favourited }}
+                                            {{ set.missing_pieces }}
+                                        {% endfor %}
+                                    {% else %}
+                                        No sets in collection. Add a set in the upper right.
+                                    {% endif %}
+                                </div>
+                            </div>
+                         {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <button><a href="/create-collection">Create Collection</a></button>
+                {% endif %}
             {% endif %}
-
-{% else %}
-    <button><a href="/create-collection">Create Collection</a></button>
-{% endif %}
         </form>
     </div>
     {% include 'profile_widget.html' %}

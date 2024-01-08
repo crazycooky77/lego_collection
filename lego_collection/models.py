@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import gettext_lazy as _
@@ -54,8 +55,9 @@ class CustomUser(AbstractUser):
 class LegoSet(models.Model):
     set_number = models.IntegerField(primary_key=True, unique=True)
     set_name = models.CharField(max_length=200)
-    set_picture = models.ImageField(blank=True, null=True)
+    set_picture = CloudinaryField('image', default='placeholder')
     nr_of_pieces = models.IntegerField(blank=True, null=True)
+    lego_link = models.URLField(blank=True, null=True)
 
     class Meta:
         ordering = ['set_number']
@@ -67,7 +69,7 @@ class LegoSet(models.Model):
 class Collection(models.Model):
     collection_id = models.AutoField(primary_key=True)
     collection_name = models.CharField(max_length=100)
-    collection_pic = models.ImageField(blank=True, null=True)
+    collection_pic = CloudinaryField('image', default='col-default.png')
     collection_owner = models.OneToOneField('CustomUser',
                                             on_delete=models.CASCADE)
 
@@ -86,7 +88,7 @@ class LegoCollection(models.Model):
         STORED = 'STORED', _('Stored')
         WISH_LIST = 'WL', _('Wish List')
 
-    col_id = models.ForeignKey('Collection', on_delete=models.CASCADE)
+    collection = models.ForeignKey('Collection', on_delete=models.CASCADE)
     set = models.ForeignKey('LegoSet', on_delete=models.CASCADE)
     missing_pieces = models.CharField(max_length=500, default=None, blank=True, null=True)
     build_status = models.CharField(max_length=50, choices=Status.choices)
@@ -95,7 +97,7 @@ class LegoCollection(models.Model):
     shared = models.CharField(max_length=20, default=None, blank=True, null=True)
 
     class Meta:
-        ordering = ['col_id', 'build_status', 'set']
+        ordering = ['collection', 'build_status', 'set']
 
     def __str__(self):
-        return f'{self.col_id}'
+        return f'{self.collection}'

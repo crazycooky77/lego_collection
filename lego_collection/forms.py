@@ -1,4 +1,6 @@
+from cloudinary.forms import CloudinaryFileField
 from django import forms
+from django_select2 import forms as s2forms
 from .models import CustomUser, Collection, LegoCollection, LegoSet
 
 
@@ -29,31 +31,36 @@ class DeleteAccount(forms.Form):
 
 
 class CreateCollection(forms.ModelForm):
-    collection_name = forms.CharField(max_length=100, required=True)
-    collection_pic = forms.ImageField(required=False)
+    required_css_class = 'required'
+    collection_pic = CloudinaryFileField(
+        options={'crop': 'fit', 'width': 100, 'height': 100}, required=False)
 
     class Meta:
         model = Collection
         fields = ['collection_name', 'collection_pic']
 
 
+class SetWidget(s2forms.ModelSelect2Widget):
+    search_fields = [
+        'set_number__icontains',
+        'set_name__icontains',
+    ]
+
+
 class AddSet(forms.ModelForm):
-    build_status = forms.ChoiceField()
-    set_location = forms.CharField(max_length=100)
-    favourited = forms.BooleanField()
-    missing_pieces = forms.CharField(max_length=500)
+    required_css_class = 'required'
 
     class Meta:
         model = LegoCollection
         fields = ['set', 'build_status', 'set_location', 'favourited', 'missing_pieces']
+        widgets = {'set': SetWidget()}
 
 
 class CreateSet(forms.ModelForm):
-    set_number = forms.IntegerField()
-    set_name = forms.CharField(max_length=200)
-    set_picture = forms.ImageField()
-    nr_of_pieces = forms.IntegerField()
+    required_css_class = 'required'
+    set_picture = CloudinaryFileField(
+        options={'crop': 'fit', 'width': 100, 'height': 100}, required=False)
 
     class Meta:
-        model = LegoCollection
-        fields = ['set_number', 'set_name', 'set_picture', 'nr_of_pieces']
+        model = LegoSet
+        fields = ['set_number', 'set_name', 'set_picture', 'nr_of_pieces', 'lego_link']

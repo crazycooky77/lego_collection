@@ -1,10 +1,11 @@
+import cloudinary
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import CustomUser, Collection, LegoCollection
-from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection
+from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection, CreateSet, AddSet
 
 
 # Create your views here.
@@ -39,10 +40,47 @@ def create_collection(request):
 
 def collections_view(request):
     if request.user.is_authenticated:
-        collections = Collection.objects.all()
-        sets = LegoCollection.objects.all()
-        context = {'collections': collections, 'sets': sets}
-        return render(request, 'collections.html', context)
+        if Collection.objects.filter(collection_owner__exact=request.user).exists():
+            collections = Collection.objects.all()
+            sets = LegoCollection.objects.all()
+            context = {'collections': collections, 'sets': sets}
+            return render(request, 'collections.html', context)
+        else:
+            return render(request, 'collections.html')
+
+
+def create_set(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            create_set_form = CreateSet(request.POST, request.FILES)
+            if request.POST.get("create-set-button"):
+                if create_set_form.is_valid():
+                    create_set_form.save()
+                    messages.success(request, 'You successfully created a set. Add it to your collection now with the "Add Set" button.')
+                    return redirect('add_set')
+        else:
+            create_set_form = CreateSet()
+        return render(request, 'create_set.html', {'create_set_form': create_set_form})
+    else:
+        return render(request, 'add_set.html')
+
+
+def add_set(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            add_set_form = AddSet(request.POST)
+            if request.POST.get("add-set-button"):
+                if add_set_form.is_valid():
+                    obj = add_set_form.save(commit=False)
+                    obj.collection_id = request.collection_id
+                    obj.save()
+                    messages.success(request, 'Set successfully added to your collection.')
+                    return redirect('collections')
+        else:
+            add_set_form = AddSet()
+        return render(request, 'add_set.html', {'add_set_form': add_set_form})
+    else:
+        return render(request, 'collections.html')
 
 
 def profile_view(request):
