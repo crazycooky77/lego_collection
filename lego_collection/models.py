@@ -55,7 +55,7 @@ class CustomUser(AbstractUser):
 class LegoSet(models.Model):
     set_number = models.IntegerField(primary_key=True, unique=True)
     set_name = models.CharField(max_length=200)
-    set_picture = CloudinaryField('image', default='placeholder')
+    set_picture = CloudinaryField('image', default='set-placeholder')
     nr_of_pieces = models.IntegerField(blank=True, null=True)
     lego_link = models.URLField(blank=True, null=True)
 
@@ -69,7 +69,7 @@ class LegoSet(models.Model):
 class Collection(models.Model):
     collection_id = models.AutoField(primary_key=True)
     collection_name = models.CharField(max_length=100)
-    collection_pic = CloudinaryField('image', default='col-default.png')
+    collection_pic = CloudinaryField('image', default='col-placeholder')
     collection_owner = models.OneToOneField('CustomUser',
                                             on_delete=models.CASCADE)
 

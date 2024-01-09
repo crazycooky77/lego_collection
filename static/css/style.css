@@ -76,7 +76,7 @@ footer p {
 
 .mid {
     display: flex;
-    width: 70%;
+    width: 80%;
     justify-content: center;
     border: solid black 2px;
     border-radius: 0.2em;
@@ -87,7 +87,7 @@ footer p {
 
 .mini-profile {
     display: flex;
-    width: 25%;
+    width: 15%;
     justify-content: center;
     flex-direction: column;
 }
@@ -307,13 +307,17 @@ input[type="file"]::file-selector-button:active {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    align-items: baseline;
-    margin-bottom: 20px;
+    align-items: center;
+    margin: 0 20px 20px 20px;
 }
 
 .col-set-button {
     display: flex;
     align-content: flex-end;
+}
+
+.col-set-button button {
+    margin: 0 10px;
 }
 
 .mid form {
@@ -344,4 +348,23 @@ label.required::before {
 
 .select2-container--default, .select2-selection--single, .select2-selection__rendered {
     color: black !important;
+}
+
+.set-img {
+    height: 100px;
+    width: 100px;
+    border-radius: 15%;
+}
+
+td, th {
+    padding: 5px 15px;
+    border: 1px solid grey;
+}
+
+td input {
+    width: 60%;
+}
+
+table {
+    margin: 0 20px 20px 20px;
 }

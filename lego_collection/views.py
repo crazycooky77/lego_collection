@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import CustomUser, Collection, LegoCollection
-from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection, CreateSet, AddSet
+from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection, CreateSet, AddSet, UpdateCol
 
 
 # Create your views here.
@@ -41,12 +41,43 @@ def create_collection(request):
 def collections_view(request):
     if request.user.is_authenticated:
         if Collection.objects.filter(collection_owner__exact=request.user).exists():
-            collections = Collection.objects.all()
-            sets = LegoCollection.objects.all()
-            context = {'collections': collections, 'sets': sets}
-            return render(request, 'collections.html', context)
+            collection = Collection.objects.filter(
+                collection_owner=request.user)
+            col_id = Collection.objects.filter(
+                collection_owner=request.user).values_list('collection_id',
+                                                           flat=True)
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all())
         else:
             return render(request, 'collections.html')
+        return render(request, 'collections.html',
+                      {'collection': collection, 'sets': sets})
+    else:
+        return render(request, 'collections.html')
+
+
+def edit_collection(request):
+    if request.user.is_authenticated:
+        if Collection.objects.filter(collection_owner__exact=request.user).exists():
+            collection = Collection.objects.filter(
+                collection_owner=request.user)
+            col_id = Collection.objects.filter(
+                collection_owner=request.user).values_list('collection_id',
+                                                           flat=True)
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all())
+            if request.method == 'POST':
+                if request.POST.get("update-col-button"):
+                    update_col_form = UpdateCol(request.POST)
+                    update_col_form.save()
+                    messages.success(request, 'Collection updated successfully.')
+                    return redirect('collections')
+            else:
+                update_col_form = UpdateCol()
+            return render(request, 'edit_collection.html',
+                          {'update_col_form': update_col_form, 'collection': collection, 'sets': sets})
+    else:
+        return render(request, 'collections.html')
 
 
 def create_set(request):
@@ -72,7 +103,8 @@ def add_set(request):
             if request.POST.get("add-set-button"):
                 if add_set_form.is_valid():
                     obj = add_set_form.save(commit=False)
-                    obj.collection_id = request.collection_id
+                    collection = Collection.objects.filter(collection_owner=request.user).values_list('collection_id', flat=True)
+                    obj.collection_id = collection
                     obj.save()
                     messages.success(request, 'Set successfully added to your collection.')
                     return redirect('collections')

@@ -5,7 +5,10 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ create_set_form.as_p }}
-            <button type="submit" name="create-set-button" value="create-set-button">Save</button>
+            <div class="mid-buttons">
+                <button type="submit" name="create-set-button" value="create-set-button">Save</button>
+                <button><a href="/collections">Cancel</a></button>
+            </div>
         </form>
     </div>
     {% include 'profile_widget.html' %}

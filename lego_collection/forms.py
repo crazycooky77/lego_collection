@@ -56,6 +56,12 @@ class AddSet(forms.ModelForm):
         widgets = {'set': SetWidget()}
 
 
+class UpdateCol(forms.ModelForm):
+    class Meta:
+        model = LegoCollection
+        fields = ['set', 'build_status', 'set_location', 'favourited', 'missing_pieces']
+
+
 class CreateSet(forms.ModelForm):
     required_css_class = 'required'
     set_picture = CloudinaryFileField(

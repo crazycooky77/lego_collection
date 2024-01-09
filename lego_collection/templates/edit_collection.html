@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="mid">
+        <form method="POST" enctype="multipart/form-data">
+            <br>
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+                {% if form.errors %}
+                    <br>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="form-error">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="form-error">
+                            {{ error|escape }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if messages %}
+                    <br>
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                            <div class="form-error">
+                                {{ message }}
+                            </div>
+                        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO or message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                            <div class="form-confirm">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if collection %}
+                    {% for col in collection %}
+                        <div class="mid-flex">
+                            <div class="flex-hor">
+                                <div class="col-img-container">
+                                    {% if "col-placeholder" in col.collection_pic.url %}
+                                        <img class="col-img" src="{% static 'images/col-default.png' %}" alt="placeholder collection image">
+                                    {% else %}
+                                        <img class="col-img" src="{{ col.collection_pic.url }}" alt="collection image">
+                                    {% endif %}
+                                </div>
+                                <div class="col-title">
+                                    {{ col.collection_name }}
+                                </div>
+                                <div class="col-set-button">
+                                    <button><a href="/add-set">Add Set</a></button>
+                                    <button><a href="/create-set">Create New Set</a></button>
+                                </div>
+                            </div>
+                            <div class="col-sets">
+                                {% if sets %}
+                                    <table>
+                                        <tr>
+                                            <th>Set Image</th>
+                                            <th>Set Number</th>
+                                            <th>Set Name</th>
+                                            <th># Pieces</th>
+                                            <th>Build Status</th>
+                                            <th class="table-input">Set Location</th>
+                                            <th class="table-input">Missing Pieces</th>
+                                            <th>Favourite</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        {% for set in sets %}
+                                            <tr>
+                                                <td>
+                                                    {% if "set-placeholder" in set.set.set_picture.url %}
+                                                        <img class="set-img" src="{% static 'images/set-default.png' %}" alt="placeholder set image">
+                                                    {% else %}
+                                                        <img class="set-img" src="{{ set.set_picture.url }}" alt="set image">
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ set.set.set_number }}</td>
+                                                <td>{{ set.set.set_name }}</td>
+                                                <td>{{ set.set.nr_of_pieces }}</td>
+                                                <td>{{ update_col_form.build_status }}</td>
+                                                <td class="table-input">{{ update_col_form.set_location }}</td>
+                                                <td class="table-input">{{ update_col_form.missing_pieces }}</td>
+                                                <td>{{ update_col_form.favourited }}</td>
+                                                <td></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                {% else %}
+                                    No sets in collection. Add a set in the upper right.
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="mid-buttons">
+                        <button type="submit" name="update-col-form" value="update-col-form">Save Changes</button>
+                        <button type="reset"><a href="/collections">Discard Changes</a></button>
+                    </div>
+                {% else %}
+                    <button><a href="/create-collection">Create Collection</a></button>
+                {% endif %}
+            {% endif %}
+        </form>
+    </div>
+    {% include 'profile_widget.html' %}
+{% endblock %}

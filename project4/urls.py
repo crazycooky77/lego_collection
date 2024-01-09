@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('collections/', collections_view, name='collections'),
     path('create-collection/', create_collection, name='create_collection'),
+    path('edit-collection/', edit_collection, name='edit_collection'),
     path('create-set/', create_set, name='create_set'),
     path('add-set/', add_set, name='add_set'),
     path('profile/', profile_view, name='profile'),
