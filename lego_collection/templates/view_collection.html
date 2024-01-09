@@ -90,15 +90,15 @@
                                     </tr>
                                 {% endfor %}
                             </table>
+                            <div class="mid-buttons">
+                                <button><a href="/edit-collection">Edit Collection</a></button>
+                            </div>
                         {% else %}
                             No sets in collection. Add a set in the upper right.
                         {% endif %}
                     </div>
                 </div>
             {% endfor %}
-            <div class="mid-buttons">
-                <button><a href="/edit-collection">Edit Collection</a></button>
-            </div>
         {% else %}
             <button><a href="/create-collection">Create Collection</a></button>
         {% endif %}
