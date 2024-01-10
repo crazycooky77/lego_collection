@@ -139,6 +139,7 @@ footer p {
 
 .form-error {
     color: red;
+    text-align: center;
 }
 
 .profile .border, .mini-profile .border {
@@ -219,6 +220,7 @@ hr {
 
 .form-confirm {
     color: green;
+    text-align: center;
 }
 
 input:valid, input:invalid, select {
@@ -367,4 +369,9 @@ td input {
 
 table {
     margin: 0 20px 20px 20px;
+}
+
+.col-title {
+    margin-right: min(150px);
+    margin-left: min(150px);
 }

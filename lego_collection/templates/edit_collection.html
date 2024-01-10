@@ -85,7 +85,7 @@
                                                 <td class="table-input">{{ update_col_form.set_location }}</td>
                                                 <td class="table-input">{{ update_col_form.missing_pieces }}</td>
                                                 <td>{{ update_col_form.favourited }}</td>
-                                                <td></td>
+                                                <td><label for="delete-set"><input type="checkbox" name="delete-set" value="{{ set.id }}" id="delete-set"></label></td>
                                             </tr>
                                         {% endfor %}
                                     </table>
@@ -96,7 +96,7 @@
                         </div>
                     {% endfor %}
                     <div class="mid-buttons">
-                        <button type="submit" name="update-col-form" value="update-col-form">Save Changes</button>
+                        <button type="submit" name="update-col-button" value="update-col-button">Save Changes</button>
                         <button type="reset"><a href="/collections">Discard Changes</a></button>
                     </div>
                 {% else %}

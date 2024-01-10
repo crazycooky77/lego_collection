@@ -50,6 +50,9 @@
                         <div class="col-set-button">
                             <button><a href="/add-set">Add Set</a></button>
                             <button><a href="/create-set">Create New Set</a></button>
+                            {% if sets %}
+                                <button><a href="/edit-collection">Edit Collection</a></button>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-sets">
@@ -90,9 +93,6 @@
                                     </tr>
                                 {% endfor %}
                             </table>
-                            <div class="mid-buttons">
-                                <button><a href="/edit-collection">Edit Collection</a></button>
-                            </div>
                         {% else %}
                             No sets in collection. Add a set in the upper right.
                         {% endif %}
