@@ -69,9 +69,9 @@ def edit_collection(request):
             if request.method == 'POST':
                 update_col_form = UpdateCol(request.POST)
                 if request.POST.get("update-col-button"):
-                    set_pk = request.POST.get("delete-set")
+                    set_pk = request.POST.getlist("delete-set")
                     if set_pk:
-                        LegoCollection.objects.filter(pk=set_pk).delete()
+                        LegoCollection.objects.filter(pk__in=set_pk).delete()
                     if update_col_form.is_valid():
                         update_col_form.save()
                 messages.success(request, 'Collection updated successfully.')
