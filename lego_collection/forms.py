@@ -59,7 +59,7 @@ class AddSet(forms.ModelForm):
 class UpdateCol(forms.ModelForm):
     class Meta:
         model = LegoCollection
-        fields = ['set', 'build_status', 'set_location', 'favourited', 'missing_pieces']
+        fields = ['build_status', 'set_location', 'missing_pieces', 'favourited']
 
 
 class CreateSet(forms.ModelForm):

@@ -1,4 +1,3 @@
-import cloudinary
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
@@ -66,20 +65,32 @@ def edit_collection(request):
                                                            flat=True)
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all())
-            if request.method == 'POST':
-                update_col_form = UpdateCol(request.POST)
-                if request.POST.get("update-col-button"):
-                    set_pk = request.POST.getlist("delete-set")
-                    if set_pk:
-                        LegoCollection.objects.filter(pk__in=set_pk).delete()
-                    if update_col_form.is_valid():
-                        update_col_form.save()
-                messages.success(request, 'Collection updated successfully.')
-                return redirect(to='collections')
-            else:
-                update_col_form = UpdateCol()
-            return render(request, 'edit_collection.html',
-                          {'update_col_form': update_col_form, 'collection': collection, 'sets': sets})
+
+            for x in range(0, len(sets)):
+                if request.method == 'POST':
+                    update_col_form = UpdateCol(request.POST, prefix=str(x),
+                                                 instance=LegoCollection.objects.get(
+                                                     pk=sets[x].id))
+                    # update_col_form = UpdateCol(request.POST, instance=LegoCollection())
+                    if request.POST.get("update-col-button"):
+                        set_del_pk = request.POST.getlist("delete-set")
+                        if set_del_pk:
+                            LegoCollection.objects.filter(pk__in=set_del_pk).delete()
+                        if update_col_form.is_valid:
+                            update_set = update_col_form.save(commit=False)
+                            update_set.save()
+                        # if update_col_form.is_valid():
+                        #     update_col_form.save()
+                    messages.success(request, 'Collection updated successfully.')
+                    return redirect(to='collections')
+                else:
+                    update_col_form = UpdateCol(request.POST, prefix=str(x),
+                                                 instance=LegoCollection.objects.get(
+                                                     pk=sets[x].id))
+                    # update_col_form = [UpdateCol(prefix=str(x), instance=LegoCollection(sets[x].id)) for x in range(0, len(sets))]
+                    # update_col_form = UpdateCol(instance=LegoCollection.objects.get(pk=18))
+                return render(request, 'edit_collection.html',
+                              {'update_col_form': update_col_form, 'collection': collection, 'sets': sets})
     else:
         return render(request, 'collections.html')
 

@@ -100,4 +100,4 @@ class LegoCollection(models.Model):
         ordering = ['collection', 'build_status', 'set']
 
     def __str__(self):
-        return f'{self.collection}'
+        return f'{self.id} | {self.set} | {self.collection}'

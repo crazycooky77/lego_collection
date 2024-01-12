@@ -11,3 +11,6 @@ https://stackoverflow.com/questions/24273839/django-allauth-custom-login-does-no
 https://github.com/pennersr/django-allauth/tree/main/allauth/templates/account
 https://dev.to/earthcomfy/django-update-user-profile-33ho
 https://stackoverflow.com/questions/38047408/how-to-allow-user-to-delete-account-in-django-allauth
+https://forum.djangoproject.com/t/automatically-get-user-id-to-assignate-to-form-when-submitting/5333/7
+https://docs.djangoproject.com/en/4.0/intro/tutorial03/
+https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/

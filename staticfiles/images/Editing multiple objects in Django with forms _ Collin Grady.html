@@ -1,0 +1,1175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0094)https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Editing multiple objects in Django with forms | Collin Grady</title>
+<link rel="pingback" href="https://collingrady.wordpress.com/xmlrpc.php">
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="https://ced.sascdn.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s.pubmine.com/">
+<link rel="dns-prefetch" href="https://x.bidswitch.net/">
+<link rel="dns-prefetch" href="https://static.criteo.net/">
+<link rel="dns-prefetch" href="https://ib.adnxs.com/">
+<link rel="dns-prefetch" href="https://aax.amazon-adsystem.com/">
+<link rel="dns-prefetch" href="https://bidder.criteo.com/">
+<link rel="dns-prefetch" href="https://cas.criteo.com/">
+<link rel="dns-prefetch" href="https://gum.criteo.com/">
+<link rel="dns-prefetch" href="https://ads.pubmatic.com/">
+<link rel="dns-prefetch" href="https://gads.pubmatic.com/">
+<link rel="dns-prefetch" href="https://tpc.googlesyndication.com/">
+<link rel="dns-prefetch" href="https://ad.doubleclick.net/">
+<link rel="dns-prefetch" href="https://googleads.g.doubleclick.net/">
+<link rel="dns-prefetch" href="https://www.googletagservices.com/">
+<link rel="dns-prefetch" href="https://cdn.switchadhub.com/">
+<link rel="dns-prefetch" href="https://delivery.g.switchadhub.com/">
+<link rel="dns-prefetch" href="https://delivery.swid.switchadhub.com/">
+<link rel="dns-prefetch" href="https://a.teads.tv/">
+<link rel="dns-prefetch" href="https://prebid.media.net/">
+<link rel="dns-prefetch" href="https://adserver-us.adtech.advertising.com/">
+<link rel="dns-prefetch" href="https://fastlane.rubiconproject.com/">
+<link rel="dns-prefetch" href="https://prebid-server.rubiconproject.com/">
+<link rel="dns-prefetch" href="https://hb-api.omnitagjs.com/">
+<link rel="dns-prefetch" href="https://mtrx.go.sonobi.com/">
+<link rel="dns-prefetch" href="https://apex.go.sonobi.com/">
+<link rel="dns-prefetch" href="https://u.openx.net/">
+<link rel="alternate" type="application/rss+xml" title="Collin Grady » Feed" href="https://collingrady.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Collin Grady » Comments Feed" href="https://collingrady.wordpress.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Collin Grady » Editing multiple objects in Django with forms Comments Feed" href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/feed/">
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+	<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s0.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1677072837i&ver=6.5-alpha-57239"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-0-1" href="./Editing multiple objects in Django with forms _ Collin Grady_files/saved_resource(1)" type="text/css" media="all">
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-2-1" href="./Editing multiple objects in Django with forms _ Collin Grady_files/style.css" type="text/css" media="all">
+<style id="wp-block-library-inline-css">
+.has-text-align-justify {
+	text-align:justify;
+}
+.wp-block-cover__image-background.has-parallax {
+	background-size: cover;
+}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-4-1" href="./Editing multiple objects in Django with forms _ Collin Grady_files/saved_resource(2)" type="text/css" media="all">
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-6-1" href="./Editing multiple objects in Django with forms _ Collin Grady_files/saved_resource(3)" type="text/css" media="all">
+<style id="global-styles-inline-css">
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-family--albert-sans: 'Albert Sans', sans-serif;--wp--preset--font-family--alegreya: Alegreya, serif;--wp--preset--font-family--arvo: Arvo, serif;--wp--preset--font-family--bodoni-moda: 'Bodoni Moda', serif;--wp--preset--font-family--cabin: Cabin, sans-serif;--wp--preset--font-family--chivo: Chivo, sans-serif;--wp--preset--font-family--commissioner: Commissioner, sans-serif;--wp--preset--font-family--cormorant: Cormorant, serif;--wp--preset--font-family--courier-prime: 'Courier Prime', monospace;--wp--preset--font-family--crimson-pro: 'Crimson Pro', serif;--wp--preset--font-family--dm-mono: 'DM Mono', monospace;--wp--preset--font-family--dm-sans: 'DM Sans', sans-serif;--wp--preset--font-family--domine: Domine, serif;--wp--preset--font-family--eb-garamond: 'EB Garamond', serif;--wp--preset--font-family--epilogue: Epilogue, sans-serif;--wp--preset--font-family--figtree: Figtree, sans-serif;--wp--preset--font-family--fira-sans: 'Fira Sans', sans-serif;--wp--preset--font-family--fraunces: Fraunces, serif;--wp--preset--font-family--ibm-plex-mono: 'IBM Plex Mono', monospace;--wp--preset--font-family--ibm-plex-sans: 'IBM Plex Sans', sans-serif;--wp--preset--font-family--inter: Inter, sans-serif;--wp--preset--font-family--josefin-sans: 'Josefin Sans', sans-serif;--wp--preset--font-family--jost: Jost, sans-serif;--wp--preset--font-family--libre-baskerville: 'Libre Baskerville', serif;--wp--preset--font-family--libre-franklin: 'Libre Franklin', sans-serif;--wp--preset--font-family--literata: Literata, serif;--wp--preset--font-family--lora: Lora, serif;--wp--preset--font-family--merriweather: Merriweather, serif;--wp--preset--font-family--montserrat: Montserrat, sans-serif;--wp--preset--font-family--newsreader: Newsreader, serif;--wp--preset--font-family--nunito: Nunito, sans-serif;--wp--preset--font-family--open-sans: 'Open Sans', sans-serif;--wp--preset--font-family--overpass: Overpass, sans-serif;--wp--preset--font-family--petrona: Petrona, serif;--wp--preset--font-family--piazzolla: Piazzolla, serif;--wp--preset--font-family--playfair-display: 'Playfair Display', serif;--wp--preset--font-family--plus-jakarta-sans: 'Plus Jakarta Sans', sans-serif;--wp--preset--font-family--poppins: Poppins, sans-serif;--wp--preset--font-family--raleway: Raleway, sans-serif;--wp--preset--font-family--roboto: Roboto, sans-serif;--wp--preset--font-family--roboto-slab: 'Roboto Slab', serif;--wp--preset--font-family--rubik: Rubik, sans-serif;--wp--preset--font-family--sora: Sora, sans-serif;--wp--preset--font-family--source-sans-3: 'Source Sans 3', sans-serif;--wp--preset--font-family--source-serif-4: 'Source Serif 4', serif;--wp--preset--font-family--space-mono: 'Space Mono', monospace;--wp--preset--font-family--texturina: Texturina, serif;--wp--preset--font-family--work-sans: 'Work Sans', sans-serif;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-albert-sans-font-family{font-family: var(--wp--preset--font-family--albert-sans) !important;}.has-alegreya-font-family{font-family: var(--wp--preset--font-family--alegreya) !important;}.has-arvo-font-family{font-family: var(--wp--preset--font-family--arvo) !important;}.has-bodoni-moda-font-family{font-family: var(--wp--preset--font-family--bodoni-moda) !important;}.has-cabin-font-family{font-family: var(--wp--preset--font-family--cabin) !important;}.has-chivo-font-family{font-family: var(--wp--preset--font-family--chivo) !important;}.has-commissioner-font-family{font-family: var(--wp--preset--font-family--commissioner) !important;}.has-cormorant-font-family{font-family: var(--wp--preset--font-family--cormorant) !important;}.has-courier-prime-font-family{font-family: var(--wp--preset--font-family--courier-prime) !important;}.has-crimson-pro-font-family{font-family: var(--wp--preset--font-family--crimson-pro) !important;}.has-dm-mono-font-family{font-family: var(--wp--preset--font-family--dm-mono) !important;}.has-dm-sans-font-family{font-family: var(--wp--preset--font-family--dm-sans) !important;}.has-domine-font-family{font-family: var(--wp--preset--font-family--domine) !important;}.has-eb-garamond-font-family{font-family: var(--wp--preset--font-family--eb-garamond) !important;}.has-epilogue-font-family{font-family: var(--wp--preset--font-family--epilogue) !important;}.has-figtree-font-family{font-family: var(--wp--preset--font-family--figtree) !important;}.has-fira-sans-font-family{font-family: var(--wp--preset--font-family--fira-sans) !important;}.has-fraunces-font-family{font-family: var(--wp--preset--font-family--fraunces) !important;}.has-ibm-plex-mono-font-family{font-family: var(--wp--preset--font-family--ibm-plex-mono) !important;}.has-ibm-plex-sans-font-family{font-family: var(--wp--preset--font-family--ibm-plex-sans) !important;}.has-inter-font-family{font-family: var(--wp--preset--font-family--inter) !important;}.has-josefin-sans-font-family{font-family: var(--wp--preset--font-family--josefin-sans) !important;}.has-jost-font-family{font-family: var(--wp--preset--font-family--jost) !important;}.has-libre-baskerville-font-family{font-family: var(--wp--preset--font-family--libre-baskerville) !important;}.has-libre-franklin-font-family{font-family: var(--wp--preset--font-family--libre-franklin) !important;}.has-literata-font-family{font-family: var(--wp--preset--font-family--literata) !important;}.has-lora-font-family{font-family: var(--wp--preset--font-family--lora) !important;}.has-merriweather-font-family{font-family: var(--wp--preset--font-family--merriweather) !important;}.has-montserrat-font-family{font-family: var(--wp--preset--font-family--montserrat) !important;}.has-newsreader-font-family{font-family: var(--wp--preset--font-family--newsreader) !important;}.has-nunito-font-family{font-family: var(--wp--preset--font-family--nunito) !important;}.has-open-sans-font-family{font-family: var(--wp--preset--font-family--open-sans) !important;}.has-overpass-font-family{font-family: var(--wp--preset--font-family--overpass) !important;}.has-petrona-font-family{font-family: var(--wp--preset--font-family--petrona) !important;}.has-piazzolla-font-family{font-family: var(--wp--preset--font-family--piazzolla) !important;}.has-playfair-display-font-family{font-family: var(--wp--preset--font-family--playfair-display) !important;}.has-plus-jakarta-sans-font-family{font-family: var(--wp--preset--font-family--plus-jakarta-sans) !important;}.has-poppins-font-family{font-family: var(--wp--preset--font-family--poppins) !important;}.has-raleway-font-family{font-family: var(--wp--preset--font-family--raleway) !important;}.has-roboto-font-family{font-family: var(--wp--preset--font-family--roboto) !important;}.has-roboto-slab-font-family{font-family: var(--wp--preset--font-family--roboto-slab) !important;}.has-rubik-font-family{font-family: var(--wp--preset--font-family--rubik) !important;}.has-sora-font-family{font-family: var(--wp--preset--font-family--sora) !important;}.has-source-sans-3-font-family{font-family: var(--wp--preset--font-family--source-sans-3) !important;}.has-source-serif-4-font-family{font-family: var(--wp--preset--font-family--source-serif-4) !important;}.has-space-mono-font-family{font-family: var(--wp--preset--font-family--space-mono) !important;}.has-texturina-font-family{font-family: var(--wp--preset--font-family--texturina) !important;}.has-work-sans-font-family{font-family: var(--wp--preset--font-family--work-sans) !important;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-8-1" href="./Editing multiple objects in Django with forms _ Collin Grady_files/saved_resource(4)" type="text/css" media="all">
+<link crossorigin="anonymous" rel="stylesheet" id="print-css-9-1" href="./Editing multiple objects in Django with forms _ Collin Grady_files/global-print.css" type="text/css" media="print">
+<style id="jetpack-global-styles-frontend-style-inline-css">
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link crossorigin="anonymous" rel="stylesheet" id="all-css-12-1" href="./Editing multiple objects in Django with forms _ Collin Grady_files/saved_resource(5)" type="text/css" media="all">
+<script type="text/javascript" id="jetpack_related-posts-js-extra">
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type="text/javascript" id="media-video-jwt-bridge-js-extra">
+/* <![CDATA[ */
+var videopressAjax = {"ajaxUrl":"https:\/\/collingrady.wordpress.com\/wp-admin\/admin-ajax.php","bridgeUrl":"\/wp-content\/mu-plugins\/jetpack-plugin\/sun\/jetpack_vendor\/automattic\/jetpack-videopress\/build\/lib\/token-bridge.js","post_id":"84"};
+/* ]]> */
+</script>
+<script type="text/javascript" id="wpcom-actionbar-placeholder-js-extra">
+/* <![CDATA[ */
+var actionbardata = {"siteID":"240174","postID":"84","siteURL":"http:\/\/collingrady.wordpress.com","xhrURL":"https:\/\/collingrady.wordpress.com\/wp-admin\/admin-ajax.php","nonce":"f063eb7c19","isLoggedIn":"","statusMessage":"","subsEmailDefault":"instantly","proxyScriptUrl":"https:\/\/s0.wp.com\/wp-content\/js\/wpcom-proxy-request.js?ver=20211021","shortlink":"https:\/\/wp.me\/p10tM-1m","i18n":{"followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar"}};
+/* ]]> */
+</script>
+<script crossorigin="anonymous" type="text/javascript" src="./Editing multiple objects in Django with forms _ Collin Grady_files/saved_resource(6)"></script>
+<script type="text/javascript" id="rlt-proxy-js-after">
+/* <![CDATA[ */
+	window.addEventListener( 'DOMContentLoaded', function() {
+		rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+	} );
+/* ]]> */
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://collingrady.wordpress.com/xmlrpc.php?rsd">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">
+<link rel="shortlink" href="https://wp.me/p10tM-1m">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fcollingrady.wordpress.com%2F2008%2F02%2F18%2Fediting-multiple-objects-in-django-with-newforms%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fcollingrady.wordpress.com%2F2008%2F02%2F18%2Fediting-multiple-objects-in-django-with-newforms%2F&amp;for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Editing multiple objects in Django with forms">
+<meta property="og:url" content="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">
+<meta property="og:description" content="A common problem I see when helping people in the Django IRC channel is people who are trying to create or edit multiple objects, but for some reason try to make a single form object to deal with t…">
+<meta property="article:published_time" content="2008-02-18T21:45:28+00:00">
+<meta property="article:modified_time" content="2008-11-03T20:00:00+00:00">
+<meta property="og:site_name" content="Collin Grady">
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg">
+<meta property="og:image:alt" content="">
+<meta property="og:locale" content="en_US">
+<meta property="fb:app_id" content="249643311490">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<meta name="twitter:text:title" content="Editing multiple objects in Django with forms">
+<meta name="twitter:card" content="summary">
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s0.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="https://s0.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon" href="https://s0.wp.com/i/webclip.png">
+<link rel="openid.server" href="https://collingrady.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="https://collingrady.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="https://collingrady.wordpress.com/osd.xml" title="Collin Grady">
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com">
+		<style id="wpcom-hotfix-masterbar-style">
+			@media screen and (min-width: 783px) {
+				#wpadminbar .quicklinks li#wp-admin-bar-my-account.with-avatar > a img {
+					margin-top: 5px;
+				}
+			}
+		</style>
+		<meta name="application-name" content="Collin Grady"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-task" content="name=Subscribe;action-uri=https://collingrady.wordpress.com/feed/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s0.wp.com/i/favicon.ico"><meta name="description" content="A common problem I see when helping people in the Django IRC channel is people who are trying to create or edit multiple objects, but for some reason try to make a single form object to deal with them - this makes things quite convoluted and much harder than they have to be. My goal…">
+	<style type="text/css">
+		#header {
+			background: #8EBAFD url(https://s0.wp.com/wp-content/themes/pub/pool/images/logo.gif) left repeat-y;
+		}
+				#header h1 a,
+		#header h1 a:hover,
+		#header #desc {
+			color: #FFFFFF;
+		}
+			</style>
+
+			<style>
+			.wordads-ad-wrapper {
+				position: absolute;
+				visibility: hidden;
+				font: normal 11px Arial, sans-serif;
+				letter-spacing: 1px;
+				text-decoration: none;
+				width: 100%;
+				margin: 25px auto;
+				padding: 0;
+				clear: both;
+			}
+			.wordads-ad-title {
+				margin: 0 auto 5px auto;
+			}
+			.wordads-ad-controls {
+				margin: 5px auto 0 auto;
+				text-align: right;
+			}
+			.wordads-ad-controls span {
+				cursor: pointer;
+			}
+			.wordads-ad {
+				width: 300px;
+				max-width: 580px;
+				margin: 0 auto;
+			}
+			.wordads-ad iframe {
+				margin: 0;
+				padding: 0;
+			}
+			.wordads-ad.wordads-ad-responsive {
+				width: 100%;
+			}
+			</style>
+		<script type="text/javascript">
+/* <![CDATA[ */
+let wa_smart = { 'network_id': 3905, 'site_id': 474853, 'page_id': 1572546, 'formats': [ { 'id': 110354, 'tagId': 'sas_110354' } ], 'blog_id': 240174, 'post_id': 84, 'theme': 'pub/pool', 'target': 'iab_category=IAB5;iab_category=IAB4;iab_category=IAB9;wp_blog_id=240174;language=en', 'inline': { 'title': 'Advertisement', 'gdpr': '', 'format_id': 110354, 'max_slots': 20, 'max_blaze_slots': 1, 'enabled': true, 'adflow_enabled': false }, 'openwrap_enabled': true }; wa_smart.cmd = [];
+/* ]]> */
+</script>
+		<script type="text/javascript">
+		function __ATA_CC() {var v = document.cookie.match('(^|;) ?personalized-ads-consent=([^;]*)(;|$)');return v ? 1 : 0;}
+		var __ATA_PP = { 'pt': 1, 'ht': 0, 'tn': 'pool', 'uloggedin': 0, 'amp': false, 'consent': __ATA_CC(), 'gdpr_applies': false, 'ad': { 'label': { 'text': 'Advertisements' }, 'reportAd': { 'text': 'Report this ad' } }, 'disabled_slot_formats': [ 'IAD' ], 'siteid': 8982, 'blogid': 240174 };
+		var __ATA = __ATA || {};
+		__ATA.cmd = __ATA.cmd || [];
+		__ATA.criteo = __ATA.criteo || {};
+		__ATA.criteo.cmd = __ATA.criteo.cmd || [];
+		</script>
+		<script type="text/javascript">
+		(function(){var g=Date.now||function(){return+new Date};function h(a,b){a:{for(var c=a.length,d="string"==typeof a?a.split(""):a,e=0;e<c;e++)if(e in d&&b.call(void 0,d[e],e,a)){b=e;break a}b=-1}return 0>b?null:"string"==typeof a?a.charAt(b):a[b]};function k(a,b,c){c=null!=c?"="+encodeURIComponent(String(c)):"";if(b+=c){c=a.indexOf("#");0>c&&(c=a.length);var d=a.indexOf("?");if(0>d||d>c){d=c;var e=""}else e=a.substring(d+1,c);a=[a.substr(0,d),e,a.substr(c)];c=a[1];a[1]=b?c?c+"&"+b:b:c;a=a[0]+(a[1]?"?"+a[1]:"")+a[2]}return a};var l=0;function m(a,b){var c=document.createElement("script");c.src=a;c.onload=function(){b&&b(void 0)};c.onerror=function(){b&&b("error")};a=document.getElementsByTagName("head");var d;a&&0!==a.length?d=a[0]:d=document.documentElement;d.appendChild(c)}function n(a){var b=void 0===b?document.cookie:b;return(b=h(b.split("; "),function(c){return-1!=c.indexOf(a+"=")}))?b.split("=")[1]:""}function p(a){return"string"==typeof a&&0<a.length}
+		function r(a,b,c){b=void 0===b?"":b;c=void 0===c?".":c;var d=[];Object.keys(a).forEach(function(e){var f=a[e],q=typeof f;"object"==q&&null!=f||"function"==q?d.push(r(f,b+e+c)):null!==f&&void 0!==f&&(e=encodeURIComponent(b+e),d.push(e+"="+encodeURIComponent(f)))});return d.filter(p).join("&")}function t(a,b){a||((window.__ATA||{}).config=b.c,m(b.url))}var u=Math.floor(1E13*Math.random()),v=window.__ATA||{};window.__ATA=v;window.__ATA.cmd=v.cmd||[];v.rid=u;v.createdAt=g();var w=window.__ATA||{},x="s.pubmine.com";
+		w&&w.serverDomain&&(x=w.serverDomain);var y="//"+x+"/conf",z=window.top===window,A=window.__ATA_PP&&window.__ATA_PP.gdpr_applies,B="boolean"===typeof A?Number(A):null,C=window.__ATA_PP||null,D=z?document.referrer?document.referrer:null:null,E=z?window.location.href:document.referrer?document.referrer:null,F,G=n("__ATA_tuuid");F=G?G:null;var H=window.innerWidth+"x"+window.innerHeight,I=n("usprivacy"),J=r({gdpr:B,pp:C,rid:u,src:D,ref:E,tuuid:F,vp:H,us_privacy:I?I:null},"",".");
+		(function(a){var b=void 0===b?"cb":b;l++;var c="callback__"+g().toString(36)+"_"+l.toString(36);a=k(a,b,c);window[c]=function(d){t(void 0,d)};m(a,function(d){d&&t(d)})})(y+"?"+J);}).call(this);
+		</script><script src="./Editing multiple objects in Django with forms _ Collin Grady_files/conf"></script>	<script>
+		var sas_fallback = sas_fallback || [];
+		sas_fallback.push(
+			{ tag: "&lt;div id=&quot;atatags-26942-65a152fd13086&quot;&gt;&lt;/div&gt;&lt;script&gt;__ATA.cmd.push(function() {__ATA.initDynamicSlot({id: \'atatags-26942-65a152fd13086\',location: 120,formFactor: \'001\',label: {text: \'Advertisements\',},creative: {reportAd: {text: \'Report this ad\',},privacySettings: {text: \'Privacy\',}}});});&lt;/script&gt;", type: 'belowpost' },
+			{ tag: "&lt;div id=&quot;atatags-26942-{{unique_id}}&quot;&gt;&lt;/div&gt;&lt;script&gt;__ATA.cmd.push(function() {__ATA.initDynamicSlot({id: \'atatags-26942-{{unique_id}}\',location: 310,formFactor: \'001\',label: {text: \'Advertisements\',},creative: {reportAd: {text: \'Report this ad\',},privacySettings: {text: \'Privacy\',}}});});&lt;/script&gt;", type: 'inline' }
+		);
+	</script>		<script type="text/javascript">
+
+			window.doNotSellCallback = function() {
+
+				var linkElements = [
+					'a[href="https://wordpress.com/?ref=footer_blog"]',
+					'a[href="https://wordpress.com/?ref=footer_website"]',
+					'a[href="https://wordpress.com/?ref=vertical_footer"]',
+					'a[href^="https://wordpress.com/?ref=footer_segment_"]',
+				].join(',');
+
+				var dnsLink = document.createElement( 'a' );
+				dnsLink.href = 'https://wordpress.com/advertising-program-optout/';
+				dnsLink.classList.add( 'do-not-sell-link' );
+				dnsLink.rel = 'nofollow';
+				dnsLink.style.marginLeft = '0.5em';
+				dnsLink.textContent = 'Do Not Sell or Share My Personal Information';
+
+				var creditLinks = document.querySelectorAll( linkElements );
+
+				if ( 0 === creditLinks.length ) {
+					return false;
+				}
+
+				Array.prototype.forEach.call( creditLinks, function( el ) {
+					el.insertAdjacentElement( 'afterend', dnsLink );
+				});
+
+				return true;
+			};
+
+		</script>
+		<script type="text/javascript">
+	window.google_analytics_uacct = "UA-52447-2";
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_gat._anonymizeIp']);
+	_gaq.push(['_setDomainName', 'wordpress.com']);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/ga.js"></script>
+<link rel="stylesheet" id="gravatar-card-css" href="./Editing multiple objects in Django with forms _ Collin Grady_files/hovercards.min.css"><link href="./Editing multiple objects in Django with forms _ Collin Grady_files/actionbar.css" type="text/css" rel="stylesheet"></head>
+
+<body class="post-template-default single single-post postid-84 single-format-standard customizer-styles-applied jetpack-reblog-enabled">
+<div id="content">
+
+	<div id="header" onclick="location.href=&#39;https://collingrady.wordpress.com/&#39;;" style="cursor: pointer;">
+		<h1><a href="https://collingrady.wordpress.com/">Collin Grady</a></h1>
+	</div>
+
+	<div id="pagesnav">
+		<div class="alignleft">
+				<ul>
+		<li><a href="https://collingrady.wordpress.com/">Blog</a></li>
+		<li class="page_item page-item-2"><a href="https://collingrady.wordpress.com/about/">About</a></li>
+<li class="page_item page-item-138"><a href="https://collingrady.wordpress.com/ars-forum-enhancements/">Ars Forum Enhancements</a></li>
+	</ul>
+		</div>
+
+		<div id="search">
+			<form id="searchform" method="get" action="https://collingrady.wordpress.com/">
+				<input type="text" id="s" name="s" onblur="this.value=(this.value==&#39;&#39;) ? &#39;Search this Blog&#39; : this.value;" onfocus="this.value=(this.value==&#39;Search this Blog&#39;) ? &#39;&#39; : this.value;" value="Search this Blog">
+			</form>
+		</div>
+	</div><!-- #pagesnav -->
+<!-- end header -->
+
+	<div id="bloque">
+
+		<div id="noticias">
+
+				
+			<div class="entrada post-84 post type-post status-publish format-standard hentry category-django">
+				<h2 id="post-84">
+											Editing multiple objects in Django with&nbsp;forms									</h2>
+				<small>February 18, 2008 at 1:45 pm | Posted in <a href="https://collingrady.wordpress.com/category/python/django/" rel="category tag">django</a>  |  <a href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/#comments">6 Comments</a> <br></small>
+
+				<p>A common problem I see when helping people in the Django IRC channel is people who are trying to create or edit multiple objects, but for some reason try to make a single form object to deal with them – this makes things quite convoluted and much harder than they have to be. My goal here is to explain a much simpler method using multiple form objects.<br>
+<span id="more-84"></span><br>
+For this guide, I’m going to use the basic <tt>Poll</tt> and <tt>Choice</tt> models from the tutorial. I’m only showing the fields here, as that’s all that matters to the form, but they wouldn’t break anything, of course 🙂</p>
+<pre style="overflow:auto;"><span style="color:#0000ff;">from </span>django.db <span style="color:#0000ff;">import </span>models
+
+<span style="color:#0000ff;">class </span>Poll<span style="color:#ff0000;">(</span>models.Model<span style="color:#ff0000;">)</span>:
+    question <span style="color:#000000;">= </span>models.CharField<span style="color:#ff0000;">(</span>max_length<span style="color:#000000;">=</span><span style="color:#000000;">200</span><span style="color:#ff0000;">)</span>
+    pub_date <span style="color:#000000;">= </span>models.DateTimeField<span style="color:#ff0000;">()</span>
+
+<span style="color:#0000ff;">class </span>Choice<span style="color:#ff0000;">(</span>models.Model<span style="color:#ff0000;">)</span>:
+    poll <span style="color:#000000;">= </span>models.ForeignKey<span style="color:#ff0000;">(</span>Poll<span style="color:#ff0000;">)</span>
+    choice <span style="color:#000000;">= </span>models.CharField<span style="color:#ff0000;">(</span>max_length<span style="color:#000000;">=</span><span style="color:#000000;">200</span><span style="color:#ff0000;">)</span>
+    votes <span style="color:#000000;">= </span>models.IntegerField<span style="color:#ff0000;">(</span>default<span style="color:#000000;">=</span><span style="color:#000000;">0</span><span style="color:#ff0000;">)</span></pre>
+<p>To start, we’ll need forms for each model.</p>
+<pre style="overflow:auto;"><span style="color:#0000ff;">from </span>django <span style="color:#0000ff;">import </span>forms
+<span style="color:#0000ff;">from </span>mysite.polls.models <span style="color:#0000ff;">import </span>Poll, Choice
+
+<span style="color:#0000ff;">class </span>PollForm<span style="color:#ff0000;">(</span>forms.ModelForm<span style="color:#ff0000;">)</span>:
+    <span style="color:#0000ff;">class </span>Meta:
+        model <span style="color:#000000;">= </span>Poll
+
+<span style="color:#0000ff;">class </span>ChoiceForm<span style="color:#ff0000;">(</span>forms.ModelForm<span style="color:#ff0000;">)</span>:
+    <span style="color:#0000ff;">class </span>Meta:
+        model <span style="color:#000000;">= </span>Choice
+        exclude <span style="color:#000000;">= </span><span style="color:#ff0000;">(</span><span style="color:#008080;">'poll'</span>,<span style="color:#ff0000;">)</span></pre>
+<p>By using <tt>ModelForm</tt>, all the grunt work of saving/updating is handled for us, so it saves a lot of work you’d have to code yourself when trying to use a single form.</p>
+<p>Next up is the view, but here there’s one issue we have to avoid – if you simply make 3 <tt>ChoiceForm</tt> instances, their field names will conflict – since you’ll get 3 <tt>poll</tt> fields and 3 <tt>choice</tt> fields. To get around this, we need to use the prefix arg to the forms, as you’ll see in a moment.</p>
+<pre style="overflow:auto;"><span style="color:#0000ff;">from </span>mysite.polls.models <span style="color:#0000ff;">import </span>Poll, Choice
+<span style="color:#0000ff;">from </span>mysite.polls.forms <span style="color:#0000ff;">import </span>PollForm, ChoiceForm
+<span style="color:#0000ff;">from </span>django.http <span style="color:#0000ff;">import </span>HttpResponseRedirect
+<span style="color:#0000ff;">from </span>django.shortcuts <span style="color:#0000ff;">import </span>render_to_response
+
+<span style="color:#0000ff;">def </span>add_poll<span style="color:#ff0000;">(</span>request<span style="color:#ff0000;">)</span>:
+    <span style="color:#0000ff;">if </span>request.method <span style="color:#000000;">== </span><span style="color:#008080;">"POST"</span>:
+        pform <span style="color:#000000;">= </span>PollForm<span style="color:#ff0000;">(</span>request.POST, instance<span style="color:#000000;">=</span>Poll<span style="color:#ff0000;">())</span>
+        cforms <span style="color:#000000;">= </span><span style="color:#ff0000;">[</span>ChoiceForm<span style="color:#ff0000;">(</span>request.POST, prefix<span style="color:#000000;">=</span><span style="color:#0000ff;">str</span><span style="color:#ff0000;">(</span>x<span style="color:#ff0000;">)</span>, instance<span style="color:#000000;">=</span>Choice<span style="color:#ff0000;">()) </span><span style="color:#0000ff;">for </span>x <span style="color:#0000ff;">in </span><span style="color:#0000ff;">range</span><span style="color:#ff0000;">(</span><span style="color:#000000;">0</span>,<span style="color:#000000;">3</span><span style="color:#ff0000;">)]</span>
+        <span style="color:#0000ff;">if </span>pform.is_valid<span style="color:#ff0000;">() </span><span style="color:#0000ff;">and </span>all<span style="color:#ff0000;">([</span>cf.is_valid<span style="color:#ff0000;">() </span><span style="color:#0000ff;">for </span>cf <span style="color:#0000ff;">in </span>cforms<span style="color:#ff0000;">])</span>:
+            new_poll <span style="color:#000000;">= </span>pform.save<span style="color:#ff0000;">()</span>
+            <span style="color:#0000ff;">for </span>cf <span style="color:#0000ff;">in </span>cforms:
+                new_choice <span style="color:#000000;">= </span>cf.save<span style="color:#ff0000;">(</span>commit<span style="color:#000000;">=</span><span style="color:#0000ff;">False</span><span style="color:#ff0000;">)</span>
+                new_choice.poll <span style="color:#000000;">= </span>new_poll
+                new_choice.save<span style="color:#ff0000;">()</span>
+            <span style="color:#0000ff;">return </span>HttpResponseRedirect<span style="color:#ff0000;">(</span><span style="color:#008080;">'/polls/add/'</span><span style="color:#ff0000;">)</span>
+    <span style="color:#0000ff;">else</span>:
+        pform <span style="color:#000000;">= </span>PollForm<span style="color:#ff0000;">(</span>instance<span style="color:#000000;">=</span>Poll<span style="color:#ff0000;">())</span>
+        cforms <span style="color:#000000;">= </span><span style="color:#ff0000;">[</span>ChoiceForm<span style="color:#ff0000;">(</span>prefix<span style="color:#000000;">=</span><span style="color:#0000ff;">str</span><span style="color:#ff0000;">(</span>x<span style="color:#ff0000;">)</span>, instance<span style="color:#000000;">=</span>Choice<span style="color:#ff0000;">()) </span><span style="color:#0000ff;">for </span>x <span style="color:#0000ff;">in </span><span style="color:#0000ff;">range</span><span style="color:#ff0000;">(</span><span style="color:#000000;">0</span>,<span style="color:#000000;">3</span><span style="color:#ff0000;">)]</span>
+    <span style="color:#0000ff;">return </span>render_to_response<span style="color:#ff0000;">(</span><span style="color:#008080;">'add_poll.html'</span>, <span style="color:#ff0000;">{</span><span style="color:#008080;">'poll_form'</span>: pform, <span style="color:#008080;">'choice_forms'</span>: cforms<span style="color:#ff0000;">})</span></pre>
+<p>The basic structure is identical to when you’re adding a single object, with only a few differences. The first thing I’d like to point out is the <tt>prefix</tt> arg – by setting that, we get fields named <tt>0-choice</tt>, <tt>1-choice</tt>, and <tt>2-choice</tt> instead of just 3 fields named <tt>choice</tt>. This allows each <tt>ChoiceForm</tt> to pick out its own data from <tt>request.POST</tt>, so they don’t conflict.</p>
+<p>When checking if the forms are valid, I use all<tt>(),</tt> which will only return <tt>True</tt> if every item in the list evaluates to <tt>True</tt> as well. For those who like <tt>map()</tt>, you can replace the inner list comprehension with <tt>map(lambda x: x.is_valid(), cforms)</tt>.</p>
+<p>Note: It’s come to my attention that <tt>all()</tt> is new in 2.5, and I hadn’t been aware of that previously – a quick way to define your own is here:</p>
+<pre style="overflow:auto;"><span style="color:#0000ff;">def </span>all<span style="color:#ff0000;">(</span><span style="color:#0000ff;">items</span><span style="color:#ff0000;">)</span>:
+    <span style="color:#0000ff;">import </span>operator
+    <span style="color:#0000ff;">return </span><span style="color:#0000ff;">reduce</span><span style="color:#ff0000;">(</span>operator.and_, <span style="color:#ff0000;">[</span><span style="color:#0000ff;">bool</span><span style="color:#ff0000;">(</span>item<span style="color:#ff0000;">) </span><span style="color:#0000ff;">for </span>item <span style="color:#0000ff;">in </span><span style="color:#0000ff;">items</span><span style="color:#ff0000;">])</span></pre>
+<p>There may be other methods, but this should work fine 🙂</p>
+<p>Finally, when saving the forms, we use <tt>commit=False</tt> on the <tt>ChoiceForm</tt> instances, so that we can set the <tt>poll</tt> ForeignKey properly before saving. The <tt>commit</tt> arg tells the form to create the new <tt>Choice</tt> instance and return it, but not save it to the database.</p>
+<p>And with that, you now have a view which can add a <tt>Poll</tt> and 3 <tt>Choice</tt> objects for it at once.</p>
+<p>Making a view to edit the same objects is much similar, you just need to query the <tt>Poll</tt> and <tt>Choice</tt> objects and use them instead of the empty instances. You can also use the <tt>Choice</tt> IDs as the prefixes for the <tt>ChoiceForm</tt> instances. The great thing with using <tt>ModelForm</tt> is that once you change the instance arg from a new object to an existing one, it becomes an edit form instead of an add form, so you don’t have to change any internals to go from adding to editing.</p>
+<p><em>Updated 11/3/08 for django 1.0</em></p>
+<div id="atatags-370373-65a152fd16675">
+		<script type="text/javascript">
+			__ATA.cmd.push(function() {
+				__ATA.initVideoSlot('atatags-370373-65a152fd16675', {
+					sectionId: '370373',
+					format: 'inread'
+				});
+			});
+		</script>
+	</div><span id="wordads-inline-marker" style="display: none;"></span>			<div id="atatags-26942-65a152fd166f9"></div>
+			
+			<script>
+				__ATA.cmd.push(function() {
+					__ATA.initDynamicSlot({
+						id: 'atatags-26942-65a152fd166f9',
+						location: 120,
+						formFactor: '001',
+						label: {
+							text: 'Advertisements',
+						},
+						creative: {
+							reportAd: {
+								text: 'Report this ad',
+							},
+							privacySettings: {
+								text: 'Privacy',
+								
+							}
+						}
+					});
+				});
+			</script><div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul data-sharing-events-added="true"><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-84" class="share-facebook sd-button share-icon" href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/?share=facebook&amp;nb=1" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-x"><a rel="nofollow noopener noreferrer" data-shared="sharing-x-84" class="share-x sd-button share-icon" href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/?share=x&amp;nb=1" target="_blank" title="Click to share on X"><span>X</span></a></li><li class="share-end"></li></ul></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-240174-84-65a152fd19026" data-src="//widgets.wp.com/likes/index.html?ver=20240112#blog_id=240174&amp;post_id=84&amp;origin=collingrady.wordpress.com&amp;obj_id=240174-84-65a152fd19026&amp;n=1" data-name="like-post-frame-240174-84-65a152fd19026" data-title="Like or Reblog"><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-240174-84-65a152fd19026" src="./Editing multiple objects in Django with forms _ Collin Grady_files/index.html" height="55px" width="100%" frameborder="0" scrolling="no" title="Like or Reblog"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div>
+<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+<div class="jp-relatedposts-items jp-relatedposts-items-minimal jp-relatedposts-grid "><p class="jp-relatedposts-post jp-relatedposts-post0" data-post-id="87" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://collingrady.wordpress.com/2008/07/24/useful-form-tricks-in-django/?relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=0&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=0" title="Useful form tricks in&amp;nbsp;Django" data-origin="84" data-position="0">Useful form tricks in&nbsp;Django</a></span><time class="jp-relatedposts-post-date" datetime="July 24, 2008" style="display: block;">July 24, 2008</time><span class="jp-relatedposts-post-context">In "django"</span></p><p class="jp-relatedposts-post jp-relatedposts-post1" data-post-id="123" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://collingrady.wordpress.com/2009/01/06/mod_python-versus-mod_wsgi/?relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=1&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=1" title="mod_python versus mod_wsgi" data-origin="84" data-position="1">mod_python versus mod_wsgi</a></span><time class="jp-relatedposts-post-date" datetime="January 6, 2009" style="display: block;">January 6, 2009</time><span class="jp-relatedposts-post-context">In "General"</span></p><p class="jp-relatedposts-post jp-relatedposts-post2" data-post-id="80" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="https://collingrady.wordpress.com/2006/11/17/tab-complete-and-a-persistent-history-in-python/?relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=2&amp;relatedposts_hit=1&amp;relatedposts_origin=84&amp;relatedposts_position=2" title="Tab-Complete and a Persistent History in&amp;nbsp;Python" data-origin="84" data-position="2">Tab-Complete and a Persistent History in&nbsp;Python</a></span><time class="jp-relatedposts-post-date" datetime="November 17, 2006" style="display: block;">November 17, 2006</time><span class="jp-relatedposts-post-context">In "python"</span></p></div></div></div>
+				<div class="feedback"></div>
+			</div><!-- .entrada -->
+
+			<h2 id="comments">
+	6 Comments</h2>
+
+<p>
+
+</p>
+
+	<ol id="commentlist">
+			<li class="comment even thread-even depth-1" id="comment-504">
+		<div id="div-comment-504" class="vcard">
+		<img alt="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/e312e5ee59db4547ee3a73eed08e871b2aad18eebb35e6f2e0aa4893e9578846.png" srcset="https://2.gravatar.com/avatar/e312e5ee59db4547ee3a73eed08e871b2aad18eebb35e6f2e0aa4893e9578846?s=48&amp;d=identicon&amp;r=PG 1x, https://2.gravatar.com/avatar/e312e5ee59db4547ee3a73eed08e871b2aad18eebb35e6f2e0aa4893e9578846?s=72&amp;d=identicon&amp;r=PG 1.5x, https://2.gravatar.com/avatar/e312e5ee59db4547ee3a73eed08e871b2aad18eebb35e6f2e0aa4893e9578846?s=96&amp;d=identicon&amp;r=PG 2x, https://2.gravatar.com/avatar/e312e5ee59db4547ee3a73eed08e871b2aad18eebb35e6f2e0aa4893e9578846?s=144&amp;d=identicon&amp;r=PG 3x, https://2.gravatar.com/avatar/e312e5ee59db4547ee3a73eed08e871b2aad18eebb35e6f2e0aa4893e9578846?s=192&amp;d=identicon&amp;r=PG 4x" class="avatar avatar-48 wp-hovercard-attachment grav-hashed grav-hijack" height="48" width="48" loading="lazy" decoding="async">			<p>Thank you. That makes this unbelievable simple, but until you get your mind around it it really makes no sense. One thing I noticed it that when x=0 the prefix doesn’t show up (prefix=0), which isn’t a problem in this example, but if there is a field named the same in the base class it would be a conflict and also if you have bound information to the form, it could mess up the saving of that existing model. You can fix this easily enough by putting prefix=str(x). Thanks for posting this knowledge.</p>
+			<p class="alignright"><small class="comment-meta commentmetadata">Comment by <span class="fn">Michael Newman</span>— February 19, 2008 <a href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/#comment-504">#</a></small></p>
+			<div class="reply">
+							</div>
+		</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-503">
+		<div id="div-comment-503" class="vcard">
+		<img alt="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173.jpeg" srcset="https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=48&amp;d=identicon&amp;r=PG 1x, https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=72&amp;d=identicon&amp;r=PG 1.5x, https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=96&amp;d=identicon&amp;r=PG 2x, https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=144&amp;d=identicon&amp;r=PG 3x, https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=192&amp;d=identicon&amp;r=PG 4x" class="avatar avatar-48 wp-hovercard-attachment grav-hashed grav-hijack" height="48" width="48" loading="lazy" decoding="async">			<p>Good catch on that prefix quirk, I’ve adjusted the code with that fix 🙂</p>
+			<p class="alignright"><small class="comment-meta commentmetadata">Comment by <span class="fn"><a href="http://collingrady.com/" class="url" rel="ugc external nofollow">Collin</a></span>— February 19, 2008 <a href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/#comment-503">#</a></small></p>
+			<div class="reply">
+							</div>
+		</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-502">
+		<div id="div-comment-502" class="vcard">
+		<img alt="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/0addf2c7744a13a2aa9aa135cf66f2711f42bebdf20e90ad63e0224735ebdbaf" srcset="https://0.gravatar.com/avatar/0addf2c7744a13a2aa9aa135cf66f2711f42bebdf20e90ad63e0224735ebdbaf?s=48&amp;d=identicon&amp;r=PG 1x, https://0.gravatar.com/avatar/0addf2c7744a13a2aa9aa135cf66f2711f42bebdf20e90ad63e0224735ebdbaf?s=72&amp;d=identicon&amp;r=PG 1.5x, https://0.gravatar.com/avatar/0addf2c7744a13a2aa9aa135cf66f2711f42bebdf20e90ad63e0224735ebdbaf?s=96&amp;d=identicon&amp;r=PG 2x, https://0.gravatar.com/avatar/0addf2c7744a13a2aa9aa135cf66f2711f42bebdf20e90ad63e0224735ebdbaf?s=144&amp;d=identicon&amp;r=PG 3x, https://0.gravatar.com/avatar/0addf2c7744a13a2aa9aa135cf66f2711f42bebdf20e90ad63e0224735ebdbaf?s=192&amp;d=identicon&amp;r=PG 4x" class="avatar avatar-48 wp-hovercard-attachment grav-hashed grav-hijack" height="48" width="48" loading="lazy" decoding="async">			<p>Hello,<br>
+Thank you very much for this great recipe. This is one of the nicest and  shortest recipe to handle multiple objects with newforms.<br>
+Thank you<br>
+–ym</p>
+			<p class="alignright"><small class="comment-meta commentmetadata">Comment by <span class="fn">yml</span>— February 26, 2008 <a href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/#comment-502">#</a></small></p>
+			<div class="reply">
+							</div>
+		</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-501">
+		<div id="div-comment-501" class="vcard">
+		<img alt="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/800f9a5b2cf6112edb44128fffb528ef61f64e57756da887c3a17bd335b03ff0" srcset="https://2.gravatar.com/avatar/800f9a5b2cf6112edb44128fffb528ef61f64e57756da887c3a17bd335b03ff0?s=48&amp;d=identicon&amp;r=PG 1x, https://2.gravatar.com/avatar/800f9a5b2cf6112edb44128fffb528ef61f64e57756da887c3a17bd335b03ff0?s=72&amp;d=identicon&amp;r=PG 1.5x, https://2.gravatar.com/avatar/800f9a5b2cf6112edb44128fffb528ef61f64e57756da887c3a17bd335b03ff0?s=96&amp;d=identicon&amp;r=PG 2x, https://2.gravatar.com/avatar/800f9a5b2cf6112edb44128fffb528ef61f64e57756da887c3a17bd335b03ff0?s=144&amp;d=identicon&amp;r=PG 3x, https://2.gravatar.com/avatar/800f9a5b2cf6112edb44128fffb528ef61f64e57756da887c3a17bd335b03ff0?s=192&amp;d=identicon&amp;r=PG 4x" class="avatar avatar-48 wp-hovercard-attachment grav-hashed grav-hijack" height="48" width="48" loading="lazy" decoding="async">			<p>You really don’t like writing loops do you? I find this much more readable</p>
+<p><code><br>
+def all(items):<br>
+    result = True<br>
+    for item in items:<br>
+        result = result and item<br>
+    return result<br>
+</code></p>
+<p>I like the use of list comprehensions is great though. What is explicit cast to bool for?</p>
+<p>Great article, I was thinking of doing this for a project of mine as well.</p>
+			<p class="alignright"><small class="comment-meta commentmetadata">Comment by <span class="fn"><a href="http://www.davidgrant.ca/" class="url" rel="ugc external nofollow">David Grant</a></span>— February 28, 2008 <a href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/#comment-501">#</a></small></p>
+			<div class="reply">
+							</div>
+		</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-500">
+		<div id="div-comment-500" class="vcard">
+		<img alt="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173.jpeg" srcset="https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=48&amp;d=identicon&amp;r=PG 1x, https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=72&amp;d=identicon&amp;r=PG 1.5x, https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=96&amp;d=identicon&amp;r=PG 2x, https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=144&amp;d=identicon&amp;r=PG 3x, https://0.gravatar.com/avatar/c39dc772946cfdf420f370532daa1b35881a75424a7af119c4a48dd6323de173?s=192&amp;d=identicon&amp;r=PG 4x" class="avatar avatar-48 wp-hovercard-attachment grav-hashed grav-hijack" height="48" width="48" loading="lazy" decoding="async">			<p>It’s not so much that I dislike loops, I just like neat tricks like reduce 😉</p>
+<p>The cast to bool is just playing it safe, though it might be redundant 🙂</p>
+			<p class="alignright"><small class="comment-meta commentmetadata">Comment by <span class="fn"><a href="http://collingrady.com/" class="url" rel="ugc external nofollow">Collin</a></span>— February 28, 2008 <a href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/#comment-500">#</a></small></p>
+			<div class="reply">
+							</div>
+		</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-505">
+		<div id="div-comment-505" class="vcard">
+		<img alt="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/7afdcd58064ae97017cf6f81c7cb158f912c32ba1146e72d940bfe680df9a0ae.png" srcset="https://1.gravatar.com/avatar/7afdcd58064ae97017cf6f81c7cb158f912c32ba1146e72d940bfe680df9a0ae?s=48&amp;d=identicon&amp;r=PG 1x, https://1.gravatar.com/avatar/7afdcd58064ae97017cf6f81c7cb158f912c32ba1146e72d940bfe680df9a0ae?s=72&amp;d=identicon&amp;r=PG 1.5x, https://1.gravatar.com/avatar/7afdcd58064ae97017cf6f81c7cb158f912c32ba1146e72d940bfe680df9a0ae?s=96&amp;d=identicon&amp;r=PG 2x, https://1.gravatar.com/avatar/7afdcd58064ae97017cf6f81c7cb158f912c32ba1146e72d940bfe680df9a0ae?s=144&amp;d=identicon&amp;r=PG 3x, https://1.gravatar.com/avatar/7afdcd58064ae97017cf6f81c7cb158f912c32ba1146e72d940bfe680df9a0ae?s=192&amp;d=identicon&amp;r=PG 4x" class="avatar avatar-48 wp-hovercard-attachment grav-hashed grav-hijack" height="48" width="48" loading="lazy" decoding="async">			<p>A very useful article for people (like me) coming over to Django from the ‘other’ python web development framework.</p>
+<p>Regarding the implementation of all(), reduce() would probably give slightly better performance than a python loop although I think that reduce() will not be present in python 3000 as a built-in.</p>
+<p>If using a loop, the following is a slightly more efficient implementation than the one above (there is no point in continuing the iteration if an item is not True).</p>
+<p><code><br>
+def all(items):<br>
+    for item in items:<br>
+        if not item:<br>
+            return False<br>
+    return True<br>
+</code></p>
+			<p class="alignright"><small class="comment-meta commentmetadata">Comment by <span class="fn">Lawrence Hudson</span>— February 29, 2008 <a href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/#comment-505">#</a></small></p>
+			<div class="reply">
+							</div>
+		</div>
+</li><!-- #comment-## -->
+	</ol>
+	<div class="navigation">
+		<div class="alignleft"></div>
+		<div class="alignright"></div>
+	</div>
+	<br>
+
+	<p>Sorry, the comment form is closed at this time.</p>
+
+
+
+		
+		
+		</div><!-- #noticias -->
+
+<!-- begin footer -->
+
+<!-- begin sidebar -->
+	<div id="sidebar">
+				<ul>
+		<li id="linkcat-2200" class="widget widget_links"><h2 class="widgettitle">Links</h2>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://www.amazon.com/gp/registry/registry.html?ie=UTF8&amp;type=wishlist&amp;id=1VADAU8H9XSNU" title="Amazon.com Wish List">Wish List</a></li>
+
+	</ul>
+</li>
+
+<li id="linkcat-12520" class="widget widget_links"><h2 class="widgettitle">Pages</h2>
+
+	<ul class="xoxo blogroll">
+<li><a href="https://collingrady.wordpress.com/about/">About</a></li>
+
+	</ul>
+</li>
+
+<li id="categories-1" class="widget widget_categories"><h2 class="widgettitle">Tags</h2>
+
+			<ul>
+					<li class="cat-item cat-item-332"><a href="https://collingrady.wordpress.com/category/coding/">Coding</a> (2)
+</li>
+	<li class="cat-item cat-item-54"><a href="https://collingrady.wordpress.com/category/general/">General</a> (9)
+</li>
+	<li class="cat-item cat-item-832"><a href="https://collingrady.wordpress.com/category/python/">python</a> (3)
+<ul class="children">
+	<li class="cat-item cat-item-15988"><a href="https://collingrady.wordpress.com/category/python/django/">django</a> (2)
+</li>
+</ul>
+</li>
+			</ul>
+
+			</li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>
+
+			<ul>
+					<li><a href="https://collingrady.wordpress.com/2013/05/">May 2013</a></li>
+	<li><a href="https://collingrady.wordpress.com/2011/08/">August 2011</a></li>
+	<li><a href="https://collingrady.wordpress.com/2011/05/">May 2011</a></li>
+	<li><a href="https://collingrady.wordpress.com/2010/07/">July 2010</a></li>
+	<li><a href="https://collingrady.wordpress.com/2009/09/">September 2009</a></li>
+	<li><a href="https://collingrady.wordpress.com/2009/01/">January 2009</a></li>
+	<li><a href="https://collingrady.wordpress.com/2008/10/">October 2008</a></li>
+	<li><a href="https://collingrady.wordpress.com/2008/08/">August 2008</a></li>
+	<li><a href="https://collingrady.wordpress.com/2008/07/">July 2008</a></li>
+	<li><a href="https://collingrady.wordpress.com/2008/03/">March 2008</a></li>
+	<li><a href="https://collingrady.wordpress.com/2008/02/">February 2008</a></li>
+	<li><a href="https://collingrady.wordpress.com/2006/11/">November 2006</a></li>
+	<li><a href="https://collingrady.wordpress.com/2006/08/">August 2006</a></li>
+	<li><a href="https://collingrady.wordpress.com/2006/01/">January 2006</a></li>
+			</ul>
+
+			</li>
+<li id="calendar-2" class="widget widget_calendar"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar" class="wp-calendar-table">
+	<caption>February 2008</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Sunday">S</th>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td colspan="5" class="pad">&nbsp;</td><td>1</td><td>2</td>
+	</tr>
+	<tr>
+		<td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+	</tr>
+	<tr>
+		<td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td>
+	</tr>
+	<tr>
+		<td>17</td><td><a href="https://collingrady.wordpress.com/2008/02/18/" aria-label="Posts published on February 18, 2008">18</a></td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td>
+	</tr>
+	<tr>
+		<td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td>
+		<td class="pad" colspan="1">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table><nav aria-label="Previous and next months" class="wp-calendar-nav">
+		<span class="wp-calendar-nav-prev"><a href="https://collingrady.wordpress.com/2006/11/">« Nov</a></span>
+		<span class="pad">&nbsp;</span>
+		<span class="wp-calendar-nav-next"><a href="https://collingrady.wordpress.com/2008/03/">Mar »</a></span>
+	</nav></div></li>
+			<div id="atatags-286348-65a152fd2793c"></div>
+			
+			<script>
+				__ATA.cmd.push(function() {
+					__ATA.initDynamicSlot({
+						id: 'atatags-286348-65a152fd2793c',
+						location: 140,
+						formFactor: '003',
+						label: {
+							text: 'Advertisements',
+						},
+						creative: {
+							reportAd: {
+								text: 'Report this ad',
+							},
+							privacySettings: {
+								text: 'Privacy',
+								
+							}
+						}
+					});
+				});
+			</script>		</ul>
+	</div><!-- #sidebar -->
+
+	<div class="both"></div>
+
+</div><!-- #bloque -->
+<!-- end sidebar -->
+		<p id="credits">
+			<a href="https://wordpress.com/?ref=footer_website" rel="nofollow">Create a free website or blog at WordPress.com.</a><a href="https://wordpress.com/advertising-program-optout/" class="do-not-sell-link" rel="nofollow" style="margin-left: 0.5em;">Do Not Sell or Share My Personal Information</a><br>
+			<a href="https://collingrady.wordpress.com/feed/">Entries</a> and <a href="https://collingrady.wordpress.com/comments/feed/">comments</a> feeds.		</p>
+
+	</div><!-- #bloque -->
+
+<!--  -->
+<script type="text/javascript" src="./Editing multiple objects in Django with forms _ Collin Grady_files/hovercards.min.js" id="grofiles-cards-js"></script>
+<script type="text/javascript" id="wpgroho-js-extra">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script crossorigin="anonymous" type="text/javascript" src="./Editing multiple objects in Django with forms _ Collin Grady_files/wpgroho.js"></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init(
+					'body',
+					'#wp-admin-bar-my-account',
+					{
+						i18n: {
+							'Edit your profile': 'Edit your profile',
+							'View profile': 'View profile',
+							'Sorry, we are unable to load this Gravatar profile.': 'Sorry, we are unable to load this Gravatar profile.',
+							'Sorry, we are unable to load this Gravatar profile. Please check your internet connection.': 'Sorry, we are unable to load this Gravatar profile. Please check your internet connection.',
+						},
+					}
+				);
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-9097a7e759d6f25e0cd97827af77e575">
+	</div>
+	<div class="grofile-hash-map-beb1fb31ccad102fea59b184d214a43b">
+	</div>
+	<div class="grofile-hash-map-249b8e0e6b4a2f9b97c5779fb723deaa">
+	</div>
+	<div class="grofile-hash-map-1cd7b5629508f84d86a752c9a346f7ae">
+	</div>
+	<div class="grofile-hash-map-11663d9a4e63ea160aa48a45a37dc997">
+	</div>
+	</div>
+		<!-- CCPA [start] -->
+		<script type="text/javascript">
+			( function () {
+
+				var setupPrivacy = function() {
+
+					// Minimal Mozilla Cookie library
+					// https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie/Simple_document.cookie_framework
+					var cookieLib = window.cookieLib = {getItem:function(e){return e&&decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*"+encodeURIComponent(e).replace(/[\-\.\+\*]/g,"\\$&")+"\\s*\\=\\s*([^;]*).*$)|^.*$"),"$1"))||null},setItem:function(e,o,n,t,r,i){if(!e||/^(?:expires|max\-age|path|domain|secure)$/i.test(e))return!1;var c="";if(n)switch(n.constructor){case Number:c=n===1/0?"; expires=Fri, 31 Dec 9999 23:59:59 GMT":"; max-age="+n;break;case String:c="; expires="+n;break;case Date:c="; expires="+n.toUTCString()}return"rootDomain"!==r&&".rootDomain"!==r||(r=(".rootDomain"===r?".":"")+document.location.hostname.split(".").slice(-2).join(".")),document.cookie=encodeURIComponent(e)+"="+encodeURIComponent(o)+c+(r?"; domain="+r:"")+(t?"; path="+t:"")+(i?"; secure":""),!0}};
+
+					// Implement IAB USP API.
+					window.__uspapi = function( command, version, callback ) {
+
+						// Validate callback.
+						if ( typeof callback !== 'function' ) {
+							return;
+						}
+
+						// Validate the given command.
+						if ( command !== 'getUSPData' || version !== 1 ) {
+							callback( null, false );
+							return;
+						}
+
+						// Check for GPC. If set, override any stored cookie.
+						if ( navigator.globalPrivacyControl ) {
+							callback( { version: 1, uspString: '1YYN' }, true );
+							return;
+						}
+
+						// Check for cookie.
+						var consent = cookieLib.getItem( 'usprivacy' );
+
+						// Invalid cookie.
+						if ( null === consent ) {
+							callback( null, false );
+							return;
+						}
+
+						// Everything checks out. Fire the provided callback with the consent data.
+						callback( { version: 1, uspString: consent }, true );
+					};
+
+					// Initialization.
+					document.addEventListener( 'DOMContentLoaded', function() {
+
+						// Internal functions.
+						var setDefaultOptInCookie = function() {
+							var value = '1YNN';
+							var domain = '.wordpress.com' === location.hostname.slice( -14 ) ? '.rootDomain' : location.hostname;
+							cookieLib.setItem( 'usprivacy', value, 365 * 24 * 60 * 60, '/', domain );
+						};
+
+						var setDefaultOptOutCookie = function() {
+							var value = '1YYN';
+							var domain = '.wordpress.com' === location.hostname.slice( -14 ) ? '.rootDomain' : location.hostname;
+							cookieLib.setItem( 'usprivacy', value, 24 * 60 * 60, '/', domain );
+						};
+
+						var setDefaultNotApplicableCookie = function() {
+							var value = '1---';
+							var domain = '.wordpress.com' === location.hostname.slice( -14 ) ? '.rootDomain' : location.hostname;
+							cookieLib.setItem( 'usprivacy', value, 24 * 60 * 60, '/', domain );
+						};
+
+						var setCcpaAppliesCookie = function( applies ) {
+							var domain = '.wordpress.com' === location.hostname.slice( -14 ) ? '.rootDomain' : location.hostname;
+							cookieLib.setItem( 'ccpa_applies', applies, 24 * 60 * 60, '/', domain );
+						}
+
+						var maybeCallDoNotSellCallback = function() {
+							if ( 'function' === typeof window.doNotSellCallback ) {
+								return window.doNotSellCallback();
+							}
+
+							return false;
+						}
+
+						// Look for usprivacy cookie first.
+						var usprivacyCookie = cookieLib.getItem( 'usprivacy' );
+
+						// Found a usprivacy cookie.
+						if ( null !== usprivacyCookie ) {
+
+							// If the cookie indicates that CCPA does not apply, then bail.
+							if ( '1---' === usprivacyCookie ) {
+								return;
+							}
+
+							// CCPA applies, so call our callback to add Do Not Sell link to the page.
+							maybeCallDoNotSellCallback();
+
+							// We're all done, no more processing needed.
+							return;
+						}
+
+						// We don't have a usprivacy cookie, so check to see if we have a CCPA applies cookie.
+						var ccpaCookie = cookieLib.getItem( 'ccpa_applies' );
+
+						// No CCPA applies cookie found, so we'll need to geolocate if this visitor is from California.
+						// This needs to happen client side because we do not have region geo data in our $SERVER headers,
+						// only country data -- therefore we can't vary cache on the region.
+						if ( null === ccpaCookie ) {
+
+							var request = new XMLHttpRequest();
+							request.open( 'GET', 'https://public-api.wordpress.com/geo/', true );
+
+							request.onreadystatechange = function () {
+								if ( 4 === this.readyState ) {
+									if ( 200 === this.status ) {
+
+										// Got a geo response. Parse out the region data.
+										var data = JSON.parse( this.response );
+										var region      = data.region ? data.region.toLowerCase() : '';
+										var ccpa_applies = ['california', 'colorado', 'connecticut', 'utah', 'virginia'].indexOf( region ) > -1;
+										// Set CCPA applies cookie. This keeps us from having to make a geo request too frequently.
+										setCcpaAppliesCookie( ccpa_applies );
+
+										// Check if CCPA applies to set the proper usprivacy cookie.
+										if ( ccpa_applies ) {
+											if ( maybeCallDoNotSellCallback() ) {
+												// Do Not Sell link added, so set default opt-in.
+												setDefaultOptInCookie();
+											} else {
+												// Failed showing Do Not Sell link as required, so default to opt-OUT just to be safe.
+												setDefaultOptOutCookie();
+											}
+										} else {
+											// CCPA does not apply.
+											setDefaultNotApplicableCookie();
+										}
+									} else {
+										// Could not geo, so let's assume for now that CCPA applies to be safe.
+										setCcpaAppliesCookie( true );
+										if ( maybeCallDoNotSellCallback() ) {
+											// Do Not Sell link added, so set default opt-in.
+											setDefaultOptInCookie();
+										} else {
+											// Failed showing Do Not Sell link as required, so default to opt-OUT just to be safe.
+											setDefaultOptOutCookie();
+										}
+									}
+								}
+							};
+
+							// Send the geo request.
+							request.send();
+						} else {
+							// We found a CCPA applies cookie.
+							if ( ccpaCookie === 'true' ) {
+								if ( maybeCallDoNotSellCallback() ) {
+									// Do Not Sell link added, so set default opt-in.
+									setDefaultOptInCookie();
+								} else {
+									// Failed showing Do Not Sell link as required, so default to opt-OUT just to be safe.
+									setDefaultOptOutCookie();
+								}
+							} else {
+								// CCPA does not apply.
+								setDefaultNotApplicableCookie();
+							}
+						}
+					} );
+				};
+
+				// Kickoff initialization.
+				if ( window.defQueue && defQueue.isLOHP && defQueue.isLOHP === 2020 ) {
+					defQueue.items.push( setupPrivacy );
+				} else {
+					setupPrivacy();
+				}
+
+			} )();
+		</script>
+
+		<!-- CCPA [end] -->
+			<div id="actionbar" class="actnbr-pub-pool actnbr-has-follow actnbr-hidden">
+		<ul>
+								<li class="actnbr-btn actnbr-hidden">
+						<a class="actnbr-action actnbr-actn-reblog" href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">
+							<svg class="gridicon gridicons-reblog" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M22.086 9.914L20 7.828V18c0 1.105-.895 2-2 2h-7v-2h7V7.828l-2.086 2.086L14.5 8.5 19 4l4.5 4.5-1.414 1.414zM6 16.172V6h7V4H6c-1.105 0-2 .895-2 2v10.172l-2.086-2.086L.5 15.5 5 20l4.5-4.5-1.414-1.414L6 16.172z"></path></g></svg><span>Reblog</span>
+						</a>
+					</li>
+									<li class="actnbr-btn actnbr-hidden">
+								<a class="actnbr-action actnbr-actn-follow " href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">
+			<svg class="gridicon" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path clip-rule="evenodd" d="m4 4.5h12v6.5h1.5v-6.5-1.5h-1.5-12-1.5v1.5 10.5c0 1.1046.89543 2 2 2h7v-1.5h-7c-.27614 0-.5-.2239-.5-.5zm10.5 2h-9v1.5h9zm-5 3h-4v1.5h4zm3.5 1.5h-1v1h1zm-1-1.5h-1.5v1.5 1 1.5h1.5 1 1.5v-1.5-1-1.5h-1.5zm-2.5 2.5h-4v1.5h4zm6.5 1.25h1.5v2.25h2.25v1.5h-2.25v2.25h-1.5v-2.25h-2.25v-1.5h2.25z" fill-rule="evenodd"></path></svg>
+			<span>Subscribe</span>
+		</a>
+		<a class="actnbr-action actnbr-actn-following  no-display" href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">
+			<svg class="gridicon" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 4.5H4V15C4 15.2761 4.22386 15.5 4.5 15.5H11.5V17H4.5C3.39543 17 2.5 16.1046 2.5 15V4.5V3H4H16H17.5V4.5V12.5H16V4.5ZM5.5 6.5H14.5V8H5.5V6.5ZM5.5 9.5H9.5V11H5.5V9.5ZM12 11H13V12H12V11ZM10.5 9.5H12H13H14.5V11V12V13.5H13H12H10.5V12V11V9.5ZM5.5 12H9.5V13.5H5.5V12Z" fill="#008A20"></path><path class="following-icon-tick" d="M13.5 16L15.5 18L19 14.5" stroke="#008A20" stroke-width="1.5"></path></svg>
+			<span>Subscribed</span>
+		</a>
+							<div class="actnbr-popover tip tip-top-left actnbr-notice" id="follow-bubble">
+							<div class="tip-arrow"></div>
+							<div class="tip-inner actnbr-follow-bubble">
+															<ul>
+											<li class="actnbr-sitename actnbr-hidden">
+			<a href="https://collingrady.wordpress.com/">
+				<img alt="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/wpcom-gray-white.png" srcset="https://s0.wp.com/i/logo/wpcom-gray-white.png 1x" class="avatar avatar-50" height="50" width="50">				Collin Grady			</a>
+		</li>
+										<div class="actnbr-message no-display"></div>
+									<form method="post" action="https://subscribe.wordpress.com/" accept-charset="utf-8" style="display: none;">
+																				<div>
+										<input type="email" name="email" placeholder="Enter your email address" class="actnbr-email-field" aria-label="Enter your email address">
+										</div>
+										<input type="hidden" name="action" value="subscribe">
+										<input type="hidden" name="blog_id" value="240174">
+										<input type="hidden" name="source" value="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">
+										<input type="hidden" name="sub-type" value="actionbar-follow">
+										<input type="hidden" id="_wpnonce" name="_wpnonce" value="5cb42ecdb6">										<div class="actnbr-button-wrap">
+											<button type="submit" value="Sign me up">
+												Sign me up											</button>
+										</div>
+									</form>
+									<li class="actnbr-login-nudge actnbr-hidden">
+										<div>
+											Already have a WordPress.com account? <a href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fcollingrady.wordpress.com%2F2008%2F02%2F18%2Fediting-multiple-objects-in-django-with-newforms%2F&amp;signup_flow=account">Log in now.</a>										</div>
+									</li>
+								</ul>
+															</div>
+						</div>
+					</li>
+							<li class="actnbr-ellipsis actnbr-hidden">
+				<svg class="gridicon gridicons-ellipsis" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M7 12c0 1.104-.896 2-2 2s-2-.896-2-2 .896-2 2-2 2 .896 2 2zm12-2c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-7 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2z"></path></g></svg>				<div class="actnbr-popover tip tip-top-left actnbr-more">
+					<div class="tip-arrow"></div>
+					<div class="tip-inner">
+						<ul>
+									<li class="actnbr-sitename actnbr-hidden">
+			<a href="https://collingrady.wordpress.com/">
+				<img alt="" src="./Editing multiple objects in Django with forms _ Collin Grady_files/wpcom-gray-white.png" srcset="https://s0.wp.com/i/logo/wpcom-gray-white.png 1x" class="avatar avatar-50" height="50" width="50">				Collin Grady			</a>
+		</li>
+								<li class="actnbr-folded-customize actnbr-hidden">
+								<a href="https://collingrady.wordpress.com/wp-admin/customize.php?url=https%3A%2F%2Fcollingrady.wordpress.com%2F2008%2F02%2F18%2Fediting-multiple-objects-in-django-with-newforms%2F">
+									<svg class="gridicon gridicons-customize" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g><path d="M2 6c0-1.505.78-3.08 2-4 0 .845.69 2 2 2 1.657 0 3 1.343 3 3 0 .386-.08.752-.212 1.09.74.594 1.476 1.19 2.19 1.81L8.9 11.98c-.62-.716-1.214-1.454-1.807-2.192C6.753 9.92 6.387 10 6 10c-2.21 0-4-1.79-4-4zm12.152 6.848l1.34-1.34c.607.304 1.283.492 2.008.492 2.485 0 4.5-2.015 4.5-4.5 0-.725-.188-1.4-.493-2.007L18 9l-2-2 3.507-3.507C18.9 3.188 18.225 3 17.5 3 15.015 3 13 5.015 13 7.5c0 .725.188 1.4.493 2.007L3 20l2 2 6.848-6.848c1.885 1.928 3.874 3.753 5.977 5.45l1.425 1.148 1.5-1.5-1.15-1.425c-1.695-2.103-3.52-4.092-5.448-5.977z"></path></g></svg>									<span>Customize</span>
+								</a>
+							</li>
+																<li class="actnbr-folded-follow actnbr-hidden">
+												<a class="actnbr-action actnbr-actn-follow " href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">
+			<svg class="gridicon" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path clip-rule="evenodd" d="m4 4.5h12v6.5h1.5v-6.5-1.5h-1.5-12-1.5v1.5 10.5c0 1.1046.89543 2 2 2h7v-1.5h-7c-.27614 0-.5-.2239-.5-.5zm10.5 2h-9v1.5h9zm-5 3h-4v1.5h4zm3.5 1.5h-1v1h1zm-1-1.5h-1.5v1.5 1 1.5h1.5 1 1.5v-1.5-1-1.5h-1.5zm-2.5 2.5h-4v1.5h4zm6.5 1.25h1.5v2.25h2.25v1.5h-2.25v2.25h-1.5v-2.25h-2.25v-1.5h2.25z" fill-rule="evenodd"></path></svg>
+			<span>Subscribe</span>
+		</a>
+		<a class="actnbr-action actnbr-actn-following  no-display" href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">
+			<svg class="gridicon" height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 4.5H4V15C4 15.2761 4.22386 15.5 4.5 15.5H11.5V17H4.5C3.39543 17 2.5 16.1046 2.5 15V4.5V3H4H16H17.5V4.5V12.5H16V4.5ZM5.5 6.5H14.5V8H5.5V6.5ZM5.5 9.5H9.5V11H5.5V9.5ZM12 11H13V12H12V11ZM10.5 9.5H12H13H14.5V11V12V13.5H13H12H10.5V12V11V9.5ZM5.5 12H9.5V13.5H5.5V12Z" fill="#008A20"></path><path class="following-icon-tick" d="M13.5 16L15.5 18L19 14.5" stroke="#008A20" stroke-width="1.5"></path></svg>
+			<span>Subscribed</span>
+		</a>
+										</li>
+																	<li class="actnbr-signup actnbr-hidden"><a href="https://wordpress.com/start/">Sign up</a></li>
+									<li class="actnbr-login actnbr-hidden"><a href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fcollingrady.wordpress.com%2F2008%2F02%2F18%2Fediting-multiple-objects-in-django-with-newforms%2F&amp;signup_flow=account">Log in</a></li>
+																	<li class="actnbr-shortlink actnbr-hidden"><a href="https://wp.me/p10tM-1m">Copy shortlink</a></li>
+																	<li class="flb-report actnbr-hidden">
+										<a href="http://en.wordpress.com/abuse/?report_url=https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/" target="_blank">
+											Report this content										</a>
+									</li>
+																	<li class="actnbr-reader actnbr-hidden">
+										<a href="https://wordpress.com/read/blogs/240174/posts/84">
+											View post in Reader										</a>
+									</li>
+																	<li class="actnbr-subs actnbr-hidden">
+										<a href="https://subscribe.wordpress.com/">Manage subscriptions</a>
+									</li>
+																		<li class="actnbr-fold actnbr-hidden"><a href="https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/">Collapse this bar</a></li>
+															</ul>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+<script>
+window.addEventListener( "load", function( event ) {
+	var link = document.createElement( "link" );
+	link.href = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.css?v=20231122";
+	link.type = "text/css";
+	link.rel = "stylesheet";
+	document.head.appendChild( link );
+
+	var script = document.createElement( "script" );
+	script.src = "https://s0.wp.com/wp-content/mu-plugins/actionbar/actionbar.js?v=20231122";
+	script.defer = true;
+	document.body.appendChild( script );
+} );
+</script>
+
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/collingrady.wordpress.com\/2008\/02\/18\/editing-multiple-objects-in-django-with-newforms\/":84};
+	</script>
+				<script type="text/javascript" src="./Editing multiple objects in Django with forms _ Collin Grady_files/smart.js" id="smart-tag-lib-js"></script>
+<script type="text/javascript" id="sharing-js-js-extra">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script crossorigin="anonymous" type="text/javascript" src="./Editing multiple objects in Django with forms _ Collin Grady_files/saved_resource(7)"></script><div class="widget widget_eu_cookie_law_widget" style="display: block;">
+<div class="hide-on-button ads-active" data-hide-timeout="30" data-consent-expiration="180" id="eu-cookie-law" style="display: block;">
+	<form method="post">
+		<input type="submit" value="Close and accept" class="accept">
+
+		Privacy &amp; Cookies: This site uses cookies. By continuing to use this website, you agree to their use. <br>
+To find out more, including how to control cookies, see here:
+				<a href="https://automattic.com/cookies/" rel="nofollow">
+			Cookie Policy		</a>
+ </form>
+</div>
+</div>
+<script type="text/javascript" id="sharing-js-js-after">
+/* <![CDATA[ */
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-x' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-x' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomx', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+/* ]]> */
+</script>
+
+	<script type="text/javascript">
+		(function () {
+			var wpcom_reblog = {
+				source: 'toolbar',
+
+				toggle_reblog_box_flair: function (obj_id, post_id) {
+
+					// Go to site selector. This will redirect to their blog if they only have one.
+					const postEndpoint = `https://wordpress.com/post`;
+
+					// Ideally we would use the permalink here, but fortunately this will be replaced with the 
+					// post permalink in the editor.
+					const originalURL = `${ document.location.href }?page_id=${ post_id }`; 
+					
+					const url =
+						postEndpoint +
+						'?url=' +
+						encodeURIComponent( originalURL ) +
+						'&is_post_share=true' +
+						'&v=5';
+
+					const redirect = function () {
+						if (
+							! window.open( url, '_blank' )
+						) {
+							location.href = url;
+						}
+					};
+
+					if ( /Firefox/.test( navigator.userAgent ) ) {
+						setTimeout( redirect, 0 );
+					} else {
+						redirect();
+					}
+				},
+			};
+
+			window.wpcom_reblog = wpcom_reblog;
+		})();
+	</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<iframe src="./Editing multiple objects in Django with forms _ Collin Grady_files/master.html" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+	<div id="likes-other-gravatars" class="wpl-new-layout" role="dialog" aria-hidden="true" tabindex="-1" style="display: none;">
+		<div class="likes-text">
+			<span>%d</span>		</div>
+		<ul class="wpl-avatars sd-like-gravatars"></ul>
+	</div>
+
+		<script src="./Editing multiple objects in Django with forms _ Collin Grady_files/w.js" defer=""></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'240174','blog_tz':'-8','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'240174','v':'wpcom','tz':'-8','user_id':'0','post':'84','subd':'collingrady'}]);
+_stq.push(['extra', {'crypt':'UE5XaGUuOTlwaD85flAmcm1mcmZsaDhkV11YdWFnNncxc1tjZG9XVXhRREQ/V0w5cWpkb01PR3VqczBmb3pXN013ciUvUGdZNDA0cG5zLVJpSFBCdUY5USwrRWVoM1NSMHlWNmRlR1tvSGgra3F+eW1fc3hQWGFBRSxLN08rRDFCU1RDVyYsS29tbV8vW3xTZ3laeVZCcVIuZEhaK0d0Y0JDQVtxSXcsWXBLX1BvQisyPXVFaHRIZkU9Z0swTVRnLXlvVmJRY3FhRGNEV1RadiV1VF0vS1ZNd1VrdWlsRkcxQkssJldVbEZCdz1xRGktZDVhemhoVUFzTmlCMHA4N2l4W1hTSWdtJWEuLltiOE9oW2dbeDFYJWxxMUNaS09BM0NDWy8/fA=='}]);
+_stq.push([ 'clickTrackerInit', '240174', '84' ]);
+</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+<iframe name="__tcfapiLocator" style="display: none;" src="./Editing multiple objects in Django with forms _ Collin Grady_files/saved_resource(8).html"></iframe><script src="./Editing multiple objects in Django with forms _ Collin Grady_files/actionbar.js" defer=""></script><style>img#wpstats {
+			position: absolute !important;
+			clip: rect(0, 0, 0, 0);
+			padding: 0 !important;
+			border: 0 !important;
+			height: 0 !important;
+			width: 0 !important;
+			overflow: hidden;
+		}</style><img src="./Editing multiple objects in Django with forms _ Collin Grady_files/g.gif" alt="" id="wpstats"></body><div id="vimeo-record-extension"></div></html>
