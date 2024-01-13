@@ -69,7 +69,7 @@
                                             <th>Favourite</th>
                                             <th>Delete</th>
                                         </tr>
-                                        {% for set in sets %}
+                                        {% for form, set in form_set %}
                                             <tr>
                                                 <td>
                                                     {% if "set-placeholder" in set.set.set_picture.url %}
@@ -81,10 +81,10 @@
                                                 <td>{{ set.set.set_number }}</td>
                                                 <td>{{ set.set.set_name }}</td>
                                                 <td>{{ set.set.nr_of_pieces }}</td>
-                                                <td>{{ update_col_form.build_status }}</td>
-                                                <td class="table-input">{{ update_col_form.set_location }}</td>
-                                                <td class="table-input">{{ update_col_form.missing_pieces }}</td>
-                                                <td>{{ update_col_form.favourited }}</td>
+                                                <td>{{ form.build_status }}</td>
+                                                <td class="table-input">{{ form.set_location }}</td>
+                                                <td class="table-input">{{ form.missing_pieces }}</td>
+                                                <td>{{ form.favourited }}</td>
                                                 <td><label for="delete-set"><input type="checkbox" name="delete-set" value="{{ set.id }}" id="delete-set"></label></td>
                                             </tr>
                                         {% endfor %}

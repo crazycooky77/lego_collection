@@ -66,31 +66,25 @@ def edit_collection(request):
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all())
 
-            for x in range(0, len(sets)):
-                if request.method == 'POST':
-                    update_col_form = UpdateCol(request.POST, prefix=str(x),
-                                                 instance=LegoCollection.objects.get(
-                                                     pk=sets[x].id))
-                    # update_col_form = UpdateCol(request.POST, instance=LegoCollection())
-                    if request.POST.get("update-col-button"):
+            update_col_form = [
+                UpdateCol(request.POST, prefix=str(set.id),
+                          instance=LegoCollection.objects.get(
+                              pk=set.id)) for set in sets]
+
+            if request.method == 'POST':
+                if request.POST.get("update-col-button"):
+                    for form in update_col_form:
                         set_del_pk = request.POST.getlist("delete-set")
                         if set_del_pk:
                             LegoCollection.objects.filter(pk__in=set_del_pk).delete()
-                        if update_col_form.is_valid:
-                            update_set = update_col_form.save(commit=False)
-                            update_set.save()
-                        # if update_col_form.is_valid():
-                        #     update_col_form.save()
+                        if form.is_valid:
+                            form.save()
                     messages.success(request, 'Collection updated successfully.')
                     return redirect(to='collections')
-                else:
-                    update_col_form = UpdateCol(request.POST, prefix=str(x),
-                                                 instance=LegoCollection.objects.get(
-                                                     pk=sets[x].id))
-                    # update_col_form = [UpdateCol(prefix=str(x), instance=LegoCollection(sets[x].id)) for x in range(0, len(sets))]
-                    # update_col_form = UpdateCol(instance=LegoCollection.objects.get(pk=18))
-                return render(request, 'edit_collection.html',
-                              {'update_col_form': update_col_form, 'collection': collection, 'sets': sets})
+            else:
+                update_col_form
+            return render(request, 'edit_collection.html',
+                          {'form_set': zip(update_col_form, sets), 'collection': collection, 'sets': sets})
     else:
         return render(request, 'collections.html')
 

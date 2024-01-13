@@ -97,7 +97,7 @@ class LegoCollection(models.Model):
     shared = models.CharField(max_length=20, default=None, blank=True, null=True)
 
     class Meta:
-        ordering = ['collection', 'build_status', 'set']
+        ordering = ['id']
 
     def __str__(self):
         return f'{self.id} | {self.set} | {self.collection}'
