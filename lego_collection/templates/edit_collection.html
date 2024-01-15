@@ -46,9 +46,10 @@
                                     {% else %}
                                         <img class="col-img" src="{{ col.collection_pic.url }}" alt="collection image">
                                     {% endif %}
+                                    {{ edit_col_form.collection_pic }}
                                 </div>
                                 <div class="col-title">
-                                    {{ col.collection_name }}
+                                    {{ edit_col_form.collection_name }}
                                 </div>
                                 <div class="col-set-button">
                                     <button><a href="/add-set">Add Set</a></button>
@@ -90,7 +91,7 @@
                                         {% endfor %}
                                     </table>
                                 {% else %}
-                                    No sets in collection. Add a set in the upper right.
+                                    <p class="col-no-sets">No sets in collection. Add a set in the upper right.</p>
                                 {% endif %}
                             </div>
                         </div>

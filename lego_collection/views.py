@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import CustomUser, Collection, LegoCollection
-from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection, CreateSet, AddSet, UpdateCol
+from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection, CreateSet, AddSet, UpdateCol, EditCollection
 
 
 # Create your views here.
@@ -47,6 +47,10 @@ def collections_view(request):
                                                            flat=True)
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all())
+
+            if request.method == 'POST':
+                if request.POST.get("delete-col-button"):
+                    collection.delete()
         else:
             return render(request, 'collections.html')
         return render(request, 'collections.html',
@@ -66,18 +70,16 @@ def edit_collection(request):
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all())
 
-            update_col_form_post = [
-                UpdateCol(request.POST, prefix=str(set.id),
-                          instance=LegoCollection.objects.get(
-                              pk=set.id)) for set in sets]
-            update_col_form_get = [
-                UpdateCol(prefix=str(set.id),
-                          instance=LegoCollection.objects.get(
-                              pk=set.id)) for set in sets]
-
             if request.method == 'POST':
+                edit_col_form = EditCollection(request.POST, request.FILES, instance=Collection.objects.get(pk=col_id[0]))
+                update_col_form = [
+                    UpdateCol(request.POST, prefix=str(set.id),
+                              instance=LegoCollection.objects.get(
+                                  pk=set.id)) for set in sets]
                 if request.POST.get("update-col-button"):
-                    for form in update_col_form_post:
+                    if edit_col_form.is_valid():
+                        edit_col_form.save()
+                    for form in update_col_form:
                         set_del_pk = request.POST.getlist("delete-set")
                         if set_del_pk:
                             LegoCollection.objects.filter(pk__in=set_del_pk).delete()
@@ -86,9 +88,13 @@ def edit_collection(request):
                     messages.success(request, 'Collection updated successfully.')
                     return redirect(to='collections')
             else:
-                update_col_form_get
+                edit_col_form = EditCollection(instance=Collection.objects.get(pk=col_id[0]))
+                update_col_form = [
+                    UpdateCol(prefix=str(set.id),
+                              instance=LegoCollection.objects.get(
+                                  pk=set.id)) for set in sets]
             return render(request, 'edit_collection.html',
-                          {'form_set': zip(update_col_form_get, sets), 'collection': collection, 'sets': sets})
+                          {'form_set': zip(update_col_form, sets), 'edit_col_form': edit_col_form, 'collection': collection, 'sets': sets})
     else:
         return render(request, 'collections.html')
 

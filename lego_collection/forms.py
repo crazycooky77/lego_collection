@@ -1,5 +1,6 @@
 from cloudinary.forms import CloudinaryFileField
 from django import forms
+from django.forms import ImageField, FileInput
 from django_select2 import forms as s2forms
 from .models import CustomUser, Collection, LegoCollection, LegoSet
 
@@ -34,6 +35,15 @@ class CreateCollection(forms.ModelForm):
     required_css_class = 'required'
     collection_pic = CloudinaryFileField(
         options={'crop': 'fit', 'width': 100, 'height': 100}, required=False)
+
+    class Meta:
+        model = Collection
+        fields = ['collection_name', 'collection_pic']
+
+
+class EditCollection(forms.ModelForm):
+    required_css_class = 'required'
+    collection_pic = ImageField(widget=FileInput, required=False)
 
     class Meta:
         model = Collection

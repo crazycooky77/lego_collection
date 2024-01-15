@@ -50,9 +50,7 @@
                         <div class="col-set-button">
                             <button><a href="/add-set">Add Set</a></button>
                             <button><a href="/create-set">Create New Set</a></button>
-                            {% if sets %}
-                                <button><a href="/edit-collection">Edit Collection</a></button>
-                            {% endif %}
+                            <button><a href="/edit-collection">Edit Collection</a></button>
                         </div>
                     </div>
                     <div class="col-sets">
@@ -94,8 +92,11 @@
                                 {% endfor %}
                             </table>
                         {% else %}
-                            No sets in collection. Add a set in the upper right.
+                            <p class="col-no-sets">No sets in collection. Add a set in the upper right.</p>
                         {% endif %}
+                    </div>
+                    <div class="del-col-button">
+                        <button type="submit" name="delete-col-button" value="delete-col-button" onclick="return confirm('Are you sure you want to delete your collection? This cannot be undone')">Delete Collection</button>
                     </div>
                 </div>
             {% endfor %}

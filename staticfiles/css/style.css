@@ -278,7 +278,7 @@ input[type="file"]::file-selector-button:active {
 
 .col-img-container {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .col-img {
@@ -374,4 +374,13 @@ table {
 .col-title {
     margin-right: min(150px);
     margin-left: min(150px);
+}
+
+.col-no-sets {
+    margin-bottom: 20px;
+}
+
+#id_collection_pic {
+    margin-left: 10px;
+    width: 300px;
 }
