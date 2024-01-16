@@ -3,9 +3,9 @@
         <h2>Profile</h2>
         <div class="profile-details">
             <p>Username: {{request.user.username}}</p>
-            <p>Sets owned: </p>
-            <p>Wish list: </p>
-            <p>Viewable collections: </p>
+            <p>Sets owned: {{ owned.count }}</p>
+            <p>Wish list: {{ wishlist.count }}</p>
+            <p>Viewable collections: Coming Soon</p>
             <form method="POST" action="{% url 'account_logout' %}">
                 {% csrf_token %}
                 {% if redirect_field_value %}
@@ -14,7 +14,6 @@
                 <button type="submit">Log Out</button>
             </form>
         </div>
-
     {% else %}
         <h2>Log In</h2>
         <form method="POST" action="{% url 'account_login' %}">

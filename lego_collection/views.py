@@ -8,8 +8,21 @@ from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollectio
 
 
 # Create your views here.
+def profile_widget(request):
+    col_id = Collection.objects.filter(
+        collection_owner=request.user).values_list('collection_id',
+                                                   flat=True)
+    owned = LegoCollection.objects.filter(
+        collection_id__in=col_id.all()).exclude(build_status='WL')
+    wishlist = LegoCollection.objects.filter(
+        collection_id__in=col_id.all(), build_status='WL')
+
+    return owned, wishlist
+
+
 def homepage_view(request):
-    return render(request, 'index.html')
+    owned, wishlist = profile_widget(request)
+    return render(request, 'index.html', {'owned': owned, 'wishlist': wishlist})
 
 
 class CreateUser(CreateView):
@@ -21,8 +34,9 @@ class CreateUser(CreateView):
 
 def create_collection(request):
     if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
         if request.method == 'POST':
-            create_col_form = CreateCollection(request.POST)
+            create_col_form = CreateCollection(request.POST, request.FILES)
             if request.POST.get("create-col-button"):
                 if create_col_form.is_valid():
                     obj = create_col_form.save(commit=False)
@@ -32,13 +46,14 @@ def create_collection(request):
                     return redirect('collections')
         else:
             create_col_form = CreateCollection()
-        return render(request, 'create_collection.html', {'create_col_form': create_col_form})
+        return render(request, 'create_collection.html', {'create_col_form': create_col_form, 'owned': owned, 'wishlist': wishlist})
     else:
         return render(request, 'create_collection.html')
 
 
 def collections_view(request):
     if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
         if Collection.objects.filter(collection_owner__exact=request.user).exists():
             collection = Collection.objects.filter(
                 collection_owner=request.user)
@@ -52,9 +67,10 @@ def collections_view(request):
                 if request.POST.get("delete-col-button"):
                     collection.delete()
         else:
-            return render(request, 'collections.html')
+            owned, wishlist = profile_widget(request)
+            return render(request, 'collections.html', {'owned': owned, 'wishlist': wishlist})
         return render(request, 'collections.html',
-                      {'collection': collection, 'sets': sets})
+                      {'collection': collection, 'sets': sets, 'owned': owned, 'wishlist': wishlist})
     else:
         return render(request, 'collections.html')
 
@@ -88,13 +104,14 @@ def edit_collection(request):
                     messages.success(request, 'Collection updated successfully.')
                     return redirect(to='collections')
             else:
+                owned, wishlist = profile_widget(request)
                 edit_col_form = EditCollection(instance=Collection.objects.get(pk=col_id[0]))
                 update_col_form = [
                     UpdateCol(prefix=str(set.id),
                               instance=LegoCollection.objects.get(
                                   pk=set.id)) for set in sets]
             return render(request, 'edit_collection.html',
-                          {'form_set': zip(update_col_form, sets), 'edit_col_form': edit_col_form, 'collection': collection, 'sets': sets})
+                          {'form_set': zip(update_col_form, sets), 'edit_col_form': edit_col_form, 'collection': collection, 'sets': sets, 'owned': owned, 'wishlist': wishlist})
     else:
         return render(request, 'collections.html')
 
@@ -109,8 +126,9 @@ def create_set(request):
                     messages.success(request, 'You successfully created a set. You can now search for and save it to your collection.')
                     return redirect('add_set')
         else:
+            owned, wishlist = profile_widget(request)
             create_set_form = CreateSet()
-        return render(request, 'create_set.html', {'create_set_form': create_set_form})
+        return render(request, 'create_set.html', {'create_set_form': create_set_form, 'owned': owned, 'wishlist': owned})
     else:
         return render(request, 'add_set.html')
 
@@ -128,8 +146,9 @@ def add_set(request):
                     messages.success(request, 'Set successfully added to your collection.')
                     return redirect('collections')
         else:
+            owned, wishlist = profile_widget(request)
             add_set_form = AddSet()
-        return render(request, 'add_set.html', {'add_set_form': add_set_form})
+        return render(request, 'add_set.html', {'add_set_form': add_set_form, 'owned': owned, 'wishlist': wishlist})
     else:
         return render(request, 'collections.html')
 
@@ -159,14 +178,22 @@ def profile_view(request):
                     logout(request)
                     messages.success(request, 'Account successfully deleted')
         else:
+            col_id = Collection.objects.filter(
+                collection_owner=request.user).values_list('collection_id',
+                                                           flat=True)
+            owned = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).exclude(build_status='WL')
+            wishlist = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), build_status='WL')
             username_form = UpdateUsername(instance=request.user)
             prv_form = UpdatePrivacy(instance=request.user)
             del_form = DeleteAccount()
         return render(request, 'profile.html',
-                      {'user_form': username_form, 'privacy_form': prv_form, 'del_form': del_form})
+                      {'user_form': username_form, 'privacy_form': prv_form, 'del_form': del_form, 'owned': owned, 'wishlist': wishlist})
     else:
         return render(request, 'profile.html')
 
 
 def shared_view(request):
-    return render(request, 'shared.html')
+    owned, wishlist = profile_widget(request)
+    return render(request, 'shared.html', {'owned': owned, 'wishlist': wishlist})

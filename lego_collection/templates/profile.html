@@ -57,10 +57,9 @@
                 {% endelement %}
                         </div>
                 {% include 'privacy_change.html' %}
-                <p>Collection: </p>
-                <p>Sets owned: </p>
-                <p>Wish list: </p>
-                <p>Viewable collections: </p>
+                <p>Sets owned: {{ owned.count }}</p>
+                <p>Wish list: {{ wishlist.count }}</p>
+                <p>Viewable collections: Coming Soon</p>
                 <div class="profile-buttons">
                     <button><a href="{% url 'account_change_password' %}">Change Password</a></button>
                     <button><a href="/email">Manage Emails</a></button>

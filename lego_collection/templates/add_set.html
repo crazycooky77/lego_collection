@@ -3,7 +3,7 @@
 {% block content %}
     <div class="mid">
         {{ add_set_form.media.css }}
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% if form.errors %}
                 <br>

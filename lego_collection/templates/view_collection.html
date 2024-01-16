@@ -72,7 +72,7 @@
                                             {% if "set-placeholder" in set.set.set_picture.url %}
                                                 <img class="set-img" src="{% static 'images/set-default.png' %}" alt="placeholder set image">
                                             {% else %}
-                                                <img class="set-img" src="{{ set.set_picture.url }}" alt="set image">
+                                                <img class="set-img" src="{{ set.set.set_picture.url }}" alt="set image">
                                             {% endif %}
                                         </td>
                                         <td>{{ set.set.set_number }}</td>
