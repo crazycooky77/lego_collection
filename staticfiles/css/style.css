@@ -276,7 +276,7 @@ input[type="file"]::file-selector-button:active {
     color: white;
 }
 
-.col-img-container {
+.col-img-title {
     display: flex;
     align-items: center;
 }
@@ -285,6 +285,7 @@ input[type="file"]::file-selector-button:active {
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    margin-right: 20px;
 }
 
 .col-details {
@@ -383,4 +384,8 @@ table {
 #id_collection_pic {
     margin-left: 10px;
     width: 300px;
+}
+
+#set-sort, #set-filter, #sub-filter {
+    margin-bottom: 15px;
 }

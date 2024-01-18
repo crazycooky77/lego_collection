@@ -37,14 +37,42 @@
             {% for col in collection %}
                 <div class="mid-flex">
                     <div class="flex-hor">
-                        <div class="col-img-container">
+                        {% if sets %}
+                            <div class="set-sort">
+                                <form id="set-sort-form"></form>
+                                <select id="set-sort" name="set-sort" onChange=changeSort(this.value)>
+                                    <option name="set-sort" value="instruction" selected="selected" disabled>Sort Sets</option>
+                                    <option name="set-sort" value="nr">Set Number</option>
+                                    <option name="set-sort" value="name">Set Name</option>
+                                    <option name="set-sort" value="pieces"># Pieces</option>
+                                    <option name="set-sort" value="status">Build Status</option>
+                                    <option name="set-sort" value="loc">Set Location</option>
+                                    <option name="set-sort" value="missing">Missing Pieces</option>
+                                    <option name="set-sort" value="fav">Favourite</option>
+                                </select>
+                                <br>
+                                <button id='reverse-sort-btn' class="set-sort-btn" onclick=reverseSort()>Reverse Sort</button>
+                                <br>
+                                <button class="set-sort-btn"><a href="/collections">Reset Sort</a></button>
+                            </div>
+                            <div class="set-filter">
+                                <select id="set-filter" name="set-filter">
+                                    <option selected="selected" disabled>Filter Sets</option>
+                                </select>
+                                <br>
+                                <select id="sub-filter" name="sub-filter" onChange=changeFilter(this.value)>
+                                    <option selected="selected">Set Filter Details</option>
+                                </select>
+                                <br>
+                                <button class="set-filter-btn"><a href="/collections">Reset Filter</a></button>
+                            </div>
+                        {% endif %}
+                        <div class="col-img-title">
                             {% if "col-placeholder" in col.collection_pic.url %}
                                 <img class="col-img" src="{% static 'images/col-default.png' %}" alt="placeholder collection image">
                             {% else %}
                                 <img class="col-img" src="{{ col.collection_pic.url }}" alt="collection image">
                             {% endif %}
-                        </div>
-                        <div class="col-title">
                             {{ col.collection_name }}
                         </div>
                         <div class="col-set-button">
@@ -105,3 +133,4 @@
         {% endif %}
     {% endif %}
 </form>
+<script src="{% static 'js/script.js' %}"></script>

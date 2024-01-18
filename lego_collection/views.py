@@ -51,17 +51,135 @@ def create_collection(request):
         return render(request, 'create_collection.html')
 
 
+def sort_filter_collection(request):
+    col_id = Collection.objects.filter(
+        collection_owner=request.user).values_list('collection_id',
+                                                   flat=True)
+    sort_by = None
+    rsort_by = None
+    filter_by = None
+
+    try:
+        sort_by = request.GET['sort']
+    except:
+        pass
+    try:
+        rsort_by = request.GET['rsort']
+    except:
+        pass
+    try:
+        filter_by = request.GET['filter']
+    except:
+        pass
+
+    if sort_by is not None:
+        if sort_by == 'nr':
+            sets = LegoCollection.objects.filter(
+                    collection_id__in=col_id.all()).order_by('set__set_number')
+        elif sort_by == 'name':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('set__set_name')
+        elif sort_by == 'pieces':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('set__nr_of_pieces')
+        elif sort_by == 'status':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('build_status')
+        elif sort_by == 'loc':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('set_location')
+        elif sort_by == 'missing':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('missing_pieces')
+        elif sort_by == 'fav':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('-favourited')
+    elif rsort_by is not None:
+        if rsort_by == 'nr':
+            sets = LegoCollection.objects.filter(
+                    collection_id__in=col_id.all()).order_by('-set__set_number')
+        elif rsort_by == 'name':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('-set__set_name')
+        elif rsort_by == 'pieces':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('-set__nr_of_pieces')
+        elif rsort_by == 'status':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('-build_status')
+        elif rsort_by == 'loc':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('-set_location')
+        elif rsort_by == 'missing':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('-missing_pieces')
+        elif rsort_by == 'fav':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).order_by('favourited')
+    elif filter_by is not None:
+        if filter_by == 'u500':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), set__nr_of_pieces__lt=500).order_by(
+                'set__nr_of_pieces')
+        elif filter_by == 'u1000':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), set__nr_of_pieces__lt=1000).order_by(
+                'set__nr_of_pieces')
+        elif filter_by == 'o500':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), set__nr_of_pieces__gt=500).order_by(
+                '-set__nr_of_pieces')
+        elif filter_by == 'o1000':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), set__nr_of_pieces__gt=1000).order_by(
+                '-set__nr_of_pieces')
+        elif filter_by == 'o2500':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), set__nr_of_pieces__gt=2500).order_by(
+                '-set__nr_of_pieces')
+        elif filter_by == 'o5000':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), set__nr_of_pieces__gt=5000).order_by(
+                '-set__nr_of_pieces')
+        elif filter_by == 'bnext':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), build_status='BN')
+        elif filter_by == 'new':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), build_status='NEW')
+        elif filter_by == 'stored':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), build_status='STORED')
+        elif filter_by == 'wishlist':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), build_status='WL')
+        elif filter_by == 'miss-yes':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), missing_pieces__isnull=False)
+        elif filter_by == 'miss-no':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), missing_pieces__isnull=True)
+        elif filter_by == 'fav-yes':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), favourited=1)
+        elif filter_by == 'fav-no':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), favourited=0)
+    else:
+        sets = LegoCollection.objects.filter(
+            collection_id__in=col_id.all()).order_by('-favourited',
+                                                     'build_status')
+    return sets
+
+
 def collections_view(request):
     if request.user.is_authenticated:
         owned, wishlist = profile_widget(request)
         if Collection.objects.filter(collection_owner__exact=request.user).exists():
             collection = Collection.objects.filter(
                 collection_owner=request.user)
-            col_id = Collection.objects.filter(
-                collection_owner=request.user).values_list('collection_id',
-                                                           flat=True)
-            sets = LegoCollection.objects.filter(
-                collection_id__in=col_id.all())
+
+            sets = sort_filter_collection(request)
 
             if request.method == 'POST':
                 if request.POST.get("delete-col-button"):
