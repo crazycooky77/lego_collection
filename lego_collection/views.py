@@ -21,8 +21,11 @@ def profile_widget(request):
 
 
 def homepage_view(request):
-    owned, wishlist = profile_widget(request)
-    return render(request, 'index.html', {'owned': owned, 'wishlist': wishlist})
+    if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
+        return render(request, 'index.html', {'owned': owned, 'wishlist': wishlist})
+    else:
+        return render(request, 'index.html')
 
 
 class CreateUser(CreateView):
@@ -313,5 +316,8 @@ def profile_view(request):
 
 
 def shared_view(request):
-    owned, wishlist = profile_widget(request)
-    return render(request, 'shared.html', {'owned': owned, 'wishlist': wishlist})
+    if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
+        return render(request, 'shared.html', {'owned': owned, 'wishlist': wishlist})
+    else:
+        return render(request, 'shared.html')
