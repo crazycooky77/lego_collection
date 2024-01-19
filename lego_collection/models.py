@@ -1,11 +1,14 @@
-from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.postgres.fields import ArrayField
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
+    """
+    Custom user manager model
+    """
     def create_user(self, password=None, **extra_fields):
         extra_fields.setdefault('account_type', 'LC')
         user = self.model(**extra_fields)
@@ -22,9 +25,10 @@ class UserManager(BaseUserManager):
         return self.create_user(**extra_fields)
 
 
-# Create your models here
 class CustomUser(AbstractUser):
-
+    """
+    Custom user model
+    """
     class Privacy(models.TextChoices):
         PRIVATE = 'PRV', _('Private')
         PUBLIC = 'PUB', _('Public')
@@ -53,6 +57,9 @@ class CustomUser(AbstractUser):
 
 
 class LegoSet(models.Model):
+    """
+    Basic lego set model
+    """
     set_number = models.IntegerField(primary_key=True, unique=True)
     set_name = models.CharField(max_length=200)
     set_picture = CloudinaryField('image', default='set-placeholder')
@@ -67,6 +74,9 @@ class LegoSet(models.Model):
 
 
 class Collection(models.Model):
+    """
+    Basic collection model
+    """
     collection_id = models.AutoField(primary_key=True)
     collection_name = models.CharField(max_length=100)
     collection_pic = CloudinaryField('image', default='col-placeholder')
@@ -81,7 +91,9 @@ class Collection(models.Model):
 
 
 class LegoCollection(models.Model):
-
+    """
+    Model for details for all sets in collections
+    """
     class Status(models.TextChoices):
         NEW = 'NEW', _('New (Owned)')
         BUILD_NEXT = 'BN', _('Build Next')

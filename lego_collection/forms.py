@@ -1,11 +1,15 @@
 from cloudinary.forms import CloudinaryFileField
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms import ImageField, FileInput
 from django_select2 import forms as s2forms
 from .models import CustomUser, Collection, LegoCollection, LegoSet
 
 
 class UpdateUsername(forms.ModelForm):
+    """
+    Form for updating usernames
+    """
     username = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
@@ -22,16 +26,25 @@ class UpdateUsername(forms.ModelForm):
 
 
 class UpdatePrivacy(forms.ModelForm):
+    """
+    Form for updating user privacy
+    """
     class Meta:
         model = CustomUser
         fields = ['privacy']
 
 
 class DeleteAccount(forms.Form):
+    """
+    Form for deleting accounts
+    """
     delete = forms.BooleanField(required=True)
 
 
 class CreateCollection(forms.ModelForm):
+    """
+    Form to create collections
+    """
     required_css_class = 'required'
     collection_pic = CloudinaryFileField(
         options={'crop': 'fit', 'width': 100, 'height': 100}, required=False)
@@ -42,6 +55,9 @@ class CreateCollection(forms.ModelForm):
 
 
 class EditCollection(forms.ModelForm):
+    """
+    Form for editing basic collection details
+    """
     required_css_class = 'required'
     collection_pic = ImageField(widget=FileInput, required=False)
 
@@ -50,7 +66,35 @@ class EditCollection(forms.ModelForm):
         fields = ['collection_name', 'collection_pic']
 
 
+def validate_set_exists(value):
+    """
+    Function to raise a form ValidationError
+    if a set number already exists during set creation
+    """
+    set = LegoSet.objects.filter(set_number=value)
+    if set:
+        raise ValidationError('This set number already exists. Please "Cancel" and search for it using "Add Set".')
+
+
+class CreateSet(forms.ModelForm):
+    """
+    Form for creating new lego sets
+    """
+    required_css_class = 'required'
+    set_number = forms.IntegerField(validators=[validate_set_exists])
+    set_picture = CloudinaryFileField(
+        options={'crop': 'fit', 'width': 100, 'height': 100}, required=False)
+
+    class Meta:
+        model = LegoSet
+        fields = ['set_number', 'set_name', 'set_picture', 'nr_of_pieces', 'lego_link']
+
+
 class SetWidget(s2forms.ModelSelect2Widget):
+    """
+    Widget for AddSet form
+    Enables a search field for all sets in the LegoSet database
+    """
     search_fields = [
         'set_number__icontains',
         'set_name__icontains',
@@ -58,6 +102,9 @@ class SetWidget(s2forms.ModelSelect2Widget):
 
 
 class AddSet(forms.ModelForm):
+    """
+    Form for adding sets to collections
+    """
     required_css_class = 'required'
 
     class Meta:
@@ -67,16 +114,9 @@ class AddSet(forms.ModelForm):
 
 
 class UpdateCol(forms.ModelForm):
+    """
+    Form for updating sets in collections
+    """
     class Meta:
         model = LegoCollection
         fields = ['build_status', 'set_location', 'missing_pieces', 'favourited']
-
-
-class CreateSet(forms.ModelForm):
-    required_css_class = 'required'
-    set_picture = CloudinaryFileField(
-        options={'crop': 'fit', 'width': 100, 'height': 100}, required=False)
-
-    class Meta:
-        model = LegoSet
-        fields = ['set_number', 'set_name', 'set_picture', 'nr_of_pieces', 'lego_link']

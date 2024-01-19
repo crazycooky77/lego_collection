@@ -1,3 +1,4 @@
+/* Create lists for cascading dropdowns */
 let filterObject = {
     "# Pieces": ["<500", "<1000", ">500", ">1000", ">2500", ">5000"],
     "Build Status": ["Build Next", "New", "Stored", "Wish List"],
@@ -5,13 +6,17 @@ let filterObject = {
     "Favourite": ["Yes", "No"]
 };
 window.onload = function() {
+    /* Locate cascading filter elements */
     let filterSel = document.getElementById("set-filter");
     let subFilter = document.getElementById("sub-filter");
+    /* Set the options for the initial filter dropdown */
     for (let filter in filterObject) {
         filterSel.options[filterSel.options.length] = new Option(filter, filter);
     }
+    /* When the initial dropdown selection is done ... */
     filterSel.onchange = function() {
         subFilter.length = 1;
+        /* Set the options for the relevant cascading dropdown */
         for (let subfilter in filterObject[this.value]) {
             subFilter.options[subFilter.options.length] = new Option(filterObject[this.value][subfilter], subfilter);
         }
@@ -19,6 +24,7 @@ window.onload = function() {
 };
 
 
+/* Function to change the current window link, depending on sorting dropdown selection */
 function changeSort(val) {
     if (val === 'nr') {
         window.location = '?sort=nr';
@@ -44,6 +50,7 @@ function changeSort(val) {
 }
 
 
+/* Function to change the current window link to reverse sorting */
 function reverseSort() {
     const url_sort = window.location.search.split('=')[1];
     const current = window.location.origin;
@@ -79,6 +86,7 @@ function reverseSort() {
 }
 
 
+/* Function to change the current window link, depending on filter dropdown selections */
 function changeFilter(val) {
     let filter = document.getElementById('set-filter').value;
     if (filter === '# Pieces') {

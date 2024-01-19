@@ -19,17 +19,17 @@ from django.urls import include, path
 from lego_collection.views import *
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', homepage_view, name='home'),
     path('', include('allauth.urls'), name='login'),
-    path('admin/', admin.site.urls),
+    path('add-set/', add_set, name='add_set'),
     path('collections/', collections_view, name='collections'),
-    path('collections/?sort=<var>', collections_view, name='collections_sort'),
-    path('collections/?rsort=<var>', collections_view, name='collections_rsort'),
     path('collections/?filter=<var>', collections_view, name='collections_filter'),
+    path('collections/?rsort=<var>', collections_view, name='collections_rsort'),
+    path('collections/?sort=<var>', collections_view, name='collections_sort'),
+    path('create-set/', create_set, name='create_set'),
     path('create-collection/', create_collection, name='create_collection'),
     path('edit-collection/', edit_collection, name='edit_collection'),
-    path('create-set/', create_set, name='create_set'),
-    path('add-set/', add_set, name='add_set'),
     path('profile/', profile_view, name='profile'),
     path('select2/', include('django_select2.urls')),
     path('shared/', shared_view, name='shared'),

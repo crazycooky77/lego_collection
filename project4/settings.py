@@ -15,6 +15,7 @@ import os
 import dj_database_url
 
 
+# Development variable
 development = (os.environ.get
                ('DEVELOPMENT', False))
 
@@ -39,7 +40,6 @@ else:
     CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('HEROKU_HOSTNAME')]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,20 +57,20 @@ INSTALLED_APPS = [
     'lego_collection'
 ]
 
+# Variables for login/logout behaviour and email functions
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/collections'
 LOGOUT_REDIRECT_URL = ''
 
 ACCOUNT_CHANGE_EMAIL = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
-ACCOUNT_UNIQUE_EMAIL = True
-
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/profile'
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = '[Lego Collection] '
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_UNIQUE_EMAIL = True
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PW')
@@ -93,6 +93,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'project4.urls'
 
+# Template directories
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -113,7 +114,6 @@ WSGI_APPLICATION = 'project4.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 if development:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('LOCAL_DB_URL'))
@@ -147,7 +147,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -158,12 +157,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

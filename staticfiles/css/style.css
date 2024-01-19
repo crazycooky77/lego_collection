@@ -223,8 +223,14 @@ footer p {
 }
 
 /* Styling for all form errors and confirmation messages */
+.errorlist {
+    list-style: none;
+    color: darkred;
+    text-align: center;
+}
+
 .form-error {
-    color: red;
+    color: darkred;
     text-align: center;
 }
 
@@ -236,7 +242,7 @@ footer p {
 /* Styling for all links meant to be visible (overriding global a styling) */
 .visible-link {
     text-decoration: underline;
-    color: red;
+    color: darkred;
 }
 
 /* Profile styling */

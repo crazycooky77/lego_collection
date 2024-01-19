@@ -1,14 +1,28 @@
+from django.contrib import messages
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.contrib import messages
 from .models import CustomUser, Collection, LegoCollection
-from .forms import UpdateUsername, UpdatePrivacy, DeleteAccount, CreateCollection, CreateSet, AddSet, UpdateCol, EditCollection
+from .forms import AddSet, CreateCollection, CreateSet, DeleteAccount, EditCollection, UpdateCol, UpdatePrivacy, UpdateUsername
 
 
-# Create your views here.
+class CreateUser(CreateView):
+    """
+    View for user creation
+    Including CustomUser model and required user-input fields
+    """
+    model = CustomUser
+    fields = ['username', 'email', 'privacy', 'password']
+    template_name = 'create_user.html'
+    success_url = reverse_lazy('home')
+
+
 def profile_widget(request):
+    """
+    Data for the mini profile widget
+    To display number of sets owned and wishlist
+    """
     col_id = Collection.objects.filter(
         collection_owner=request.user).values_list('collection_id',
                                                    flat=True)
@@ -21,6 +35,11 @@ def profile_widget(request):
 
 
 def homepage_view(request):
+    """
+    View for the homepage
+    If user is logged in, show set data for the profile widget
+    Otherwise show login page
+    """
     if request.user.is_authenticated:
         owned, wishlist = profile_widget(request)
         return render(request, 'index.html', {'owned': owned, 'wishlist': wishlist})
@@ -28,33 +47,11 @@ def homepage_view(request):
         return render(request, 'index.html')
 
 
-class CreateUser(CreateView):
-    model = CustomUser
-    fields = ['username', 'email', 'privacy', 'password']
-    template_name = 'create_user.html'
-    success_url = reverse_lazy('home')
-
-
-def create_collection(request):
-    if request.user.is_authenticated:
-        owned, wishlist = profile_widget(request)
-        if request.method == 'POST':
-            create_col_form = CreateCollection(request.POST, request.FILES)
-            if request.POST.get("create-col-button"):
-                if create_col_form.is_valid():
-                    obj = create_col_form.save(commit=False)
-                    obj.collection_owner = request.user
-                    obj.save()
-                    messages.success(request, 'Your collection has been successfully created.')
-                    return redirect('collections')
-        else:
-            create_col_form = CreateCollection()
-        return render(request, 'create_collection.html', {'create_col_form': create_col_form, 'owned': owned, 'wishlist': wishlist})
-    else:
-        return render(request, 'create_collection.html')
-
-
 def sort_filter_collection(request):
+    """
+    Function check for (reverse) sort and filter links
+    Return sorted/filtered lego set results in the collection accordingly
+    """
     col_id = Collection.objects.filter(
         collection_owner=request.user).values_list('collection_id',
                                                    flat=True)
@@ -62,6 +59,7 @@ def sort_filter_collection(request):
     rsort_by = None
     filter_by = None
 
+    # Check for sort, rsort, or filter in the page links
     try:
         sort_by = request.GET['sort']
     except:
@@ -75,6 +73,7 @@ def sort_filter_collection(request):
     except:
         pass
 
+    # If sort is in the link, get the next term to determine which field to sort on
     if sort_by is not None:
         if sort_by == 'nr':
             sets = LegoCollection.objects.filter(
@@ -97,6 +96,7 @@ def sort_filter_collection(request):
         elif sort_by == 'fav':
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all()).order_by('-favourited')
+    # If rsort is in the link, get the next term to determine which field to reverse sort on
     elif rsort_by is not None:
         if rsort_by == 'nr':
             sets = LegoCollection.objects.filter(
@@ -119,6 +119,7 @@ def sort_filter_collection(request):
         elif rsort_by == 'fav':
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all()).order_by('favourited')
+    # If filter is in the link, get the next term to determine how to filter the data
     elif filter_by is not None:
         if filter_by == 'u500':
             sets = LegoCollection.objects.filter(
@@ -168,6 +169,7 @@ def sort_filter_collection(request):
         elif filter_by == 'fav-no':
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all(), favourited=0)
+    # If no sort or filter is applicable, set default sorting
     else:
         sets = LegoCollection.objects.filter(
             collection_id__in=col_id.all()).order_by('-favourited',
@@ -176,6 +178,9 @@ def sort_filter_collection(request):
 
 
 def collections_view(request):
+    """
+    View for collections page
+    """
     if request.user.is_authenticated:
         owned, wishlist = profile_widget(request)
         if Collection.objects.filter(collection_owner__exact=request.user).exists():
@@ -196,7 +201,90 @@ def collections_view(request):
         return render(request, 'collections.html')
 
 
+def profile_view(request):
+    """
+    View for the user's profile page
+    """
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            username_form = UpdateUsername(request.POST, instance=request.user)
+            prv_form = UpdatePrivacy(request.POST, instance=request.user)
+            del_form = DeleteAccount(request.POST)
+
+            # Username change form functions
+            if request.POST.get("username-button"):
+                if username_form.is_valid():
+                    username_form.save()
+                    messages.success(request, 'Your username has been successfully updated')
+                    return redirect(to='profile')
+                else:
+                    messages.error(request, "An account with that username already exists.")
+            # Privacy settings change form function
+            if request.POST.get("privacy-button"):
+                if prv_form.is_valid():
+                    prv_form.save()
+                    messages.success(request, 'Your privacy settings have been successfully updated')
+                    return redirect(to='profile')
+            # Account deletion form function
+            if request.POST.get("delete-button"):
+                if del_form.is_valid():
+                    CustomUser.delete(request.user)
+                    logout(request)
+                    messages.success(request, 'Account successfully deleted')
+        else:
+            col_id = Collection.objects.filter(
+                collection_owner=request.user).values_list('collection_id',
+                                                           flat=True)
+            owned = LegoCollection.objects.filter(
+                collection_id__in=col_id.all()).exclude(build_status='WL')
+            wishlist = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), build_status='WL')
+            username_form = UpdateUsername(instance=request.user)
+            prv_form = UpdatePrivacy(instance=request.user)
+            del_form = DeleteAccount()
+        return render(request, 'profile.html',
+                      {'user_form': username_form, 'privacy_form': prv_form, 'del_form': del_form, 'owned': owned, 'wishlist': wishlist})
+    else:
+        return render(request, 'profile.html')
+
+
+def shared_view(request):
+    """
+    View for the Shared page (not yet live)
+    """
+    if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
+        return render(request, 'shared.html', {'owned': owned, 'wishlist': wishlist})
+    else:
+        return render(request, 'shared.html')
+
+
+def create_collection(request):
+    """
+    View for creating a new collection
+    """
+    if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
+        if request.method == 'POST':
+            create_col_form = CreateCollection(request.POST, request.FILES)
+            if request.POST.get("create-col-button"):
+                if create_col_form.is_valid():
+                    obj = create_col_form.save(commit=False)
+                    obj.collection_owner = request.user
+                    obj.save()
+                    messages.success(request, 'Your collection has been successfully created.')
+                    return redirect('collections')
+        else:
+            create_col_form = CreateCollection()
+        return render(request, 'create_collection.html', {'create_col_form': create_col_form, 'owned': owned, 'wishlist': wishlist})
+    else:
+        return render(request, 'create_collection.html')
+
+
 def edit_collection(request):
+    """
+    View for page to edit existing collections
+    """
     if request.user.is_authenticated:
         if Collection.objects.filter(collection_owner__exact=request.user).exists():
             collection = Collection.objects.filter(
@@ -238,7 +326,11 @@ def edit_collection(request):
 
 
 def create_set(request):
+    """
+    View for page to create a new lego set
+    """
     if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
         if request.method == 'POST':
             create_set_form = CreateSet(request.POST, request.FILES)
             if request.POST.get("create-set-button"):
@@ -247,14 +339,16 @@ def create_set(request):
                     messages.success(request, 'You successfully created a set. You can now search for and save it to your collection.')
                     return redirect('add_set')
         else:
-            owned, wishlist = profile_widget(request)
             create_set_form = CreateSet()
-        return render(request, 'create_set.html', {'create_set_form': create_set_form, 'owned': owned, 'wishlist': owned})
+        return render(request, 'create_set.html', {'create_set_form': create_set_form, 'owned': owned, 'wishlist': wishlist})
     else:
         return render(request, 'add_set.html')
 
 
 def add_set(request):
+    """
+    View to add a lego set to an existing collection
+    """
     if request.user.is_authenticated:
         if request.method == 'POST':
             add_set_form = AddSet(request.POST)
@@ -272,52 +366,3 @@ def add_set(request):
         return render(request, 'add_set.html', {'add_set_form': add_set_form, 'owned': owned, 'wishlist': wishlist})
     else:
         return render(request, 'collections.html')
-
-
-def profile_view(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            username_form = UpdateUsername(request.POST, instance=request.user)
-            prv_form = UpdatePrivacy(request.POST, instance=request.user)
-            del_form = DeleteAccount(request.POST)
-
-            if request.POST.get("username-button"):
-                if username_form.is_valid():
-                    username_form.save()
-                    messages.success(request, 'Your username has been successfully updated')
-                    return redirect(to='profile')
-                else:
-                    messages.error(request, "An account with that username already exists.")
-            if request.POST.get("privacy-button"):
-                if prv_form.is_valid():
-                    prv_form.save()
-                    messages.success(request, 'Your privacy settings have been successfully updated')
-                    return redirect(to='profile')
-            if request.POST.get("delete-button"):
-                if del_form.is_valid():
-                    CustomUser.delete(request.user)
-                    logout(request)
-                    messages.success(request, 'Account successfully deleted')
-        else:
-            col_id = Collection.objects.filter(
-                collection_owner=request.user).values_list('collection_id',
-                                                           flat=True)
-            owned = LegoCollection.objects.filter(
-                collection_id__in=col_id.all()).exclude(build_status='WL')
-            wishlist = LegoCollection.objects.filter(
-                collection_id__in=col_id.all(), build_status='WL')
-            username_form = UpdateUsername(instance=request.user)
-            prv_form = UpdatePrivacy(instance=request.user)
-            del_form = DeleteAccount()
-        return render(request, 'profile.html',
-                      {'user_form': username_form, 'privacy_form': prv_form, 'del_form': del_form, 'owned': owned, 'wishlist': wishlist})
-    else:
-        return render(request, 'profile.html')
-
-
-def shared_view(request):
-    if request.user.is_authenticated:
-        owned, wishlist = profile_widget(request)
-        return render(request, 'shared.html', {'owned': owned, 'wishlist': wishlist})
-    else:
-        return render(request, 'shared.html')
