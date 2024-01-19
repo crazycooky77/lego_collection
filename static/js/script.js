@@ -1,18 +1,18 @@
-var filterObject = {
+let filterObject = {
     "# Pieces": ["<500", "<1000", ">500", ">1000", ">2500", ">5000"],
     "Build Status": ["Build Next", "New", "Stored", "Wish List"],
     "Missing Pieces": ["Yes", "No"],
     "Favourite": ["Yes", "No"]
 };
 window.onload = function() {
-    var filterSel = document.getElementById("set-filter");
-    var subFilter = document.getElementById("sub-filter");
-    for (var filter in filterObject) {
+    let filterSel = document.getElementById("set-filter");
+    let subFilter = document.getElementById("sub-filter");
+    for (let filter in filterObject) {
         filterSel.options[filterSel.options.length] = new Option(filter, filter);
     }
     filterSel.onchange = function() {
         subFilter.length = 1;
-        for (var subfilter in filterObject[this.value]) {
+        for (let subfilter in filterObject[this.value]) {
             subFilter.options[subFilter.options.length] = new Option(filterObject[this.value][subfilter], subfilter);
         }
     }
@@ -80,7 +80,6 @@ function reverseSort() {
 
 
 function changeFilter(val) {
-    const current = window.location.origin;
     let filter = document.getElementById('set-filter').value;
     if (filter === '# Pieces') {
         if (val === '0') {

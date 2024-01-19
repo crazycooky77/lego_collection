@@ -1,36 +1,33 @@
+/* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Outline&family=Londrina+Solid&display=swap');
 
+/* Global styles for font */
 * {
     font-family: 'Londrina Solid', sans-serif;
     font-size: 24px;
 }
 
+/* Background style for the whole page body */
 body {
-    background: url('../images/background.png') no-repeat;
+    background: rgba(255, 192, 203, 0.5) url('../images/background.png') no-repeat;
 	background-size: cover;
 }
 
+/* Styling for site header */
 h1 {
     font-family: 'Londrina Outline', sans-serif;
     font-size: 75px;
     text-align: center;
 }
 
+/* Styling for all "standard" links */
 a {
     text-decoration: none;
     color: black
 }
 
-#grad {
-    height: 100px;
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(to left, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5),  rgba(255,105,180,0.5)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5) , rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* Standard syntax (must be last) */
-}
-
+/* Styling for navigation bar and buttons*/
 nav div {
     display: flex;
     text-align: center;
@@ -62,171 +59,7 @@ nav button:active {
     border-bottom: dashed white 10px;
 }
 
-footer p {
-    font-size: 16px;
-}
-
-.container {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    width: 100%;
-    align-items: flex-start;
-}
-
-.mid {
-    display: flex;
-    width: 80%;
-    justify-content: center;
-    border: solid black 2px;
-    border-radius: 0.2em;
-    margin-right: 15px;
-    margin-top: 20px;
-    padding-bottom: 20px;
-}
-
-.mini-profile {
-    display: flex;
-    width: 15%;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.profile {
-    display: flex;
-    min-width: 25%;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.profile input, .mini-profile input {
-    margin-bottom: 15px;
-}
-
-.profile h2, .profile form, .mini-profile h2, .mini-profile form {
-    border: solid black 2px;
-    border-radius: 0.2em;
-}
-
-.profile form, .mini-profile form {
-    padding: 15px;
-}
-
-.widget-buttons {
-    border: solid black 2px;
-    border-top: none;
-    border-radius: 0.2em;
-    padding-bottom: 15px;
-}
-
-.widget-buttons button {
-    margin-top: 15px;
-}
-
-.profile-details {
-    border: solid black 2px;
-    border-radius: 0.2em;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    text-align: left;
-}
-
-.profile-details form {
-    border: none;
-    border-radius: 0.2em;
-    padding: 0;
-}
-
-.form-error {
-    color: red;
-    text-align: center;
-}
-
-.profile .border, .mini-profile .border {
-    border: solid black 2px;
-    border-radius: 0.2em;
-    padding: 10px;
-}
-
-.visible-link {
-    text-decoration: underline;
-    color: red;
-}
-
-.profile .partial-border, .mini-profile .partial-border {
-    border: solid black 2px;
-    border-bottom: none;
-    border-radius: 0.2em;
-    padding: 10px;
-}
-
-.pass-req {
-    text-align: left;
-    margin-bottom: -20px;
-    margin-top: 0;
-}
-
-li {
-    text-align: left;
-}
-
-.profile-margin {
-    margin-top: -15px;
-}
-
-.profile-email {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-right: 45px;
-    margin-bottom: -40px;
-}
-
-hr {
-    border-top: solid black 2px;
-}
-
-.email-buttons button, .mid button {
-    margin-bottom: 15px;
-}
-
-.profile-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-right: 15px;
-    align-items: baseline;
-}
-
-.profile-buttons button {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.profile-form {
-    display: flex;
-    flex-direction: row;
-
-}
-
-.profile-input {
-    justify-content: space-between;
-    align-items: baseline;
-}
-
-.profile-input button {
-    margin-left: 20px;
-}
-
-.form-confirm {
-    color: green;
-    text-align: center;
-}
-
-input:valid, input:invalid, select {
-    background-color: pink;
-}
-
+/* Styling for main page content buttons */
 main button {
     background-color: hotpink;
     border: solid black 1px;
@@ -243,6 +76,26 @@ main button:active, main button:active a {
     border: solid white 1px;
     border-radius: 0.2em;
     color: white;
+}
+
+/* Adding asterisks for required items in forms */
+label.required::before {
+    content: '*';
+}
+
+/* Left-aligning all list items */
+li {
+    text-align: left;
+}
+
+/* Style for horizontal line elements (content separators) */
+hr {
+    border-top: solid black 2px;
+}
+
+/* Styling for various input fields */
+input:valid, input:invalid, select {
+    background-color: pink;
 }
 
 input[type="file"] {
@@ -276,6 +129,270 @@ input[type="file"]::file-selector-button:active {
     color: white;
 }
 
+/* Table styling for collections */
+table {
+    margin: 0 20px 20px 20px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+td, th {
+    padding: 5px 5px;
+    border: 1px solid grey;
+    word-wrap: break-word;
+    width: 100%;
+    max-width: 0;
+}
+
+td input {
+    width: 80%;
+}
+
+td select {
+    width: 95%;
+}
+
+/* Footer styling */
+footer p {
+    font-size: 16px;
+}
+
+/* Navigation bar background gradient */
+#grad {
+    height: 100px;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(to left, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5),  rgba(255,105,180,0.5)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5) , rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* Standard syntax (must be last) */
+}
+
+/* Styling for collection image */
+#id_collection_pic {
+    margin-left: 10px;
+    width: 300px;
+}
+
+/* Styling for collection sorting and filters */
+#set-sort, #set-filter, #sub-filter {
+    margin-bottom: 15px;
+}
+
+/* Profile page styling for some email fields */
+#id_email {
+    margin-right: 25px;
+    margin-top: 15px;
+}
+
+#email_radio_0 {
+    width: auto;
+}
+
+/* Main styling for page sections */
+.container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.mid {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    border: solid black 2px;
+    border-radius: 0.2em;
+    margin-right: 15px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.mid form {
+    text-align: left;
+    max-width: 100%;
+}
+
+.mid-buttons {
+    text-align: center;
+}
+
+.mid-buttons button {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+/* Styling for all form errors and confirmation messages */
+.form-error {
+    color: red;
+    text-align: center;
+}
+
+.form-confirm {
+    color: green;
+    text-align: center;
+}
+
+/* Styling for all links meant to be visible (overriding global a styling) */
+.visible-link {
+    text-decoration: underline;
+    color: red;
+}
+
+/* Profile styling */
+.mini-profile {
+    display: flex;
+    width: 15%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.profile {
+    display: flex;
+    min-width: 25%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.profile-input {
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.profile input {
+    margin-bottom: 15px;
+    width: 200px;
+}
+
+.mini-profile input {
+    margin-bottom: 15px;
+    width: 90%;
+}
+
+.profile h2, .profile form, .mini-profile h2, .mini-profile form {
+    border: solid black 2px;
+    border-radius: 0.2em;
+}
+
+.profile form, .mini-profile form {
+    padding: 15px;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.profile-details {
+    border: solid black 2px;
+    border-radius: 0.2em;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    text-align: left;
+}
+
+.profile .border, .mini-profile .border {
+    border: solid black 2px;
+    border-radius: 0.2em;
+    padding: 10px;
+}
+
+.profile-details form {
+    border: none;
+    border-radius: 0.2em;
+    padding: 0;
+}
+
+.mini-profile button {
+    max-width: 90%;
+}
+
+.widget-buttons {
+    border: solid black 2px;
+    border-top: none;
+    border-radius: 0.2em;
+    padding-bottom: 15px;
+}
+
+.widget-buttons button {
+    margin-top: 15px;
+}
+
+.profile-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-right: 15px;
+    align-items: baseline;
+}
+
+.profile-input button {
+    margin-left: 20px;
+}
+
+.profile-buttons button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.profile-email button {
+    margin-left: 25px;
+}
+
+.email-buttons button, .mid button {
+    margin-bottom: 15px;
+}
+
+.delete-buttons input {
+    width: auto;
+}
+
+.profile .partial-border, .mini-profile .partial-border {
+    border: solid black 2px;
+    border-bottom: none;
+    border-radius: 0.2em;
+    padding: 10px;
+}
+
+.profile-margin {
+    margin-top: -15px;
+}
+
+.profile-email {
+    display: flex;
+    align-items: baseline;
+    margin-right: 45px;
+    margin-bottom: -40px;
+}
+
+.pass-req {
+    text-align: left;
+    margin-bottom: -20px;
+    margin-top: 0;
+}
+
+/* Collection styling */
+.mid-flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.flex-hor {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 20px 20px 20px;
+}
+
+.col-title {
+    margin-right: min(150px);
+    margin-left: min(150px);
+}
+
 .col-img-title {
     display: flex;
     align-items: center;
@@ -293,25 +410,15 @@ input[type="file"]::file-selector-button:active {
     justify-content: center;
 }
 
+.col-no-sets {
+    margin-bottom: 20px;
+}
+
 .col-sets {
     display: flex;
     justify-content: center;
     text-align: center;
-}
-
-.mid-flex {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-}
-
-.flex-hor {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    margin: 0 20px 20px 20px;
+    max-width: 100%;
 }
 
 .col-set-button {
@@ -323,23 +430,21 @@ input[type="file"]::file-selector-button:active {
     margin: 0 10px;
 }
 
-.mid form {
-    text-align: left;
+.set-img {
+    height: 100px;
+    width: 100px;
+    border-radius: 15%;
 }
 
-.mid-buttons {
-    text-align: center;
+.table-check {
+    width: 55%;
 }
 
-.mid-buttons button {
-    margin-left: 8px;
-    margin-right: 8px;
+.table-small {
+    width: 75%;
 }
 
-label.required::before {
-    content: '*';
-}
-
+/* Styling for select2 field used to search for and add sets to collections */
 .select2, .select2-container, .select2-container--default, .select2-container--below, .select2-container--open {
     width: 100% !important;
     background-color: pink !important;
@@ -353,39 +458,23 @@ label.required::before {
     color: black !important;
 }
 
-.set-img {
-    height: 100px;
-    width: 100px;
-    border-radius: 15%;
+/* Edit collection styling */
+.del-col-button {
+    margin-left: 20px;
 }
 
-td, th {
-    padding: 5px 15px;
-    border: 1px solid grey;
+.edit-img-title {
+    display: flex;
+    align-items: center;
 }
 
-td input {
-    width: 60%;
+.edit-img-title input {
+    margin-right: 20px;
 }
 
-table {
-    margin: 0 20px 20px 20px;
-}
+/* Media Queries */
+/* For screens 1300px wide and less */
+@media screen and (max-width: 1300px) {
 
-.col-title {
-    margin-right: min(150px);
-    margin-left: min(150px);
-}
 
-.col-no-sets {
-    margin-bottom: 20px;
-}
-
-#id_collection_pic {
-    margin-left: 10px;
-    width: 300px;
-}
-
-#set-sort, #set-filter, #sub-filter {
-    margin-bottom: 15px;
 }
