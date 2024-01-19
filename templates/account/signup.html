@@ -1,20 +1,26 @@
+<!-- Load the base html file and allauth for authentication -->
 {% extends "base.html" %}
 {% load allauth i18n %}
 
 {% block content %}
     <div class="profile">
+        <!-- Page for users to create an account -->
         <h2>Create Account</h2>
         <div class="partial-border">
+            <!-- Sign in link if the user already has an account -->
             Already have an account? Then please <a href="{{ login_url }}" class="visible-link">sign in</a>.
             <br>
             <br>
+            <!-- Forgot username/password option for users -->
             Forgot your username or password? Then please <a href="/password/reset" class="visible-link">reset your password</a>.
         </div>
+        <!-- Form to create an account -->
         {% url 'account_signup' as action_url %}
         {% element form form=form method="post" action=action_url tags="entrance,signup" %}
             {% slot body %}
                 {% csrf_token %}
-                 {% if form.errors %}
+                <!-- Form errors -->
+                {% if form.errors %}
                     {% for field in form %}
                         {% for error in field.errors %}
                             <div class="form-error">
@@ -29,6 +35,7 @@
                     {% endfor %}
                     <br>
                 {% endif %}
+                <!-- Messages from the form (confirmation and error) -->
                 {% if messages %}
                     {% for message in messages %}
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
@@ -43,6 +50,7 @@
                     {% endfor %}
                     <br>
                 {% endif %}
+                <!-- Fields for user input to create the account -->
                 <label for="id_username"></label>
                 <input type="text" id="id_username" placeholder="username" name="username">
                 <label for="id_email"></label>
@@ -52,6 +60,7 @@
                 <input type="password" id="id_password1" placeholder="enter password" name="password1">
                 <label for="id_password2"></label>
                 <input type="password" id="id_password2" placeholder="re-enter password" name="password2">
+                <!-- Password requirements -->
                 <p class="pass-req">
                     Note, your password:
                     <ul>
@@ -67,12 +76,14 @@
                            value="{{ redirect_field_value }}" />
                 {% endif %}
             {% endslot %}
+            <!-- Sign up button to create the account from form details -->
             {% slot actions %}
                 {% element button tags="prominent,signup" type="submit" %}
                     {% trans "Sign Up" %}
                 {% endelement %}
             {% endslot %}
         {% endelement %}
+        <!-- Social account signup (not yet enabled) -->
         {% if SOCIALACCOUNT_ENABLED %}
             {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
         {% endif %}

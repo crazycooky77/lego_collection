@@ -1,3 +1,4 @@
+<!-- Load the base html file and allauth for authentication -->
 {% extends "base.html" %}
 {% load i18n %}
 {% load account %}
@@ -5,11 +6,13 @@
 
 {% block content %}
     <div class="profile">
+        <!-- Profile page to manage email address in account -->
         <h2>Manage Emails</h2>
         {% url 'account_email' as email_url %}
         {% element form form=form action=email_url method="post" %}
             {% slot body %}
                 {% csrf_token %}
+                <!-- Form error messages -->
                 {% if form.errors %}
                     {% for field in form %}
                         {% for error in field.errors %}
@@ -25,6 +28,7 @@
                     {% endfor %}
                     <br>
                 {% endif %}
+                <!-- Confirmation/invalid messages for the form -->
                 {% if messages %}
                     {% for message in messages %}
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
@@ -39,12 +43,14 @@
                     {% endfor %}
                     <br>
                 {% endif %}
+                <!-- List of email address(es) in the user's account -->
                 {% if emailaddresses|length > 1 %}
                     {% trans 'The below email addresses are associated with your account' %}
                 {% else %}
                     {% trans 'The below email address is associated with your account' %}
                 {% endif %}
                 <hr>
+                <!-- Email address details (verified, primary) -->
                 {% for radio in emailaddress_radios %}
                     {% with emailaddress=radio.emailaddress %}
                         {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
@@ -69,6 +75,7 @@
                     {% endwith %}
                 {% endfor %}
             {% endslot %}
+            <!-- Button to re-send verification emails if there are unverified email addresses -->
             {% slot actions %}
                 {% for radio in emailaddress_radios %}
                     {% with emailaddress=radio.emailaddress %}
@@ -82,6 +89,7 @@
                         {% endif %}
                     {% endwith %}
                 {% endfor %}
+                <!-- Button to remove an (unverified) email address if there are more than 1 -->
                 {% if emailaddresses|length > 1 %}
                     <div class="email-buttons">
                         {% element button tags="danger,delete" type="submit" name="action_remove" %}
@@ -92,6 +100,7 @@
             {% endslot %}
         {% endelement %}
         {% if can_add_email %}
+            <!-- Add an email address to the account -->
             <h2>Add Email Address</h2>
             {% url 'account_email' as action_url %}
             {% element form form=form method="post" action=action_url %}
@@ -99,13 +108,14 @@
                 {% slot body %}
                     {% csrf_token %}
                     <label for="id_email"></label>
-                    <input type="email" id="id_email" placeholder="email address" name="email" style="margin-right: 25px; margin-top: 15px;">
+                    <input type="email" id="id_email" placeholder="email address" name="email">
                 {% endslot %}
                 befac
                 {% slot actions %}
                     {% element button name="action_add" type="submit" %}
                         {% trans "Add Email" %}
                     {% endelement %}
+                    <!-- Cancel button to go back to the main profile page -->
                     <button type="reset"><a href="/profile">Cancel</a></button>
                 {% endslot %}
             {% endelement %}

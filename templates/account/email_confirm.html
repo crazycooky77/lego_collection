@@ -1,3 +1,4 @@
+<!-- Load the base html file and allauth for authentication -->
 {% extends "base.html" %}
 {% load i18n %}
 {% load account %}
@@ -5,16 +6,19 @@
 
 {% block content %}
     <div class="profile">
+        <!-- Page for user to verify their email address from the link emailed to them after an email change -->
         <h2>Email Verification</h2>
         <div class="border">
             {% if confirmation %}
                 {% user_display confirmation.email_address.user as user_display %}
+                <!-- Confirm email -->
                 {% if can_confirm %}
                     <p>
                         {% blocktrans with confirmation.email_address.email as email %}Please confirm that {{ email }} is an email address for user {{ user_display }}.{% endblocktrans %}
                     </p>
                     {% url 'account_confirm_email' confirmation.key as action_url %}
                     {% element form method="post" action=action_url %}
+                        <!-- Button to confirm email -->
                         {% slot actions %}
                             {% csrf_token %}
                             {% element button type="submit" %}
@@ -22,11 +26,13 @@
                             {% endelement %}
                         {% endslot %}
                     {% endelement %}
+                <!-- Cannot confirm email (already in use) -->
                 {% else %}
                     <p>
                         {% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different account.{% endblocktrans %}
                     </p>
                 {% endif %}
+            <!-- Invalid/expired confirmation link -->
             {% else %}
                 {% url 'account_email' as email_url %}
                 <p>
