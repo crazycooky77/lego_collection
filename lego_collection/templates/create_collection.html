@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="mid">
-        <form method="POST", enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ create_col_form.as_p }}
             <div class="mid-buttons">

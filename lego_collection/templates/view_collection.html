@@ -40,6 +40,7 @@
                         {% if sets %}
                             <div class="set-sort">
                                 <form id="set-sort-form"></form>
+                                <label for="set-sort" hidden="hidden"></label>
                                 <select id="set-sort" name="set-sort" onChange=changeSort(this.value)>
                                     <option name="set-sort" value="instruction" selected="selected" disabled>Sort Sets</option>
                                     <option name="set-sort" value="nr">Set Number</option>
@@ -56,10 +57,12 @@
                                 <button class="set-sort-btn"><a href="/collections">Reset Sort</a></button>
                             </div>
                             <div class="set-filter">
+                                <label for="set-filter" hidden="hidden"></label>
                                 <select id="set-filter" name="set-filter">
                                     <option selected="selected" disabled>Filter Sets</option>
                                 </select>
                                 <br>
+                                <label for="sub-filter" hidden="hidden"></label>
                                 <select id="sub-filter" name="sub-filter" onChange=changeFilter(this.value)>
                                     <option selected="selected">Set Filter Details</option>
                                 </select>
@@ -120,7 +123,7 @@
                                 {% endfor %}
                             </table>
                         {% else %}
-                            <p class="col-no-sets">No sets in collection. Add a set in the upper right.</p>
+                            <p class="col-no-sets">No sets in (filtered) collection. Add a set above or <a href="/collections" class="visible-link">click here</a> to reset your filters.</p>
                         {% endif %}
                     </div>
                     <div class="del-col-button">
