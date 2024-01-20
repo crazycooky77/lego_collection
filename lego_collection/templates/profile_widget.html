@@ -1,7 +1,9 @@
 <div class="mini-profile">
     {% if user.is_authenticated %}
+        <!-- Mini profile widget view -->
         <h2>Profile</h2>
         <div class="profile-details">
+            <!-- Display some user and set details if logged in -->
             <p>Username: {{request.user.username}}</p>
             <p>Sets owned: {{ owned.count }}</p>
             <p>Wish list: {{ wishlist.count }}</p>
@@ -15,9 +17,11 @@
             </form>
         </div>
     {% else %}
+        <!-- Show login form if not logged in -->
         <h2>Log In</h2>
         <form method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
+            <!-- Form error messages -->
             {% if form.errors %}
                 {% for field in form %}
                     {% for error in field.errors %}
@@ -33,6 +37,7 @@
                 {% endfor %}
                 <br>
             {% endif %}
+            <!-- Confirmation/invalid messages -->
             {% if messages %}
                 {% for message in messages %}
                     {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
@@ -47,6 +52,7 @@
                 {% endfor %}
                 <br>
             {% endif %}
+            <!-- User input fields to log in -->
             <label for="id_login"></label>
             <input type="text" id="id_login" placeholder="username" name="login">
             <br>
@@ -55,6 +61,7 @@
             <br>
             <button type="submit">Log In</button>
         </form>
+        <!-- Signup and password reset buttons -->
         <div class="widget-buttons">
             <button><a href="{% url 'account_signup' %}">Create Account</a></button>
             <br>

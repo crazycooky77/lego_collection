@@ -1,8 +1,10 @@
+<!-- Load static file folders -->
 {% load static %}
 
 <form method="POST" enctype="multipart/form-data">
     <br>
     {% csrf_token %}
+    <!-- Form error messages -->
     {% if user.is_authenticated %}
         {% if form.errors %}
             <br>
@@ -19,6 +21,7 @@
                 </div>
             {% endfor %}
         {% endif %}
+        <!-- Form confirmation/invalid messages -->
         {% if messages %}
             <br>
             {% for message in messages %}
@@ -33,14 +36,17 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
+        <!-- Check if a collection exists for the user -->
         {% if collection %}
             {% for col in collection %}
                 <div class="mid-flex">
                     <div class="flex-hor">
+                        <!-- Check if the collection has any sets -->
                         {% if sets %}
                             <div class="set-sort">
                                 <form id="set-sort-form"></form>
                                 <label for="set-sort" hidden="hidden"></label>
+                                <!-- Dropdown for sorting sets -->
                                 <select id="set-sort" name="set-sort" onChange=changeSort(this.value)>
                                     <option name="set-sort" value="instruction" selected="selected" disabled>Sort Sets</option>
                                     <option name="set-sort" value="nr">Set Number</option>
@@ -52,24 +58,30 @@
                                     <option name="set-sort" value="fav">Favourite</option>
                                 </select>
                                 <br>
+                                <!-- Button to reverse the selected sorting -->
                                 <button id='reverse-sort-btn' class="set-sort-btn" onclick=reverseSort()>Reverse Sort</button>
                                 <br>
+                                <!-- Button to reset the sorting -->
                                 <button class="set-sort-btn"><a href="/collections">Reset Sort</a></button>
                             </div>
                             <div class="set-filter">
                                 <label for="set-filter" hidden="hidden"></label>
+                                <!-- Dropdown to filter the set data -->
                                 <select id="set-filter" name="set-filter">
                                     <option selected="selected" disabled>Filter Sets</option>
                                 </select>
                                 <br>
                                 <label for="sub-filter" hidden="hidden"></label>
+                                <!-- Dropdown for the subfilter to filter set data -->
                                 <select id="sub-filter" name="sub-filter" onChange=changeFilter(this.value)>
                                     <option selected="selected">Set Filter Details</option>
                                 </select>
                                 <br>
+                                <!-- Button to reset the set filter -->
                                 <button class="set-filter-btn"><a href="/collections">Reset Filter</a></button>
                             </div>
                         {% endif %}
+                        <!-- Display the collection picture and title -->
                         <div class="col-img-title">
                             {% if "col-placeholder" in col.collection_pic.url %}
                                 <img class="col-img" src="{% static 'images/col-default.png' %}" alt="placeholder collection image">
@@ -78,6 +90,7 @@
                             {% endif %}
                             {{ col.collection_name }}
                         </div>
+                        <!-- Buttons to manage the collection -->
                         <div class="col-set-button">
                             <button><a href="/add-set">Add Set</a></button>
                             <button><a href="/create-set">Create New Set</a></button>
@@ -86,6 +99,7 @@
                     </div>
                     <div class="col-sets">
                         {% if sets %}
+                            <!-- Table to display set data -->
                             <table>
                                 <tr>
                                     <th>Set Image</th>
@@ -122,18 +136,22 @@
                                     </tr>
                                 {% endfor %}
                             </table>
+                        <!-- Message to display if there are no sets in the collection or filtered view -->
                         {% else %}
                             <p class="col-no-sets">No sets in (filtered) collection. Add a set above or <a href="/collections" class="visible-link">click here</a> to reset your filters.</p>
                         {% endif %}
                     </div>
+                    <!-- Button to delete collection -->
                     <div class="del-col-button">
                         <button type="submit" name="delete-col-button" value="delete-col-button" onclick="return confirm('Are you sure you want to delete your collection? This cannot be undone')">Delete Collection</button>
                     </div>
                 </div>
             {% endfor %}
+        <!-- Button to create collection if one doesn't exist -->
         {% else %}
             <button><a href="/create-collection">Create Collection</a></button>
         {% endif %}
     {% endif %}
 </form>
+<!-- Load scripts that enable sorting and filtering of sets -->
 <script src="{% static 'js/script.js' %}"></script>

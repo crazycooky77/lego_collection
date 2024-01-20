@@ -222,6 +222,11 @@ footer p {
     margin-right: 8px;
 }
 
+.small-note {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
 /* Styling for all form errors and confirmation messages */
 .errorlist {
     list-style: none;

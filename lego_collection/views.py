@@ -14,7 +14,7 @@ class CreateUser(CreateView):
     """
     model = CustomUser
     fields = ['username', 'email', 'privacy', 'password']
-    template_name = 'create_user.html'
+    template_name = 'signup.html'
     success_url = reverse_lazy('home')
 
 

@@ -1,15 +1,19 @@
+<!-- Load the base html file -->
 {% extends "base.html" %}
 
 {% block content %}
     <div class="mid">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            <!-- Form to create a new collection -->
             {{ create_col_form.as_p }}
             <div class="mid-buttons">
+                <!-- Buttons to save the collection, or cancel -->
                 <button type="submit" name="create-col-button" value="create-col-button">Save</button>
                 <button type="reset"><a href="/collections">Cancel</a></button>
             </div>
         </form>
     </div>
+    <!--Include mini profile widget -->
     {% include 'profile_widget.html' %}
 {% endblock %}

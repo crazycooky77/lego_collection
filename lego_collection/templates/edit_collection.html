@@ -1,3 +1,4 @@
+<!-- Load the base html file and static file folders -->
 {% extends "base.html" %}
 {% load static %}
 
@@ -7,6 +8,7 @@
             <br>
             {% csrf_token %}
             {% if user.is_authenticated %}
+                <!-- Form error messages -->
                 {% if form.errors %}
                     <br>
                     {% for field in form %}
@@ -22,6 +24,7 @@
                         </div>
                     {% endfor %}
                 {% endif %}
+                <!-- Confirmation/invalid messages -->
                 {% if messages %}
                     <br>
                     {% for message in messages %}
@@ -36,10 +39,12 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
+                <!-- Show collection details if one exists -->
                 {% if collection %}
                     {% for col in collection %}
                         <div class="mid-flex">
                             <div class="flex-hor">
+                                <!-- Show existing collection image and title, and editing options for both -->
                                 <div class="edit-img-title">
                                     {{ edit_col_form.collection_pic }}
                                     {% if "col-placeholder" in col.collection_pic.url %}
@@ -50,11 +55,13 @@
                                     {{ edit_col_form.collection_name }}
                                 </div>
                                 <div class="col-set-button">
+                                    <!-- Buttons to add or create a set for a collection -->
                                     <button><a href="/add-set">Add Set</a></button>
                                     <button><a href="/create-set">Create New Set</a></button>
                                 </div>
                             </div>
                             <div class="col-sets">
+                                <!-- Display set details if the collection has any -->
                                 {% if sets %}
                                     <table>
                                         <tr>
@@ -68,6 +75,7 @@
                                             <th class="table-check">Favourite</th>
                                             <th class="table-check">Delete</th>
                                         </tr>
+                                        <!-- For each set, show the details and editing options -->
                                         {% for form, set in form_set %}
                                             <tr>
                                                 <td>
@@ -88,6 +96,7 @@
                                             </tr>
                                         {% endfor %}
                                     </table>
+                                <!-- If no sets are in the collection, advise the user to add them -->
                                 {% else %}
                                     <p class="col-no-sets">No sets in collection. Add a set in the upper right.</p>
                                 {% endif %}
@@ -95,14 +104,17 @@
                         </div>
                     {% endfor %}
                     <div class="mid-buttons">
+                        <!-- Buttons to save/discard changes when editing collection details -->
                         <button type="submit" name="update-col-button" value="update-col-button">Save Changes</button>
                         <button type="reset"><a href="/collections">Discard Changes</a></button>
                     </div>
+                <!-- If there is no collection, show a create collection button -->
                 {% else %}
                     <button><a href="/create-collection">Create Collection</a></button>
                 {% endif %}
             {% endif %}
         </form>
     </div>
+    <!-- Include the mini profile widget -->
     {% include 'profile_widget.html' %}
 {% endblock %}

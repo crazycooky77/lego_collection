@@ -3,7 +3,9 @@
     {% csrf_token %}
     <div class="profile-form">
         <div class="delete-buttons">
+            <!-- Form to delete a user account -->
             {{ del_form }}
+            <!-- Button with confirmation to delete account -->
             <button type="submit" name="delete-button" value="delete-button" onclick="return confirm('Are you sure you want to delete your account? This cannot be undone')">Delete Account</button>
         </div>
     </div>
