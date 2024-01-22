@@ -134,6 +134,7 @@ table {
     margin: 0 20px 20px 20px;
     table-layout: fixed;
     width: 100%;
+    border-collapse: collapse;
 }
 
 td, th {
@@ -486,6 +487,92 @@ footer p {
 /* Media Queries */
 /* For screens 1300px wide and less */
 @media screen and (max-width: 1300px) {
+    /* Global font sizes */
+    * {
+        font-size: 21px;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin: auto;
+    }
+
+    /* Gradient for navigation bar background */
+    #grad {
+        height: 60px;
+        margin-top: 10px;
+    }
+
+    /* Navigation buttons */
+    nav a {
+    font-size: 25px;
+    }
+
+    nav button {
+        margin: auto;
+        border-top: dashed black 7px;
+    }
+
+    nav button:hover {
+        border-bottom: dashed black 7px;
+    }
+
+    nav button:active {
+        border-bottom: dashed white 7px;
+    }
+
+    /* Profile page styling */
+    .non-mobile {
+        display: none;
+    }
+
+    .mini-profile {
+        display: none;
+    }
+
+    .profile-input input {
+        width: 150px;
+    }
+
+    .profile input {
+        width: 130px;
+    }
+
+    .profile-email {
+        margin: auto auto -40px auto;
+    }
+
+    .profile-email button {
+        margin: auto auto 37px 20px;
+    }
+
+    .delete-buttons input {
+        width: auto;
+    }
+
+    /* Collection page styling */
+    /* Column toggle menu for small screens */
+    #multiselect {
+      width: 150px;
+    }
+
+    .select-col-box select {
+      width: 100%;
+    }
+
+    #col-toggle-checkboxes {
+      display: none;
+      border: 1px black solid;
+    }
+
+    #col-toggle-checkboxes label {
+      display: block;
+    }
+
+    #col-toggle-checkboxes label:hover {
+      background-color: pink;
+    }
+
 
 
 }

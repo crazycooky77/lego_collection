@@ -140,3 +140,60 @@ function changeFilter(val) {
         }
     }
 }
+
+
+/* Function to toggle the table column selection checkboxes onclick */
+window.onload = function() {
+    // Create necessary variables
+    let divCheckboxes = document.querySelector('#multiselect');
+    let checkboxes = document.getElementById("col-toggle-checkboxes");
+    let toggleCol = false;
+    // Get click events
+    document.body.addEventListener('click', function (e) {
+        // If clicks are completely outside of the multiselect div, hide the checkboxes
+        if (!(divCheckboxes.contains(e.target))) {
+            checkboxes.style.display = 'none';
+            toggleCol = false;
+        }
+        // If the checkboxes are expanded and the user clicks the top menu, hide the checkboxes
+        else if (toggleCol && e.target.id === 'select-col-default') {
+            checkboxes.style.display = 'none';
+            toggleCol = false;
+        }
+        // If the user clicks inside the multiselect div while it's closed, show the checkboxes
+        else {
+            checkboxes.style.display = 'block';
+            toggleCol = true;
+        }
+    });
+}
+
+
+/* If the user's screen is less than 1300px, insert form for user to select table columns */
+if (window.innerWidth <= 1300) {
+    document.getElementById('mini-table-toggle').innerHTML = `<form>
+                                                                        <div id="multiselect">
+                                                                            <div class="select-col-box">
+                                                                                <select id="select-col-default">
+                                                                                    <option selected hidden>Select Columns</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div id="col-toggle-checkboxes">
+                                                                                <label for="pic-col">
+                                                                                <input type="checkbox" id="pic-col" />Set Image</label>
+                                                                                <label for="nr-col">
+                                                                                <input type="checkbox" id="nr-col" />Set Number</label>
+                                                                                <label for="pieces-col">
+                                                                                <input type="checkbox" id="pieces-col" /># Pieces</label>
+                                                                                <label for="status-col">
+                                                                                <input type="checkbox" id="status-col" />Build Status</label>
+                                                                                <label for="loc-col">
+                                                                                <input type="checkbox" id="loc-col" />Set Location</label>
+                                                                                <label for="miss-col">
+                                                                                <input type="checkbox" id="miss-col" />Missing Pieces</label>
+                                                                                <label for="fave-col">
+                                                                                <input type="checkbox" id="fave-col" />Favourite</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>`
+}
