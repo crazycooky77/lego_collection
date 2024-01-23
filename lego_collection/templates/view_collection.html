@@ -80,6 +80,8 @@
                                 <!-- Button to reset the set filter -->
                                 <button class="set-filter-btn"><a href="/collections">Reset Filter</a></button>
                             </div>
+                            <div id="mini-table-toggle">
+                            </div>
                         {% endif %}
                         <!-- Display the collection picture and title -->
                         <div class="col-img-title">
@@ -102,31 +104,31 @@
                             <!-- Table to display set data -->
                             <table>
                                 <tr>
-                                    <th>Set Image</th>
-                                    <th>Set Number</th>
+                                    <th class="set-pic-col">Set Image</th>
+                                    <th class="set-nr-col">Set Number</th>
                                     <th>Set Name</th>
-                                    <th># Pieces</th>
-                                    <th>Build Status</th>
-                                    <th>Set Location</th>
-                                    <th>Missing Pieces</th>
-                                    <th>Favourite</th>
+                                    <th class="set-pieces-col"># Pieces</th>
+                                    <th class="set-status-col">Build Status</th>
+                                    <th class="set-loc-col">Set Location</th>
+                                    <th class="set-miss-col">Missing Pieces</th>
+                                    <th class="set-fav-col">Favourite</th>
                                 </tr>
                                 {% for set in sets %}
                                     <tr>
-                                        <td>
+                                        <td class="set-pic-col">
                                             {% if "set-placeholder" in set.set.set_picture.url %}
                                                 <img class="set-img" src="{% static 'images/set-default.png' %}" alt="placeholder set image">
                                             {% else %}
                                                 <img class="set-img" src="{{ set.set.set_picture.url }}" alt="set image">
                                             {% endif %}
                                         </td>
-                                        <td>{{ set.set.set_number }}</td>
+                                        <td class="set-nr-col">{{ set.set.set_number }}</td>
                                         <td>{{ set.set.set_name }}</td>
-                                        <td>{{ set.set.nr_of_pieces }}</td>
-                                        <td>{{ set.get_build_status_display }}</td>
-                                        <td>{{ set.set_location }}</td>
-                                        <td>{{ set.missing_pieces }}</td>
-                                        <td>
+                                        <td class="set-pieces-col">{{ set.set.nr_of_pieces }}</td>
+                                        <td class="set-status-col">{{ set.get_build_status_display }}</td>
+                                        <td class="set-loc-col">{{ set.set_location }}</td>
+                                        <td class="set-miss-col">{{ set.missing_pieces }}</td>
+                                        <td class="set-fav-col">
                                             {% if set.favourited %}
                                                 Yes
                                             {% else %}
@@ -153,5 +155,6 @@
         {% endif %}
     {% endif %}
 </form>
-<!-- Load scripts that enable sorting and filtering of sets -->
+<!-- Load Jquery scripts that enable sorting and filtering of sets -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{% static 'js/script.js' %}"></script>

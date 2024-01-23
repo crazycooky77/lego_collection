@@ -171,29 +171,65 @@ window.onload = function() {
 
 /* If the user's screen is less than 1300px, insert form for user to select table columns */
 if (window.innerWidth <= 1300) {
-    document.getElementById('mini-table-toggle').innerHTML = `<form>
-                                                                        <div id="multiselect">
-                                                                            <div class="select-col-box">
-                                                                                <select id="select-col-default">
-                                                                                    <option selected hidden>Select Columns</option>
-                                                                                </select>
+    document.getElementById('mini-table-toggle').innerHTML = `<form class="col-toggle">
+                                                                            <div id="multiselect">
+                                                                                <div class="select-col-box">
+                                                                                    <select id="select-col-default">
+                                                                                        <option selected hidden>Select 3 Columns</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div id="col-toggle-checkboxes">
+                                                                                    <label for="pic-col">
+                                                                                    <input type="checkbox" id="pic-col" name="set-pic-col"/>Set Image</label>
+                                                                                    <label for="nr-col">
+                                                                                    <input type="checkbox" id="nr-col" name="set-nr-col"/>Set Number</label>
+                                                                                    <label for="pieces-col">
+                                                                                    <input type="checkbox" id="pieces-col" name="set-pieces-col" checked/># Pieces</label>
+                                                                                    <label for="status-col">
+                                                                                    <input type="checkbox" id="status-col" name="set-status-col" checked/>Build Status</label>
+                                                                                    <label for="loc-col">
+                                                                                    <input type="checkbox" id="loc-col" name="set-loc-col" checked/>Set Location</label>
+                                                                                    <label for="miss-col">
+                                                                                    <input type="checkbox" id="miss-col" name="set-miss-col"/>Missing Pieces</label>
+                                                                                    <label for="fave-col">
+                                                                                    <input type="checkbox" id="fave-col" name="set-fav-col"/>Favourite</label>
+                                                                                </div>
                                                                             </div>
-                                                                            <div id="col-toggle-checkboxes">
-                                                                                <label for="pic-col">
-                                                                                <input type="checkbox" id="pic-col" />Set Image</label>
-                                                                                <label for="nr-col">
-                                                                                <input type="checkbox" id="nr-col" />Set Number</label>
-                                                                                <label for="pieces-col">
-                                                                                <input type="checkbox" id="pieces-col" /># Pieces</label>
-                                                                                <label for="status-col">
-                                                                                <input type="checkbox" id="status-col" />Build Status</label>
-                                                                                <label for="loc-col">
-                                                                                <input type="checkbox" id="loc-col" />Set Location</label>
-                                                                                <label for="miss-col">
-                                                                                <input type="checkbox" id="miss-col" />Missing Pieces</label>
-                                                                                <label for="fave-col">
-                                                                                <input type="checkbox" id="fave-col" />Favourite</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>`
+                                                                        </form>`
 }
+
+
+/* Function to show/hide columns in mobile view based on checkboxes */
+$(document).ready(function() {
+    $('input:checkbox').each(function(){
+      toggleColumn(this);
+    });
+    $('input:checkbox').change(function(){
+      toggleColumn(this);
+    });
+    function toggleColumn(el){
+        let col_name = $(el).attr("name");
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        let checkboxCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        // Show/hide columns based on checkboxes
+        if (el.checked && checkboxCount < 4) {
+            $("th[class='" + col_name + "']").show();
+            $("td[class='" + col_name + "']").show();
+        } else {
+            $("th[class='" + col_name + "']").hide();
+            $("td[class='" + col_name + "']").hide();
+        }
+        // Disable/enable checkboxes to allow max 3 checkboxes at once
+        if (checkboxCount === 3) {
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked === false) {
+                    checkboxes[i].disabled = true;
+                }
+            }
+        } else {
+            for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].disabled = false;
+            }
+        }
+    }
+});

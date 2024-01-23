@@ -553,26 +553,31 @@ footer p {
     /* Collection page styling */
     /* Column toggle menu for small screens */
     #multiselect {
-      width: 150px;
+        width: 150px;
     }
 
     .select-col-box select {
-      width: 100%;
+        width: 100%;
     }
 
     #col-toggle-checkboxes {
-      display: none;
-      border: 1px black solid;
+        display: none;
+        border: 1px black solid;
     }
 
     #col-toggle-checkboxes label {
-      display: block;
+        display: block;
     }
 
     #col-toggle-checkboxes label:hover {
-      background-color: pink;
+        background-color: pink;
     }
 
-
+    /* Table with sets */
+    .set-img {
+        height: 75px;
+        width: 75px;
+        border-radius: 15%;
+    }
 
 }
