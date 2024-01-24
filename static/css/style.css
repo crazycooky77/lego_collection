@@ -179,6 +179,16 @@ footer p {
     margin-bottom: 15px;
 }
 
+/* Hide hamburger menu (only used for smaller screens) */
+    #ham-menu {
+        display: none;
+        float: right;
+    }
+
+    #toggle-col-buttons {
+        display: none;
+    }
+
 /* Profile page styling for some email fields */
 #id_email {
     margin-right: 25px;
@@ -484,6 +494,7 @@ footer p {
     margin-right: 20px;
 }
 
+
 /* Media Queries */
 /* For screens 1300px wide and less */
 @media screen and (max-width: 1300px) {
@@ -505,11 +516,11 @@ footer p {
 
     /* Navigation buttons */
     nav a {
-    font-size: 25px;
+        font-size: 25px;
     }
 
     nav button {
-        margin: auto;
+        margin: auto 10px;
         border-top: dashed black 7px;
     }
 
@@ -551,13 +562,27 @@ footer p {
     }
 
     /* Collection page styling */
+    /* Content in column view */
+    .flex-hor {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Collection title and image column view */
+    .col-img-title {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .col-img-title img {
+        height: 75px;
+        width: 75px;
+        margin: auto;
+    }
+
     /* Column toggle menu for small screens */
     #multiselect {
         width: 150px;
-    }
-
-    .select-col-box select {
-        width: 100%;
     }
 
     #col-toggle-checkboxes {
@@ -573,11 +598,59 @@ footer p {
         background-color: pink;
     }
 
+    .select-col-box select {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Hamburger menu for collection options */
+    #hamburger {
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+        color: black;
+    }
+
+    #ham-menu {
+        text-align: right;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    #ham-menu-links {
+        display: none;
+        text-align: left;
+        background: pink;
+        border: solid 1px black;
+        padding: 10px;
+        z-index: 2;
+        margin-top: 10px;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+    }
+
+    #ham-del-button {
+        border: none;
+        background-color: inherit;
+        text-decoration: inherit;
+        border-radius: inherit;
+        margin-left: -6px;
+        margin-bottom: inherit;
+    }
+
+    .del-col-button {
+        display: none;
+    }
+
+    .set-sort, .set-filter, .col-set-button {
+        display: none;
+    }
+
     /* Table with sets */
     .set-img {
         height: 75px;
         width: 75px;
-        border-radius: 15%;
     }
 
 }

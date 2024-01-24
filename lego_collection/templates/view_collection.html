@@ -80,8 +80,6 @@
                                 <!-- Button to reset the set filter -->
                                 <button class="set-filter-btn"><a href="/collections">Reset Filter</a></button>
                             </div>
-                            <div id="mini-table-toggle">
-                            </div>
                         {% endif %}
                         <!-- Display the collection picture and title -->
                         <div class="col-img-title">
@@ -98,6 +96,32 @@
                             <button><a href="/create-set">Create New Set</a></button>
                             <button><a href="/edit-collection">Edit Collection</a></button>
                         </div>
+                        {% if sets %}
+                            <!-- Column selection for smaller screens -->
+                            <div id="mini-table-toggle">
+                            </div>
+                            <!-- Hamburger menu for smaller screens-->
+                            <div id="ham-menu">
+                                <div id="ham-menu-links">
+                                    <a onclick=reverseSort()>Reverse Sort</a>
+                                    <br>
+                                    <a href="/collections">Reset Sort</a>
+                                    <br>
+                                    <a href="/collections">Reset Filter</a>
+                                    <br>
+                                    <a href="/add-set">Add Set</a>
+                                    <br>
+                                    <a href="/create-set">Create New Set</a>
+                                    <br>
+                                    <a href="/edit-collection">Edit Collection</a>
+                                    <br>
+                                    <button type="submit" name="delete-col-button" value="delete-col-button" id='ham-del-button' onclick="return confirm('Are you sure you want to delete your collection? This cannot be undone')">Delete Collection</button>
+                                </div>
+                                <div class="ham-icon">
+                                    <a href="javascript:void(0);" id="hamburger">&#9776;</a>
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="col-sets">
                         {% if sets %}
