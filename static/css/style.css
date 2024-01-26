@@ -175,6 +175,15 @@ footer p {
 }
 
 /* Styling for collection sorting and filters */
+.set-sort-filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.set-sort, .set-filter {
+    margin: auto 10px;
+}
+
 #set-sort, #set-filter, #sub-filter {
     margin-bottom: 15px;
 }
@@ -418,6 +427,7 @@ footer p {
 .col-img-title {
     display: flex;
     align-items: center;
+    margin: auto 15px;
 }
 
 .col-img {
@@ -562,16 +572,17 @@ footer p {
     }
 
     /* Collection page styling */
-    /* Content in column view */
+    /* Collection button spacing */
     .flex-hor {
         display: flex;
-        flex-direction: column;
+        justify-content: inherit;
     }
 
-    /* Collection title and image column view */
+    /* Collection title and image in column view */
     .col-img-title {
         display: flex;
         flex-direction: column;
+        margin-bottom: 10px;
     }
 
     .col-img-title img {
@@ -580,27 +591,10 @@ footer p {
         margin: auto;
     }
 
-    /* Column toggle menu for small screens */
-    #multiselect {
-        width: 150px;
-    }
-
-    #col-toggle-checkboxes {
-        display: none;
-        border: 1px black solid;
-    }
-
-    #col-toggle-checkboxes label {
-        display: block;
-    }
-
-    #col-toggle-checkboxes label:hover {
-        background-color: pink;
-    }
-
-    .select-col-box select {
-        width: 100%;
-        margin-top: 10px;
+    /* Collection sort and filter */
+    .set-sort {
+        vertical-align: top;
+        margin-bottom: 19px;
     }
 
     /* Hamburger menu for collection options */
@@ -639,11 +633,15 @@ footer p {
         margin-bottom: inherit;
     }
 
+    .ham-icon {
+        margin-bottom: 75px;
+    }
+
     .del-col-button {
         display: none;
     }
 
-    .set-sort, .set-filter, .col-set-button {
+    .set-sort-btn, .set-filter-btn, .col-set-button {
         display: none;
     }
 
@@ -652,5 +650,61 @@ footer p {
         height: 75px;
         width: 75px;
     }
+}
 
+
+/* Media Queries */
+/* For screens 900px wide and less */
+@media screen and (max-width: 900px) {
+    /* Collection Content in column view */
+    .flex-hor {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Column toggle menu for small screens */
+    #multiselect {
+        width: 150px;
+    }
+
+    #col-toggle-checkboxes {
+        display: none;
+        border: 1px black solid;
+    }
+
+    #col-toggle-checkboxes label {
+        display: block;
+    }
+
+    #col-toggle-checkboxes label:hover {
+        background-color: pink;
+    }
+
+    .select-col-box select {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Adjustments to vertically-align collection buttons and hamburger menu */
+    #set-filter, #sub-filter {
+        margin: -20px 5px auto 5px;
+    }
+
+    .set-sort-filter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .set-filter {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .set-sort {
+        margin: auto;
+    }
+
+    .ham-icon {
+        margin: auto;
+    }
 }

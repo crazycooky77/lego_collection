@@ -21,6 +21,49 @@ window.onload = function() {
             subFilter.options[subFilter.options.length] = new Option(filterObject[this.value][subfilter], subfilter);
         }
     }
+    /* Onclick function for hamburger menu on screens smaller than 1300px */
+    if (window.innerWidth <= 1300) {
+        // Variables for function to toggle the table column selection checkboxes onclick
+        let divCheckboxes = document.querySelector('#multiselect');
+        let checkboxes = document.getElementById("col-toggle-checkboxes");
+        let toggleCol = false;
+        // Variables for function to toggle the hamburger menu links box on and off
+        let hamMenuBox = document.getElementById('ham-menu-links');
+        let hamMenuIcon = document.getElementById('hamburger');
+
+        // Get click events
+        document.body.addEventListener('click', function (e) {
+            // Hamburger menu if statements
+            // If the user clicks the hamburger menu icon, display the menu box
+            if (hamMenuIcon === e.target && (hamMenuBox.style.display === '' || hamMenuBox.style.display === 'none')) {
+                hamMenuBox.style.display = 'block';
+            }
+            // If clicks are outside of the hamburger menu or icon, hide the box
+            else if (hamMenuBox.style.display === 'block' && !(hamMenuBox.contains(e.target))) {
+                hamMenuBox.style.display = 'none';
+            }
+
+            // Column selection function for screens smaller than 900px
+            if (window.innerWidth <= 900) {
+                // Column selection if statements
+                // If clicks are completely outside of the multiselect div, hide the checkboxes
+                if (!(divCheckboxes.contains(e.target))) {
+                    checkboxes.style.display = 'none';
+                    toggleCol = false;
+                }
+                // If the checkboxes are expanded and the user clicks the top menu, hide the checkboxes
+                else if (toggleCol && e.target.id === 'select-col-default') {
+                    checkboxes.style.display = 'none';
+                    toggleCol = false;
+                }
+                // If the user clicks inside the multiselect div while it's closed, show the checkboxes
+                else {
+                    checkboxes.style.display = 'block';
+                    toggleCol = true;
+                }
+            }
+        });
+    }
 };
 
 
@@ -138,51 +181,6 @@ function changeFilter(val) {
         else if (val === '1') {
             window.location = '?filter=fav-no';
         }
-    }
-}
-
-
-/* Onclick functions for column selection and hamburger menu on smaller screens */
-if (window.innerWidth <= 900) {
-    window.onload = function () {
-        // Variables for function to toggle the table column selection checkboxes onclick
-        let divCheckboxes = document.querySelector('#multiselect');
-        let checkboxes = document.getElementById("col-toggle-checkboxes");
-        let toggleCol = false;
-        // Variables for function to toggle the hamburger menu links box on and off
-        let hamMenuBox = document.getElementById('ham-menu-links');
-        let hamMenuIcon = document.getElementById('hamburger');
-
-        // Get click events
-        document.body.addEventListener('click', function (e) {
-
-            // Column selection if statements
-            // If clicks are completely outside of the multiselect div, hide the checkboxes
-            if (!(divCheckboxes.contains(e.target))) {
-                checkboxes.style.display = 'none';
-                toggleCol = false;
-            }
-            // If the checkboxes are expanded and the user clicks the top menu, hide the checkboxes
-            else if (toggleCol && e.target.id === 'select-col-default') {
-                checkboxes.style.display = 'none';
-                toggleCol = false;
-            }
-            // If the user clicks inside the multiselect div while it's closed, show the checkboxes
-            else {
-                checkboxes.style.display = 'block';
-                toggleCol = true;
-            }
-
-            // Hamburger menu if statements
-            // If the user clicks the hamburger menu icon, display the menu box
-            if (hamMenuIcon === e.target && (hamMenuBox.style.display === '' || hamMenuBox.style.display === 'none')) {
-                hamMenuBox.style.display = 'block';
-            }
-            // If clicks are outside of the hamburger menu or icon, hide the box
-            else if (hamMenuBox.style.display === 'block' && !(hamMenuBox.contains(e.target))) {
-                hamMenuBox.style.display = 'none';
-            }
-        });
     }
 }
 
