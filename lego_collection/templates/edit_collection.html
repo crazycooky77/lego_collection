@@ -46,53 +46,59 @@
                             <div class="flex-hor">
                                 <!-- Show existing collection image and title, and editing options for both -->
                                 <div class="edit-img-title">
-                                    {{ edit_col_form.collection_pic }}
                                     {% if "col-placeholder" in col.collection_pic.url %}
                                         <img class="col-img" src="{% static 'images/col-default.png' %}" alt="placeholder collection image">
                                     {% else %}
                                         <img class="col-img" src="{{ col.collection_pic.url }}" alt="collection image">
                                     {% endif %}
-                                    {{ edit_col_form.collection_name }}
+                                    <div class="col-edit-opt">
+                                        {{ edit_col_form.collection_name }}
+                                        {{ edit_col_form.collection_pic }}
+                                    </div>
                                 </div>
-                                <div class="col-set-button">
+                                <div class="edit-set-button">
                                     <!-- Buttons to add or create a set for a collection -->
                                     <button><a href="/add-set">Add Set</a></button>
                                     <button><a href="/create-set">Create New Set</a></button>
                                 </div>
+                                <!-- Column selection for smaller screens -->
+                                {% if sets %}
+                                    <div id="mini-edit-table-toggle"></div>
+                                {% endif %}
                             </div>
                             <div class="col-sets">
                                 <!-- Display set details if the collection has any -->
                                 {% if sets %}
                                     <table>
                                         <tr>
-                                            <th>Set Image</th>
-                                            <th class="table-small">Set Number</th>
+                                            <th class="mob-hide">Set Image</th>
+                                            <th class="table-small mob-hide">Set Number</th>
                                             <th>Set Name</th>
-                                            <th class="table-small"># Pieces</th>
-                                            <th>Build Status</th>
-                                            <th class="table-input">Set Location</th>
-                                            <th class="table-input">Missing Pieces</th>
-                                            <th class="table-check">Favourite</th>
-                                            <th class="table-check">Delete</th>
+                                            <th class="table-small mob-hide"># Pieces</th>
+                                            <th class="edit-set-status-col">Build Status</th>
+                                            <th class="edit-set-loc-col">Set Location</th>
+                                            <th class="edit-set-miss-col">Missing Pieces</th>
+                                            <th class="edit-set-fav-col">Favourite</th>
+                                            <th class="edit-set-del-col">Delete</th>
                                         </tr>
                                         <!-- For each set, show the details and editing options -->
                                         {% for form, set in form_set %}
                                             <tr>
-                                                <td>
+                                                <td class="mob-hide">
                                                     {% if "set-placeholder" in set.set.set_picture.url %}
                                                         <img class="set-img" src="{% static 'images/set-default.png' %}" alt="placeholder set image">
                                                     {% else %}
                                                         <img class="set-img" src="{{ set.set.set_picture.url }}" alt="set image">
                                                     {% endif %}
                                                 </td>
-                                                <td class="table-small">{{ set.set.set_number }}</td>
+                                                <td class="table-small mob-hide">{{ set.set.set_number }}</td>
                                                 <td>{{ set.set.set_name }}</td>
-                                                <td class="table-small">{{ set.set.nr_of_pieces }}</td>
-                                                <td>{{ form.build_status }}</td>
-                                                <td class="table-input">{{ form.set_location }}</td>
-                                                <td class="table-input">{{ form.missing_pieces }}</td>
-                                                <td class="table-check">{{ form.favourited }}</td>
-                                                <td class="table-check"><label for="delete-set"><input type="checkbox" name="delete-set" value="{{ set.id }}" id="delete-set"></label></td>
+                                                <td class="table-small mob-hide">{{ set.set.nr_of_pieces }}</td>
+                                                <td class="edit-set-status-col">{{ form.build_status }}</td>
+                                                <td class="edit-set-loc-col">{{ form.set_location }}</td>
+                                                <td class="edit-set-miss-col">{{ form.missing_pieces }}</td>
+                                                <td class="edit-set-fav-col">{{ form.favourited }}</td>
+                                                <td class="edit-set-del-col"><label for="delete-set"><input type="checkbox" name="delete-set" value="{{ set.id }}" id="delete-set"></label></td>
                                             </tr>
                                         {% endfor %}
                                     </table>
@@ -117,4 +123,7 @@
     </div>
     <!-- Include the mini profile widget -->
     {% include 'profile_widget.html' %}
+    <!-- Load Jquery scripts that enable sorting and filtering of sets -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
