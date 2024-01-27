@@ -216,7 +216,7 @@ footer p {
     border-radius: 0.2em;
     margin-right: 15px;
     margin-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
 }
 
 .mid form {
@@ -264,7 +264,6 @@ footer p {
 /* Profile styling */
 .mini-profile {
     display: flex;
-    width: 15%;
     justify-content: center;
     flex-direction: column;
 }
@@ -547,8 +546,13 @@ footer p {
         display: none;
     }
 
-    .mini-profile {
+    .hide-profile .mini-profile {
         display: none;
+    }
+
+    .mini-profile {
+        width: 100%;
+        max-width: 300px;
     }
 
     .profile-input input {
@@ -763,5 +767,10 @@ footer p {
     .set-img {
         height: 50px;
         width: 50px;
+    }
+
+    /* Create set form fields */
+    #id_set_picture {
+        width: 85%;
     }
 }

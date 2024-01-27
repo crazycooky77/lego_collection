@@ -134,6 +134,7 @@ table {
     margin: 0 20px 20px 20px;
     table-layout: fixed;
     width: 100%;
+    border-collapse: collapse;
 }
 
 td, th {
@@ -178,6 +179,16 @@ footer p {
     margin-bottom: 15px;
 }
 
+/* Hide hamburger menu (only used for smaller screens) */
+#ham-menu {
+    display: none;
+    float: right;
+}
+
+#toggle-col-buttons {
+    display: none;
+}
+
 /* Profile page styling for some email fields */
 #id_email {
     margin-right: 25px;
@@ -205,7 +216,7 @@ footer p {
     border-radius: 0.2em;
     margin-right: 15px;
     margin-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
 }
 
 .mid form {
@@ -253,7 +264,6 @@ footer p {
 /* Profile styling */
 .mini-profile {
     display: flex;
-    width: 15%;
     justify-content: center;
     flex-direction: column;
 }
@@ -407,13 +417,14 @@ footer p {
 .col-img-title {
     display: flex;
     align-items: center;
+    margin: auto 15px;
 }
 
 .col-img {
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    margin-right: 20px;
+    margin: auto 10px;
 }
 
 .col-details {
@@ -432,12 +443,12 @@ footer p {
     max-width: 100%;
 }
 
-.col-set-button {
+.col-set-button, .edit-set-button {
     display: flex;
     align-content: flex-end;
 }
 
-.col-set-button button {
+.col-set-button button, .edit-set-button button {
     margin: 0 10px;
 }
 
@@ -447,7 +458,16 @@ footer p {
     border-radius: 15%;
 }
 
-.table-check {
+.set-sort-filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.set-sort, .set-filter {
+    margin: auto 10px;
+}
+
+.set-fav-col, .edit-set-fav-col, .set-del-col, .edit-set-del-col {
     width: 55%;
 }
 
@@ -483,9 +503,274 @@ footer p {
     margin-right: 20px;
 }
 
+
 /* Media Queries */
 /* For screens 1300px wide and less */
 @media screen and (max-width: 1300px) {
+    /* Global font sizes */
+    * {
+        font-size: 21px;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin: auto;
+    }
+
+    /* Gradient for navigation bar background */
+    #grad {
+        height: 60px;
+        margin-top: 10px;
+    }
+
+    /* Navigation buttons */
+    nav a {
+        font-size: 25px;
+    }
+
+    nav button {
+        margin: auto 10px;
+        border-top: dashed black 7px;
+    }
+
+    nav button:hover {
+        border-bottom: dashed black 7px;
+    }
+
+    nav button:active {
+        border-bottom: dashed white 7px;
+    }
+
+    /* Profile page styling */
+    .non-mobile {
+        display: none;
+    }
+
+    .hide-profile .mini-profile {
+        display: none;
+    }
+
+    .mini-profile {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .profile-input input {
+        width: 150px;
+    }
+
+    .profile input {
+        width: 130px;
+    }
+
+    .profile-email {
+        margin: auto auto -40px auto;
+    }
+
+    .profile-email button {
+        margin: auto auto 37px 20px;
+    }
+
+    .delete-buttons input {
+        width: auto;
+    }
+
+    /* Collection page styling */
+    /* Collection button spacing */
+    .flex-hor {
+        display: flex;
+        justify-content: inherit;
+    }
+
+    /* Collection title and image in column view */
+    .col-img-title {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .col-img-title img {
+        height: 75px;
+        width: 75px;
+        margin: auto;
+    }
+
+    /* Collection sort and filter */
+    .set-sort {
+        vertical-align: top;
+        margin-bottom: 19px;
+    }
+
+    /* Hamburger menu for collection options */
+    #hamburger {
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+        color: black;
+    }
+
+    #ham-menu {
+        text-align: right;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    #ham-menu-links {
+        display: none;
+        text-align: left;
+        background: pink;
+        border: solid 1px black;
+        padding: 10px;
+        z-index: 2;
+        margin-top: 10px;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+    }
+
+    #ham-del-button {
+        border: none;
+        background-color: inherit;
+        text-decoration: inherit;
+        border-radius: inherit;
+        margin-left: -6px;
+        margin-bottom: inherit;
+    }
+
+    .ham-icon {
+        margin-bottom: 75px;
+    }
+
+    .del-col-button {
+        display: none;
+    }
+
+    .set-sort-btn, .set-filter-btn, .col-set-button {
+        display: none;
+    }
+
+    /* Table with sets */
+    .set-img {
+        height: 75px;
+        width: 75px;
+    }
+
+    /* Edit collection page styling */
+    #id_collection_pic {
+        width: 220px;
+    }
+
+    .col-edit-opt {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .col-edit-opt input {
+        margin: 7px 10px;
+        width: 150px;
+    }
+
+    .edit-set-button {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .edit-set-button button {
+        margin: 7px auto 7px 10px;
+    }
+}
 
 
+/* Media Queries */
+/* For screens 900px wide and less */
+@media screen and (max-width: 900px) {
+    /* Collection Content in column view */
+    .flex-hor {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Column toggle menu for collection edit/view for small screens */
+    #multiselect {
+        width: 150px;
+    }
+
+    #col-toggle-checkboxes {
+        display: none;
+        border: 1px black solid;
+    }
+
+    #col-toggle-checkboxes label {
+        display: block;
+    }
+
+    #col-toggle-checkboxes label:hover {
+        background-color: pink;
+    }
+
+    .select-col-box select {
+        width: 100%;
+    }
+
+    /* Adjustments to vertically-align collection buttons and hamburger menu */
+    #set-filter, #sub-filter {
+        margin: -20px 5px auto 5px;
+        width: 100%;
+
+    }
+
+    .set-sort-filter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .set-filter {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .set-sort {
+        margin: auto;
+    }
+
+    .ham-icon {
+        margin: auto;
+    }
+
+    /* Styling for collection edit page */
+    .edit-img-title {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #id_collection_pic {
+        margin: auto;
+    }
+
+    .col-edit-opt {
+        margin-bottom: 15px;
+    }
+
+    .col-edit-opt input {
+        margin: 15px auto;
+    }
+
+    .edit-set-button {
+        display: none;
+    }
+
+    .mob-hide {
+        display: none;
+    }
+
+    /* Table with sets */
+    .set-img {
+        height: 50px;
+        width: 50px;
+    }
+
+    /* Create set form fields */
+    #id_set_picture {
+        width: 85%;
+    }
 }
