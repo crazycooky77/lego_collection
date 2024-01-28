@@ -542,10 +542,6 @@ footer p {
     }
 
     /* Profile page styling */
-    .non-mobile {
-        display: none;
-    }
-
     .hide-profile .mini-profile {
         display: none;
     }
@@ -684,6 +680,11 @@ footer p {
 /* Media Queries */
 /* For screens 900px wide and less */
 @media screen and (max-width: 900px) {
+    /* Hide Home button to save space */
+    .non-mobile {
+        display: none;
+    }
+
     /* Collection Content in column view */
     .flex-hor {
         display: flex;
