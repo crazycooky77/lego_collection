@@ -13,15 +13,17 @@ if (window.location.pathname === '/collections/' || window.location.pathname ===
             let filterSel = document.getElementById("set-filter");
             let subFilter = document.getElementById("sub-filter");
             /* Set the options for the initial filter dropdown */
-            for (let filter in filterObject) {
-                filterSel.options[filterSel.options.length] = new Option(filter, filter);
-            }
-            /* When the initial dropdown selection is done ... */
-            filterSel.onchange = function () {
-                subFilter.length = 1;
-                /* Set the options for the relevant cascading dropdown */
-                for (let subfilter in filterObject[this.value]) {
-                    subFilter.options[subFilter.options.length] = new Option(filterObject[this.value][subfilter], subfilter);
+            if (document.getElementsByClassName('col-no-sets').length === 0) {
+                for (let filter in filterObject) {
+                    filterSel.options[filterSel.options.length] = new Option(filter, filter);
+                }
+                /* When the initial dropdown selection is done ... */
+                filterSel.onchange = function () {
+                    subFilter.length = 1;
+                    /* Set the options for the relevant cascading dropdown */
+                    for (let subfilter in filterObject[this.value]) {
+                        subFilter.options[subFilter.options.length] = new Option(filterObject[this.value][subfilter], subfilter);
+                    }
                 }
             }
         }
@@ -194,36 +196,11 @@ function changeFilter(val) {
 
 /* If the user's screen is less than 900px run functions to modify table views for collections */
 if ((window.innerWidth <= 900) && (window.location.pathname === '/collections/' || window.location.pathname === '/edit-collection/')) {
-    /* Insert form for user to select table columns in collections view */
-    if (window.location.pathname === '/collections/') {
-        document.getElementById('mini-table-toggle').innerHTML = `<form class="col-toggle">
-                                                                            <div id="multiselect">
-                                                                                <div class="select-col-box">
-                                                                                    <select id="select-col-default">
-                                                                                        <option selected hidden>Select 3 Columns</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                                <div id="col-toggle-checkboxes">
-                                                                                    <label for="pic-col">
-                                                                                    <input type="checkbox" id="pic-col" name="set-pic-col"/>Set Image</label>
-                                                                                    <label for="nr-col">
-                                                                                    <input type="checkbox" id="nr-col" name="set-nr-col"/>Set Number</label>
-                                                                                    <label for="pieces-col">
-                                                                                    <input type="checkbox" id="pieces-col" name="set-pieces-col" checked/># Pieces</label>
-                                                                                    <label for="status-col">
-                                                                                    <input type="checkbox" id="status-col" name="set-status-col" checked/>Build Status</label>
-                                                                                    <label for="loc-col">
-                                                                                    <input type="checkbox" id="loc-col" name="set-loc-col" checked/>Set Location</label>
-                                                                                    <label for="miss-col">
-                                                                                    <input type="checkbox" id="miss-col" name="set-miss-col"/>Missing Pieces</label>
-                                                                                    <label for="fave-col">
-                                                                                    <input type="checkbox" id="fave-col" name="set-fav-col"/>Favourite</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>`
-    /* Insert form for user to select table columns in collections view */
-    } else if (window.location.pathname === '/edit-collection/') {
-        document.getElementById('mini-edit-table-toggle').innerHTML = `<form class="col-toggle">
+    if (document.getElementsByClassName('col-no-sets').length === 0) {
+
+        /* Insert form for user to select table columns in collections view */
+        if (window.location.pathname === '/collections/') {
+            document.getElementById('mini-table-toggle').innerHTML = `<form class="col-toggle">
                                                                                 <div id="multiselect">
                                                                                     <div class="select-col-box">
                                                                                         <select id="select-col-default">
@@ -231,56 +208,84 @@ if ((window.innerWidth <= 900) && (window.location.pathname === '/collections/' 
                                                                                         </select>
                                                                                     </div>
                                                                                     <div id="col-toggle-checkboxes">
-                                                                                        <label for="edit-status-col">
-                                                                                        <input type="checkbox" id="edit-status-col" name="edit-set-status-col" checked/>Build Status</label>
-                                                                                        <label for="edit-loc-col">
-                                                                                        <input type="checkbox" id="edit-loc-col" name="edit-set-loc-col"/>Set Location</label>
-                                                                                        <label for="edit-miss-col">
-                                                                                        <input type="checkbox" id="edit-miss-col" name="edit-set-miss-col"/>Missing Pieces</label>
-                                                                                        <label for="edit-fav-col">
-                                                                                        <input type="checkbox" id="edit-fav-col" name="edit-set-fav-col" checked/>Favourite</label>
-                                                                                        <label for="edit-del-col">
-                                                                                        <input type="checkbox" id="edit-del-col" name="edit-set-del-col" checked/>Delete</label>
+                                                                                        <label for="pic-col">
+                                                                                        <input type="checkbox" id="pic-col" name="set-pic-col"/>Set Image</label>
+                                                                                        <label for="nr-col">
+                                                                                        <input type="checkbox" id="nr-col" name="set-nr-col"/>Set Number</label>
+                                                                                        <label for="pieces-col">
+                                                                                        <input type="checkbox" id="pieces-col" name="set-pieces-col" checked/># Pieces</label>
+                                                                                        <label for="status-col">
+                                                                                        <input type="checkbox" id="status-col" name="set-status-col" checked/>Build Status</label>
+                                                                                        <label for="loc-col">
+                                                                                        <input type="checkbox" id="loc-col" name="set-loc-col" checked/>Set Location</label>
+                                                                                        <label for="miss-col">
+                                                                                        <input type="checkbox" id="miss-col" name="set-miss-col"/>Missing Pieces</label>
+                                                                                        <label for="fave-col">
+                                                                                        <input type="checkbox" id="fave-col" name="set-fav-col"/>Favourite</label>
                                                                                     </div>
                                                                                 </div>
                                                                             </form>`
-    }
-    /* Function to show/hide columns in mobile view based on checkboxes */
-    $(document).ready(function() {
-        function toggleColumn(el) {
-            // Get variables
-            let col_name = $(el).attr("name");
-            let checkboxes = document.getElementById('col-toggle-checkboxes').querySelectorAll('input[type="checkbox"]')
-            let checkboxCount = document.getElementById('col-toggle-checkboxes').querySelectorAll('input[type="checkbox"]:checked').length;
+            /* Insert form for user to select table columns in collections view */
+        } else if (window.location.pathname === '/edit-collection/') {
+            document.getElementById('mini-edit-table-toggle').innerHTML = `<form class="col-toggle">
+                                                                                    <div id="multiselect">
+                                                                                        <div class="select-col-box">
+                                                                                            <select id="select-col-default">
+                                                                                                <option selected hidden>Select 3 Columns</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <div id="col-toggle-checkboxes">
+                                                                                            <label for="edit-status-col">
+                                                                                            <input type="checkbox" id="edit-status-col" name="edit-set-status-col" checked/>Build Status</label>
+                                                                                            <label for="edit-loc-col">
+                                                                                            <input type="checkbox" id="edit-loc-col" name="edit-set-loc-col"/>Set Location</label>
+                                                                                            <label for="edit-miss-col">
+                                                                                            <input type="checkbox" id="edit-miss-col" name="edit-set-miss-col"/>Missing Pieces</label>
+                                                                                            <label for="edit-fav-col">
+                                                                                            <input type="checkbox" id="edit-fav-col" name="edit-set-fav-col" checked/>Favourite</label>
+                                                                                            <label for="edit-del-col">
+                                                                                            <input type="checkbox" id="edit-del-col" name="edit-set-del-col" checked/>Delete</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>`
+        }
+        /* Function to show/hide columns in mobile view based on checkboxes */
+        $(document).ready(function () {
+            function toggleColumn(el) {
+                // Get variables
+                let col_name = $(el).attr("name");
+                let checkboxes = document.getElementById('col-toggle-checkboxes').querySelectorAll('input[type="checkbox"]')
+                let checkboxCount = document.getElementById('col-toggle-checkboxes').querySelectorAll('input[type="checkbox"]:checked').length;
 
-            // Show/hide columns based on checkboxes
-            if (el.checked && checkboxCount < 4) {
-                $("th[class='" + col_name + "']").show();
-                $("td[class='" + col_name + "']").show();
-            } else {
-                $("th[class='" + col_name + "']").hide();
-                $("td[class='" + col_name + "']").hide();
-            }
-            // Disable/enable checkboxes to allow max 3 checkboxes at once
-            if (checkboxCount === 3) {
-                for (let i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].checked === false) {
-                        checkboxes[i].disabled = true;
+                // Show/hide columns based on checkboxes
+                if (el.checked && checkboxCount < 4) {
+                    $("th[class='" + col_name + "']").show();
+                    $("td[class='" + col_name + "']").show();
+                } else {
+                    $("th[class='" + col_name + "']").hide();
+                    $("td[class='" + col_name + "']").hide();
+                }
+                // Disable/enable checkboxes to allow max 3 checkboxes at once
+                if (checkboxCount === 3) {
+                    for (let i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i].checked === false) {
+                            checkboxes[i].disabled = true;
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < checkboxes.length; i++) {
+                        checkboxes[i].disabled = false;
                     }
                 }
-            } else {
-                for (let i = 0; i < checkboxes.length; i++) {
-                    checkboxes[i].disabled = false;
-                }
             }
-        }
 
-        // Run the functions to toggle the viewed columns
-        $('input:checkbox').each(function () {
-            toggleColumn(this);
+            // Run the functions to toggle the viewed columns
+            $('input:checkbox').each(function () {
+                toggleColumn(this);
+            });
+            $('input:checkbox').change(function () {
+                toggleColumn(this);
+            });
         });
-        $('input:checkbox').change(function () {
-            toggleColumn(this);
-        });
-    });
+    }
 }

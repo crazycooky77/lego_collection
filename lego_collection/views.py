@@ -305,10 +305,9 @@ def edit_collection(request):
                     if edit_col_form.is_valid():
                         edit_col_form.save()
                     for form in update_col_form:
-                        set_del_pk = request.POST.getlist("delete-set")
-                        if set_del_pk:
-                            LegoCollection.objects.filter(pk__in=set_del_pk).delete()
                         if form.is_valid:
+                            set_del_pk = request.POST.getlist("delete-set")
+                            LegoCollection.objects.filter(pk__in=set_del_pk).delete()
                             form.save()
                     messages.success(request, 'Collection updated successfully.')
                     return redirect(to='collections')
