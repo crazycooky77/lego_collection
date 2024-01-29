@@ -8,7 +8,6 @@
             {% csrf_token %}
             <!-- Form error messages -->
             {% if form.errors %}
-                <br>
                 {% for field in form %}
                     {% for error in field.errors %}
                         <div class="form-error">
@@ -24,7 +23,6 @@
             {% endif %}
             <!-- Confirmation/invalid messages -->
             {% if messages %}
-                <br>
                 {% for message in messages %}
                     {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
                         <div class="form-error">
@@ -42,8 +40,8 @@
             <div class="mid-buttons">
                 <!-- Buttons to save the set, create a new one, or cancel -->
                 <button type="submit" name="add-set-button" value="add-set-button">Save to Collection</button>
-                <button><a href="/create-set">Create New Set</a></button>
-                <button><a href="/collections">Cancel</a></button>
+                <a href="/create-set" class="button">Create New Set</a>
+                <a href="/collections" class="button">Cancel</a>
             </div>
         </form>
         <!-- Script for Jquery to add set images -->

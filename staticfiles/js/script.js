@@ -24,7 +24,7 @@ if (window.location.pathname === '/collections/' || window.location.pathname ===
                     for (let subfilter in filterObject[this.value]) {
                         subFilter.options[subFilter.options.length] = new Option(filterObject[this.value][subfilter], subfilter);
                     }
-                }
+                };
             }
         }
         /* Onclick function for hamburger menu on screens smaller than 1300px */
@@ -72,7 +72,7 @@ if (window.location.pathname === '/collections/' || window.location.pathname ===
                 }
             });
         }
-    }
+    };
 }
 
 
@@ -224,7 +224,7 @@ if ((window.innerWidth <= 900) && (window.location.pathname === '/collections/' 
                                                                                         <input type="checkbox" id="fave-col" name="set-fav-col"/>Favourite</label>
                                                                                     </div>
                                                                                 </div>
-                                                                            </form>`
+                                                                            </form>`;
             /* Insert form for user to select table columns in collections view */
         } else if (window.location.pathname === '/edit-collection/') {
             document.getElementById('mini-edit-table-toggle').innerHTML = `<form class="col-toggle">
@@ -247,14 +247,14 @@ if ((window.innerWidth <= 900) && (window.location.pathname === '/collections/' 
                                                                                             <input type="checkbox" id="edit-del-col" name="edit-set-del-col" checked/>Delete</label>
                                                                                         </div>
                                                                                     </div>
-                                                                                </form>`
+                                                                                </form>`;
         }
         /* Function to show/hide columns in mobile view based on checkboxes */
         $(document).ready(function () {
             function toggleColumn(el) {
                 // Get variables
                 let col_name = $(el).attr("name");
-                let checkboxes = document.getElementById('col-toggle-checkboxes').querySelectorAll('input[type="checkbox"]')
+                let checkboxes = document.getElementById('col-toggle-checkboxes').querySelectorAll('input[type="checkbox"]');
                 let checkboxCount = document.getElementById('col-toggle-checkboxes').querySelectorAll('input[type="checkbox"]:checked').length;
 
                 // Show/hide columns based on checkboxes

@@ -2,12 +2,10 @@
 {% load static %}
 
 <form method="POST" enctype="multipart/form-data">
-    <br>
     {% csrf_token %}
     <!-- Form error messages -->
     {% if user.is_authenticated %}
         {% if form.errors %}
-            <br>
             {% for field in form %}
                 {% for error in field.errors %}
                     <div class="form-error">
@@ -23,7 +21,6 @@
         {% endif %}
         <!-- Form confirmation/invalid messages -->
         {% if messages %}
-            <br>
             {% for message in messages %}
                 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
                     <div class="form-error">
@@ -72,7 +69,7 @@
                                     <button id='reverse-sort-btn' class="set-sort-btn" onclick=reverseSort()>Reverse Sort</button>
                                     <br>
                                     <!-- Button to reset the sorting -->
-                                    <button class="set-sort-btn"><a href="/collections">Reset Sort</a></button>
+                                    <a href="/collections" class="button set-sort-btn">Reset Sort</a>
                                 </div>
                                 <div class="set-filter">
                                     <label for="set-filter" hidden="hidden"></label>
@@ -88,15 +85,15 @@
                                     </select>
                                     <br>
                                     <!-- Button to reset the set filter -->
-                                    <button class="set-filter-btn"><a href="/collections">Reset Filter</a></button>
+                                    <a href="/collections" class="button set-filter-btn">Reset Filter</a>
                                 </div>
                             </div>
                         {% endif %}
                         <!-- Buttons to manage the collection -->
                         <div class="col-set-button">
-                            <button><a href="/add-set">Add Set</a></button>
-                            <button><a href="/create-set">Create New Set</a></button>
-                            <button><a href="/edit-collection">Edit Collection</a></button>
+                            <a href="/add-set" class="button">Add Set</a>
+                            <a href="/create-set" class="button">Create New Set</a>
+                            <a href="/edit-collection" class="button">Edit Collection</a>
                         </div>
                         {% if sets %}
                             <!-- Column selection for smaller screens -->
@@ -177,7 +174,7 @@
             {% endfor %}
         <!-- Button to create collection if one doesn't exist -->
         {% else %}
-            <button><a href="/create-collection">Create Collection</a></button>
+            <a href="/create-collection" class="button">Create Collection</a>
         {% endif %}
     {% endif %}
 </form>

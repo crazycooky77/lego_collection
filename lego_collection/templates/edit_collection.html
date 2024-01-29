@@ -5,12 +5,10 @@
 {% block content %}
     <div class="mid">
         <form method="POST" enctype="multipart/form-data">
-            <br>
             {% csrf_token %}
             {% if user.is_authenticated %}
                 <!-- Form error messages -->
                 {% if form.errors %}
-                    <br>
                     {% for field in form %}
                         {% for error in field.errors %}
                             <div class="form-error">
@@ -26,7 +24,6 @@
                 {% endif %}
                 <!-- Confirmation/invalid messages -->
                 {% if messages %}
-                    <br>
                     {% for message in messages %}
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
                             <div class="form-error">
@@ -58,8 +55,8 @@
                                 </div>
                                 <div class="edit-set-button">
                                     <!-- Buttons to add or create a set for a collection -->
-                                    <button><a href="/add-set">Add Set</a></button>
-                                    <button><a href="/create-set">Create New Set</a></button>
+                                    <a href="/add-set" class="button">Add Set</a>
+                                    <a href="/create-set" class="button">Create New Set</a>
                                 </div>
                                 <!-- Column selection for smaller screens -->
                                 {% if sets %}
@@ -112,11 +109,11 @@
                     <div class="mid-buttons">
                         <!-- Buttons to save/discard changes when editing collection details -->
                         <button type="submit" name="update-col-button" value="update-col-button">Save Changes</button>
-                        <button type="reset"><a href="/collections">Discard Changes</a></button>
+                        <a href="/collections" class="button">Discard Changes</a>
                     </div>
                 <!-- If there is no collection, show a create collection button -->
                 {% else %}
-                    <button><a href="/create-collection">Create Collection</a></button>
+                    <a href="/create-collection" class="button">Create Collection</a>
                 {% endif %}
             {% endif %}
         </form>

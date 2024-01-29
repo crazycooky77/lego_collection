@@ -11,7 +11,6 @@
             <div class="profile-details">
                 <!-- Form error messages -->
                 {% if form.errors %}
-                    <br>
                     {% for field in form %}
                         {% for error in field.errors %}
                             <div class="form-error">
@@ -27,7 +26,6 @@
                 {% endif %}
                 <!-- Confirmation/invalid messages -->
                 {% if messages %}
-                    <br>
                     {% for message in messages %}
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR or message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
                             <div class="form-error">
@@ -70,8 +68,8 @@
                 <p>Viewable collections: Coming Soon</p>
                 <div class="profile-buttons">
                     <!-- Profile page buttons -->
-                    <button><a href="{% url 'account_change_password' %}">Change Password</a></button>
-                    <button><a href="/email">Manage Emails</a></button>
+                    <a href="{% url 'account_change_password' %}"><button>Change Password</button></a>
+                    <a href="/email" class="button">Manage Emails</a>
                     <form method="POST" action="{% url 'account_logout' %}">
                         {% csrf_token %}
                         {% if redirect_field_value %}
