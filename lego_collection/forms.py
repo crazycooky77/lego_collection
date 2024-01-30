@@ -47,7 +47,7 @@ class CreateCollection(forms.ModelForm):
     """
     required_css_class = 'required'
     collection_pic = CloudinaryFileField(
-        options={'crop': 'fit', 'width': 100, 'height': 100}, required=False)
+        options={'crop': 'fit', 'max-width': 100, 'max-height': 100}, required=False)
 
     class Meta:
         model = Collection
@@ -83,7 +83,7 @@ class CreateSet(forms.ModelForm):
     required_css_class = 'required'
     set_number = forms.IntegerField(validators=[validate_set_exists])
     set_picture = CloudinaryFileField(
-        options={'crop': 'fit', 'width': 100, 'height': 100}, required=False)
+        options={'crop': 'fit', 'max-width': 100, 'max-height': 100}, required=False)
 
     class Meta:
         model = LegoSet
