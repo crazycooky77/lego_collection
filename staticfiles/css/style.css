@@ -30,6 +30,7 @@ a {
 /* Styling for navigation bar and buttons*/
 nav div {
     display: flex;
+    width: 100%;
     text-align: center;
     justify-content: center;
 }
@@ -272,6 +273,7 @@ footer p {
 /* Profile styling */
 .mini-profile {
     display: flex;
+    width: 100%;
     justify-content: center;
     flex-direction: column;
 }
@@ -309,6 +311,7 @@ footer p {
 
 .profile-form {
     display: flex;
+    width: 100%;
     flex-direction: row;
     margin-top: 20px;
 }
@@ -349,6 +352,7 @@ footer p {
 
 .profile-buttons {
     display: flex;
+    width: 100%;
     flex-direction: row;
     justify-content: space-around;
     margin-right: 15px;
@@ -389,6 +393,7 @@ footer p {
 
 .profile-email {
     display: flex;
+    width: 100%;
     align-items: baseline;
     margin-right: 45px;
     margin-bottom: -40px;
@@ -410,6 +415,7 @@ footer p {
 
 .flex-hor {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
@@ -423,6 +429,7 @@ footer p {
 
 .col-img-title {
     display: flex;
+    max-width: 100%;
     align-items: center;
     margin: auto 15px;
 }
@@ -436,6 +443,7 @@ footer p {
 
 .col-details {
     display: flex;
+    width: 100%;
     justify-content: center;
 }
 
@@ -452,6 +460,7 @@ footer p {
 
 .col-set-button, .edit-set-button {
     display: flex;
+    max-width: 100%;
     align-content: flex-end;
 }
 
@@ -467,6 +476,7 @@ footer p {
 
 .set-sort-filter {
     display: flex;
+    max-width: 100%;
     flex-direction: row;
 }
 
@@ -518,6 +528,7 @@ footer p {
 
 .edit-img-title {
     display: flex;
+    max-width: 100%;
     align-items: center;
 }
 
@@ -594,12 +605,14 @@ footer p {
     /* Collection button spacing */
     .flex-hor {
         display: flex;
+        width: 100%;
         justify-content: inherit;
     }
 
     /* Collection title and image in column view */
     .col-img-title {
         display: flex;
+        max-width: 100%;
         flex-direction: column;
         margin-bottom: 10px;
     }
@@ -627,6 +640,7 @@ footer p {
     #ham-menu {
         text-align: right;
         display: flex;
+        max-width: 100%;
         align-items: center;
         position: relative;
     }
@@ -677,6 +691,7 @@ footer p {
 
     .col-edit-opt {
         display: flex;
+        width: 100%;
         flex-direction: column;
     }
 
@@ -687,6 +702,7 @@ footer p {
 
     .edit-set-button {
         display: flex;
+        width: 100%;
         flex-direction: column;
     }
 
@@ -707,6 +723,7 @@ footer p {
     /* Collection Content in column view */
     .flex-hor {
         display: flex;
+        width: 100%;
         flex-direction: column;
     }
 
@@ -741,11 +758,13 @@ footer p {
 
     .set-sort-filter {
         display: flex;
+        max-width: 100%;
         flex-direction: column;
     }
 
     .set-filter {
         display: flex;
+        max-width: 100%;
         flex-direction: row;
     }
 
@@ -760,6 +779,7 @@ footer p {
     /* Styling for collection edit page */
     .edit-img-title {
         display: flex;
+        max-width: 100%;
         flex-direction: column;
     }
 
