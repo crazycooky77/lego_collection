@@ -25,7 +25,7 @@ _insert image_
 <img src='static/images/readme/colourmind.webp' alt='Colourmind image'>
 
 #### Typography
-
+2 different Google Fonts were used for the [page title](https://fonts.google.com/specimen/Londrina+Outline?query=londrina) and [website text](https://fonts.google.com/specimen/Londrina+Solid?query=londrina). They are the same font in different styles for improved design.
 
 #### Imagery
 AI-generated images were used throughout. [Stable Diffusion](https://github.com/AUTOMATIC1111/stable-diffusion-webui) and [ComfyUI](https://stable-diffusion-art.com/how-to-install-comfyui/) were used with the [Dreamshaper 8](https://civitai.com/models/4384/dreamshaper) model.
@@ -116,7 +116,6 @@ _insert image_
 - [PostgreSQL](https://www.postgresql.org/) as the database for local development
 - [ElephantSQL](https://www.elephantsql.com/) as the database for the live web app
 - [Favicon](https://favicon.io/) to generate the page's Favicon
-- Google Fonts for the [page title](https://fonts.google.com/specimen/Londrina+Outline?query=londrina) and [website text](https://fonts.google.com/specimen/Londrina+Solid?query=londrina)
 - [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) for CSS styling
 - [Unicorn Revealer](https://chromewebstore.google.com/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB) for CSS debugging
 - [Wave](https://wave.webaim.org/extension/) for accessibility checks
@@ -139,6 +138,30 @@ _https://pep8ci.herokuapp.com/_
 _http://eightshapes.com/_
 
 _Lighthouse, WAVE, Responsiveness (screen pixel width), different browsers and devices_
+
+Lighthouse:
+images to webp
+missing meta details
+javascript console errors
+set cloudinary images to use a secure URL
+
+Cumulative Layout Shifts causing dip in Performance score for create-col and create-set
+Minor dip in Accessibility for add-set due to ARIA Input fields not having accessible names, however from django select2 field
+
+col-w-sets has Accessibility dip for supposedly missing labels. Labels are present, but hidden, and text is still provided;
+user-entered images provided with incorrect aspect ratio
+hamburger links not crawlable
+
+edit-col Accessibility issues due to form/select/input missing labels from django forms
+user-entered images provided with incorrect aspect ratio
+
+profile performance dip due to cumulative layout shifts
+Accessibility issues due to form/select/input missing labels from django forms
+
+change-pw performance dip due to cumulative layout shifts
+
+change-email performance dip due to cumulative layout shifts
+
 
 #### PEP8
 <img src='assets/images/pep8.webp' alt='PEP8 result'>
