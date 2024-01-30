@@ -41,7 +41,7 @@
                          <!-- Display the collection picture and title -->
                         <div class="col-img-title">
                             {% if "col-placeholder" in col.collection_pic.url %}
-                                <img class="col-img" src="{% static 'images/col-default.png' %}" alt="placeholder collection image">
+                                <img class="col-img" src="{% static 'images/col-default.webp' %}" alt="placeholder collection image">
                             {% else %}
                                 <img class="col-img" src="{{ col.collection_pic.url }}" alt="collection image">
                             {% endif %}
@@ -52,8 +52,8 @@
                             <div class="set-sort-filter">
                                 <div class="set-sort">
                                     <form id="set-sort-form"></form>
-                                    <label for="set-sort" hidden="hidden"></label>
                                     <!-- Dropdown for sorting sets -->
+                                    <label for="set-sort" hidden="hidden">Sort Sets</label>
                                     <select id="set-sort" name="set-sort" onChange=changeSort(this.value)>
                                         <option name="set-sort" value="instruction" selected="selected" disabled>Sort Sets</option>
                                         <option name="set-sort" value="nr">Set Number</option>
@@ -72,14 +72,14 @@
                                     <a href="/collections" class="button set-sort-btn">Reset Sort</a>
                                 </div>
                                 <div class="set-filter">
-                                    <label for="set-filter" hidden="hidden"></label>
                                     <!-- Dropdown to filter the set data -->
+                                    <label for="set-filter" hidden="hidden">Set Filter</label>
                                     <select id="set-filter" name="set-filter">
                                         <option selected="selected" disabled>Filter Sets</option>
                                     </select>
                                     <br>
-                                    <label for="sub-filter" hidden="hidden"></label>
                                     <!-- Dropdown for the subfilter to filter set data -->
+                                    <label for="sub-filter" hidden="hidden">Set Subfilter</label>
                                     <select id="sub-filter" name="sub-filter" onChange=changeFilter(this.value)>
                                         <option selected="selected">Set Filter Details</option>
                                     </select>
@@ -140,7 +140,7 @@
                                     <tr>
                                         <td class="set-pic-col">
                                             {% if "set-placeholder" in set.set.set_picture.url %}
-                                                <img class="set-img" src="{% static 'images/set-default.png' %}" alt="placeholder set image">
+                                                <img class="set-img" src="{% static 'images/set-default.webp' %}" alt="placeholder set image">
                                             {% else %}
                                                 <img class="set-img" src="{{ set.set.set_picture.url }}" alt="set image">
                                             {% endif %}

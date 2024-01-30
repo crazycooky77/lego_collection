@@ -1,5 +1,4 @@
 # Online Lego Collection
-
 _introduction_
 
 <img src='assets/images/am-i-responsive.webp' alt='Am I Responsive Image'>
@@ -13,42 +12,86 @@ _introduction_
 7. [Media](#media)
 
 ## User Experience
-
 _First time, returning, frequent visitor goals_
 
 ### User Stories
+All implemented, detailed EPICs and related user stories are available in [project Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+is%3Aclosed+-label%3Abug+-label%3Adocumentation+-label%3Awont-have+-label%3Awontfix+-label%3Aenhancement).
 
-_Project Issues and Kanban board_
+_insert image_
 
 ### Design
 
 #### Colour Palette
-_Colormind_
+<img src='static/images/readme/colourmind.webp' alt='Colourmind image'>
 
 #### Typography
 
 
 #### Imagery
+AI-generated images were used throughout. [Stable Diffusion](https://github.com/AUTOMATIC1111/stable-diffusion-webui) and [ComfyUI](https://stable-diffusion-art.com/how-to-install-comfyui/) were used with the [Dreamshaper 8](https://civitai.com/models/4384/dreamshaper) model.
 
 ### Site Planning
 
 #### Lucidchart
-_For the database diagrams_
+Lucidchart was used to plan out the database models.
 
-<img src='assets/images/lucid.webp' alt='Lucidchart image'>
+<img src='static/images/readme/lucid.webp' alt='Lucidchart image'>
 
 #### Wireframes
-<img src='assets/images/wireframe.webp' alt='Wireframe image'>
+Wireframes were used to plan out the pages for the site.
 
-_Need to add all 10 Wireframe images_
+##### Homepage
+Logged in:
+<img src='static/images/readme/home-logged-in.webp' alt='Homepage wireframe (logged in)'>
 
-## Features 
+Logged out:
+<img src='static/images/readme/home-logged-out.webp' alt='Homepage wireframe (logged out)'>
 
-_Can be taken from Kanban board_
+#### Collections
+Main page with collection - slight adjustments to buttons were made for better styling:
+<img src='static/images/readme/col.webp' alt='Collection wireframe'>
+
+Main page without collections:
+<img src='static/images/readme/col-no-col.webp' alt='Collection page without collections wireframe'>
+
+Add Sets - this page was split into 2 in the end. 1 page for the "Global Set Details" ("Create Set" in the final page version), and 1 page for the "Personal Set Details" ("Add Set"):
+<img src='static/images/readme/col-add-set.webp' alt='Add/Create set wireframe'>
+
+Additionally, a new view was added but not planned in wireframes for existing collections without any sets. No sort/filter buttons are shown, but instead a message advising the user to add or create a set.
+
+#### Profile
+Logged in:
+<img src='static/images/readme/profile-logged-in.webp' alt='Profile logged in wireframe'>
+
+Logged out:
+<img src='static/images/readme/profile-logged-out.webp' alt='Profile logged out wireframe'>
+
+#### Shared
+Sharing features are not yet implemented. However wireframes were created to plan out the features. 
+
+Logged in with selected collection:
+<img src='static/images/readme/shared-logged-in-selected-col.webp' alt='Shared logged in wireframe'>
+
+Logged in without a selected collection (dropdown list for all collections the user was given access to):
+<img src='static/images/readme/shared-logged-in-unselected-col.webp' alt='Shared logged in without selected collection wireframe'>
+
+Logged out (public collection link):
+<img src='static/images/readme/shared-logged-out.webp' alt='Shared logged out wireframe'>
+
+## Features
+All features have been planned and outlined in the [Kanban board](https://github.com/users/crazycooky77/projects/1) for the project using Issues. The implemented features are available [here](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+is%3Aclosed+-label%3Abug+-label%3Awont-have+-label%3Awontfix+-label%3Adocumentation).
+
+_image_
 
 ### To Be Implemented
+Features not yet implemented are available in the [project's Kanban board](https://github.com/users/crazycooky77/projects/1) in the To Do and In Progress columns.
 
-_From Kanban_
+_insert image_
+
+### Closed Enhancements
+Closed enhancements can be found [here](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+label%3Aenhancement+is%3Aclosed). If an enhancement is labelled as "wont-have", it was not and will not be implemented.
+
+_insert image_
 
 ## Technologies
 - [Lucidchart](https://www.lucidchart.com/pages) to create the entity relationship diagram
@@ -84,8 +127,7 @@ _From Kanban_
 
 ### Automated Testing
 
-### Validator Testing 
-
+### Validator Testing
 _https://validator.w3.org/#validate_by_input_
 
 _https://jigsaw.w3.org/css-validator/#validate_by_input_
@@ -99,15 +141,18 @@ _http://eightshapes.com/_
 _Lighthouse, WAVE, Responsiveness (screen pixel width), different browsers and devices_
 
 #### PEP8
-
 <img src='assets/images/pep8.webp' alt='PEP8 result'>
 
 ### Bugs
+Known bugs are all listed in the [project's Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aopen+is%3Aissue+label%3Abug) with the label "bug". The current list can also be viewed below.
+
+_Insert image_
+
+[Fixed bugs] can also be found in the [project's Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+label%3Abug+is%3Aclosed).
+
+_Insert image_
 
 ## Deployment
-
-_To be updated_
-
 The site was deployed via the following steps:
 1. Cloned the basic repository from [Code Institute](https://github.com/Code-Institute-Org/ci-full-template)
    1. Code > Open with GitHub Desktop
@@ -123,8 +168,7 @@ The site was deployed via the following steps:
 5. Enabled automatic deploys
    1. Tick the box for Automatic deploys in the corresponding section
 6. Added python buildpack in the Settings > Buildpacks section
-7. ---Terminal steps to set up Django--- 
-8. Added necessary Config Vars
+7. Added necessary Config Vars
 
 ## Credits
 The base template was cloned from the [Code Institute GitHub repository](https://github.com/Code-Institute-Org/ci-full-template). Various other resources were used for different features. They are all listed below, categorised accordingly.

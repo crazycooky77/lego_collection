@@ -10,7 +10,7 @@
 
 /* Background style for the whole page body */
 body {
-    background: rgba(255, 192, 203, 0.5) url('../images/background.png') no-repeat;
+    background: rgba(255, 192, 203, 0.5) url('../images/background.webp') no-repeat;
 	background-size: cover;
 }
 

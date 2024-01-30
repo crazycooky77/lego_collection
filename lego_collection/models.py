@@ -97,6 +97,7 @@ class LegoCollection(models.Model):
     class Status(models.TextChoices):
         NEW = 'NEW', _('New (Owned)')
         BUILD_NEXT = 'BN', _('Build Next')
+        BUILT = 'B', _('Built')
         STORED = 'STORED', _('Stored')
         WISH_LIST = 'WL', _('Wish List')
 

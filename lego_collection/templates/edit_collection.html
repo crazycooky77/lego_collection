@@ -44,7 +44,7 @@
                                 <!-- Show existing collection image and title, and editing options for both -->
                                 <div class="edit-img-title">
                                     {% if "col-placeholder" in col.collection_pic.url %}
-                                        <img class="col-img" src="{% static 'images/col-default.png' %}" alt="placeholder collection image">
+                                        <img class="col-img" src="{% static 'images/col-default.webp' %}" alt="placeholder collection image">
                                     {% else %}
                                         <img class="col-img" src="{{ col.collection_pic.url }}" alt="collection image">
                                     {% endif %}
@@ -83,7 +83,7 @@
                                             <tr>
                                                 <td class="mob-hide">
                                                     {% if "set-placeholder" in set.set.set_picture.url %}
-                                                        <img class="set-img" src="{% static 'images/set-default.png' %}" alt="placeholder set image">
+                                                        <img class="set-img" src="{% static 'images/set-default.webp' %}" alt="placeholder set image">
                                                     {% else %}
                                                         <img class="set-img" src="{{ set.set.set_picture.url }}" alt="set image">
                                                     {% endif %}
