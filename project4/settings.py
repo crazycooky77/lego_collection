@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
 import dj_database_url
 
 
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'lego_collection'
 ]
+
+cloudinary.config(secure=True)
 
 # Variables for login/logout behaviour and email functions
 SITE_ID = 1
