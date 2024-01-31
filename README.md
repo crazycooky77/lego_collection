@@ -1,5 +1,5 @@
 # Online Lego Collection
-_introduction_
+This site is made for avid Lego collectors! You can keep track of your sets, their status, and where they are (like your attic, or spare room). You can Favourite sets, or add sets you don't own yet to build out a wish list. But the Lego page has a wish list, you say? Unfortunately you can't share that one! While sharing features are not yet implemented on this page, they will be soon, and you can then share your entire collection, and your wish list, with friends and family (or even strangers if you like)! Your Online Lego Collection also has a field to keep track of missing pieces in your sets, when needed, and you can sort and filter your collection to be able to easily access that information and more. This is your one-stop-shop to keep track of all your sets and what's happening with them.
 
 <img src='assets/images/am-i-responsive.webp' alt='Am I Responsive Image'>
 
@@ -97,6 +97,7 @@ _insert image_
 - [Lucidchart](https://www.lucidchart.com/pages) to create the entity relationship diagram
 - [Balsamiq](https://balsamiq.com/wireframes/) to plan out the pages using wireframes
 - [Pycharm](https://www.jetbrains.com/pycharm/) IDE linked to GitHub to edit the project files
+- [GitPod](https://gitpod.io/) when utilising Tutor Support
 - [GitHub](https://github.com/) to store the code and for version-control
 - [GitHub Desktop](https://desktop.github.com/) to be able to commit changes to the code without having to use the web-based tool
 - [Heroku](https://heroku.com/) to deploy the app and have it available for use online
@@ -137,30 +138,75 @@ _https://pep8ci.herokuapp.com/_
 
 _http://eightshapes.com/_
 
-_Lighthouse, WAVE, Responsiveness (screen pixel width), different browsers and devices_
+_WAVE, Responsiveness (screen pixel width), different browsers and devices_
 
-Lighthouse:
-images to webp
-missing meta details
-javascript console errors
-set cloudinary images to use a secure URL
+#### Lighthouse
+Lighthouse was run on all pages for the site and issues identified were resolved, where possible.
 
-Cumulative Layout Shifts causing dip in Performance score for create-col and create-set
-Minor dip in Accessibility for add-set due to ARIA Input fields not having accessible names, however from django select2 field
+- Images were all converted from png to webp
+- Missing meta header details were added
+- JavaScript console errors resolved
 
-col-w-sets has Accessibility dip for supposedly missing labels. Labels are present, but hidden, and text is still provided;
-user-entered images provided with incorrect aspect ratio
-hamburger links not crawlable
+Cumulative Layout Shifts caused a lower score in Performance for the pages listed below. This was deemed acceptable, to enable better responsiveness and dynamic resizing.
+- Create Collection
+- Create Set
+- Profile page
+- Change password
+- Change email
 
-edit-col Accessibility issues due to form/select/input missing labels from django forms
-user-entered images provided with incorrect aspect ratio
+Accessibility issues were noted on some pages, due to automatically rendered Django forms:
+- Add Set
+  - ARIA input fields without accessible names (from Django Select2)
+- Collections page with sets
+  - Missing labels noted, but labels are present (though hidden). Text is still provided for these fields
+- Edit Collection
+  - Form/select/input fields are missing labels, from Django forms
+- Profile
+  - Form/select/input fields are missing labels, from Django forms
 
-profile performance dip due to cumulative layout shifts
-Accessibility issues due to form/select/input missing labels from django forms
+Best Practice and SEO issues:
+- Collections page with sets
+  - User-entered images are provided with low resolution and incorrect aspect ratios (this is a conscious choice to keep the table layout styled accordingly)
+  - Hamburger links are not crawlable, however they are formatted as normal links
+- Edit Collection
+  - User-entered images are provided with low resolution and incorrect aspect ratios (this is a conscious choice to keep the table layout styled accordingly)
 
-change-pw performance dip due to cumulative layout shifts
 
-change-email performance dip due to cumulative layout shifts
+Homepage
+<img src='static/images/readme/lh-home.webp' alt='Lighthouse scores for Hhomepage'>
+
+Collections page without collections
+<img src='static/images/readme/lh-col-no-col.webp' alt='Lighthouse scores for Collection page without Collection'>
+
+Create Collection
+<img src='static/images/readme/lh-create-col.webp' alt='Lighthouse scores for Create Collection page'>
+
+Collections page with collection but no sets
+<img src='static/images/readme/lh-col-no-sets.webp' alt='Lighthouse scores for Collection page without Sets'>
+
+Create Set
+<img src='static/images/readme/lh-create-set.webp' alt='Lighthouse scores for Create Set page'>
+
+Add Set
+<img src='static/images/readme/lh-add-set.webp' alt='Lighthouse scores for Add Set page'>
+
+Collections page with sets
+<img src='static/images/readme/lh-col-w-sets.webp' alt='Lighthouse scores for Collection page with Sets'>
+
+Edit Collection
+<img src='static/images/readme/lh-edit-col.webp' alt='Lighthouse scores for Edit Collection page'>
+
+Profile page
+<img src='static/images/readme/lh-profile.webp' alt='Lighthouse scores for Profile page'>
+
+Change password
+<img src='static/images/readme/lh-change-pw.webp' alt='Lighthouse scores for Change Password page'>
+
+Change email
+<img src='static/images/readme/lh-change-email.webp' alt='Lighthouse scores for Change Email page'>
+
+Shared page
+<img src='static/images/readme/lh-shared.webp' alt='Lighthouse scores for Shared page'>
 
 
 #### PEP8
