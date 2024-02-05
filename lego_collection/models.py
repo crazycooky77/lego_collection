@@ -101,7 +101,7 @@ class LegoCollection(models.Model):
         BUILD_NEXT = 'BN', _('Build Next')
         BUILT = 'B', _('Built')
         STORED = 'STORED', _('Stored')
-        HOUSEHOLD = 'HH', _('Household')
+        EXTRA = 'EX', _('Extra')
         WISH_LIST = 'WL', _('Wish List')
 
     collection = models.ForeignKey('Collection', on_delete=models.CASCADE)
