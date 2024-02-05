@@ -10,7 +10,9 @@ class UpdateUsername(forms.ModelForm):
     """
     Form for updating usernames
     """
-    username = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(max_length=50, required=True,
+                               widget=forms.TextInput(
+                                   attrs={'class': 'form-control'}))
 
     class Meta:
         model = CustomUser
@@ -22,7 +24,8 @@ class UpdateUsername(forms.ModelForm):
             CustomUser.objects.get(username=username)
         except CustomUser.DoesNotExist:
             return username
-        raise forms.ValidationError("A user with that username already exists.")
+        raise forms.ValidationError(
+            "A user with that username already exists.")
 
 
 class UpdatePrivacy(forms.ModelForm):
@@ -47,7 +50,8 @@ class CreateCollection(forms.ModelForm):
     """
     required_css_class = 'required'
     collection_pic = CloudinaryFileField(
-        options={'crop': 'fit', 'max-width': 100, 'max-height': 100}, required=False)
+        options={'crop': 'fit', 'max-width': 100, 'max-height': 100},
+        required=False)
 
     class Meta:
         model = Collection
@@ -83,11 +87,13 @@ class CreateSet(forms.ModelForm):
     required_css_class = 'required'
     set_number = forms.IntegerField(validators=[validate_set_exists])
     set_picture = CloudinaryFileField(
-        options={'crop': 'fit', 'max-width': 100, 'max-height': 100}, required=False)
+        options={'crop': 'fit', 'max-width': 100, 'max-height': 100},
+        required=False)
 
     class Meta:
         model = LegoSet
-        fields = ['set_number', 'set_name', 'set_picture', 'nr_of_pieces', 'lego_link']
+        fields = ['set_number', 'set_name', 'set_picture', 'nr_of_pieces',
+                  'lego_link']
 
 
 class SetWidget(s2forms.ModelSelect2Widget):
@@ -109,7 +115,8 @@ class AddSet(forms.ModelForm):
 
     class Meta:
         model = LegoCollection
-        fields = ['set', 'build_status', 'set_location', 'favourited', 'missing_pieces']
+        fields = ['set', 'build_status', 'set_location', 'favourited',
+                  'missing_pieces']
         widgets = {'set': SetWidget()}
 
 
@@ -119,4 +126,5 @@ class UpdateCol(forms.ModelForm):
     """
     class Meta:
         model = LegoCollection
-        fields = ['build_status', 'set_location', 'missing_pieces', 'favourited']
+        fields = ['build_status', 'set_location', 'missing_pieces',
+                  'favourited']

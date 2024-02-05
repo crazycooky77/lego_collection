@@ -1,18 +1,54 @@
 # Online Lego Collection
 This site is made for avid Lego collectors! You can keep track of your sets, their status, and where they are (like your attic, or spare room). You can Favourite sets, or add sets you don't own yet to build out a wish list. But the Lego page has a wish list, you say? Unfortunately you can't share that one! While sharing features are not yet implemented on this page, they will be soon, and you can then share your entire collection, and your wish list, with friends and family (or even strangers if you like)! Your Online Lego Collection also has a field to keep track of missing pieces in your sets, when needed, and you can sort and filter your collection to be able to easily access that information and more. This is your one-stop-shop to keep track of all your sets and what's happening with them.
 
-<img src='assets/images/am-i-responsive.webp' alt='Am I Responsive Image'>
+<img src='static/images/am-i-responsive.webp' alt='Am I Responsive Image'>
 
 1. [User Experience](#user-experience)
+   1. [User Stores](#user-stories)
+      1. [Visitor Goals](#visitor-goals)
+         1. [First-Time Visitor Goals](#first-time-visitor-goals)
+         2. [Returning Visitor Goals](#returning-visitor-goals-)
+         3. [Frequent Visitor Goals](#frequent-visitor-goals-)
+   2. [Design](#design)
+      1. [Colour Palette](#colour-palette)
+      2. [Typography](#typography)
+      3. [Imagery](#imagery)
+   3. [Site Planning](#site-planning)
+      1. [Lucidchart](#lucidchart)
+      2. [Wireframes](#wireframes)
 2. [Features](#features)
+   1. [To Be Implemented](#to-be-implemented)
+   2. [Closed Enhancements](#closed-enhancements)
 3. [Technologies](#technologies)
 4. [Testing](#testing)
+   1. [Manual Testing](#manual-testing)
+   2. [Automated Testing](#automated-testing)
+   3. [Validator Testing](#validator-testing)
+      1. [WAVE](#wave)
+      2. [Lighthouse](#lighthouse)
+      3. [PEP8](#pep8)
+   4. [Bugs](#bugs)
 5. [Deployment](#deployment)
 6. [Credits](#credits)
-7. [Media](#media)
 
 ## User Experience
-_First time, returning, frequent visitor goals_
+
+### Visitor Goals
+
+#### First-Time Visitor Goals
+- As a first-time visitor to the site, I can create an account and a Lego collection to keep track of my sets.
+- As a first-time visitor to the site, I can view public Lego collections, and Lego collections shared with me.*
+
+_*Once Sharing features are enabled_
+
+#### Returning Visitor Goals 
+- As a returning visitor to the site, I can log into my account to view and edit my Lego collection.
+- As a returning visitor to the site, I can manage my account, to ensure passwords, usernames, and email addresses are kept up-to-date and secure.
+
+#### Frequent Visitor Goals 
+- As a frequent visitor to the site, I can manage my Lego collection, including the build status and location for all my sets.
+- As a frequent visitor to the site, I can create new Lego sets in the database, so I and others can add them to collections.
+- As a frequent visitor, I can delete my Lego collection, and my account.
 
 ### User Stories
 All implemented, detailed EPICs and related user stories are available in [project Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+is%3Aclosed+-label%3Abug+-label%3Adocumentation+-label%3Awont-have+-label%3Awontfix+-label%3Aenhancement).
@@ -124,21 +160,28 @@ _insert image_
 ## Testing
 
 ### Manual Testing
+Responsiveness (screen pixel width), different browsers and devices_
 
 ### Automated Testing
 
 ### Validator Testing
-_https://validator.w3.org/#validate_by_input_
-
-_https://jigsaw.w3.org/css-validator/#validate_by_input_
-
-_https://jshint.com/_
-
-_https://pep8ci.herokuapp.com/_
-
 _http://eightshapes.com/_
 
-_WAVE, Responsiveness (screen pixel width), different browsers and devices_
+#### HTML
+_https://validator.w3.org/#validate_by_input_
+
+#### CSS
+_https://jigsaw.w3.org/css-validator/#validate_by_input_
+
+#### JSHint
+_https://jshint.com/_
+
+#### PEP8
+<img src='static/images/pep8.webp' alt='PEP8 result'>
+_https://pep8ci.herokuapp.com/_
+
+#### WAVE
+All pages were checked with WAVE. There are some Alerts, however nothing unexpected. Some Errors are logged on the Edit Collection, Profile, Change Password, and Manage Emails pages. These errors are due to missing labels for form fields from Django forms.
 
 #### Lighthouse
 Lighthouse was run on all pages for the site and issues identified were resolved, where possible.
@@ -209,15 +252,12 @@ Shared page
 <img src='static/images/readme/lh-shared.webp' alt='Lighthouse scores for Shared page'>
 
 
-#### PEP8
-<img src='assets/images/pep8.webp' alt='PEP8 result'>
-
 ### Bugs
 Known bugs are all listed in the [project's Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aopen+is%3Aissue+label%3Abug) with the label "bug". The current list can also be viewed below.
 
 _Insert image_
 
-[Fixed bugs] can also be found in the [project's Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+label%3Abug+is%3Aclosed).
+Fixed bugs can also be found in the [project's Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+label%3Abug+is%3Aclosed).
 
 _Insert image_
 

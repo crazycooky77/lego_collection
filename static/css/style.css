@@ -69,7 +69,7 @@ main .button, main button {
     border-radius: 0.2em;
 }
 
-main .button:hover. main button:hover {
+main .button:hover, main button:hover {
     background-color: #FF0080FF;
     border: solid black 1px;
     border-radius: 0.2em;

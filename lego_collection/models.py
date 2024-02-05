@@ -43,8 +43,10 @@ class CustomUser(AbstractUser):
     last_name = None
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
-    privacy = models.CharField(max_length=20, choices=Privacy.choices, default=Privacy.PRIVATE)
-    collection_access = ArrayField(models.IntegerField(), default=None, blank=True, null=True)
+    privacy = models.CharField(max_length=20, choices=Privacy.choices,
+                               default=Privacy.PRIVATE)
+    collection_access = ArrayField(models.IntegerField(), default=None,
+                                   blank=True, null=True)
     account_type = models.CharField(max_length=20, choices=Account.choices)
     is_active = models.BooleanField(default=True)
 
@@ -99,15 +101,18 @@ class LegoCollection(models.Model):
         BUILD_NEXT = 'BN', _('Build Next')
         BUILT = 'B', _('Built')
         STORED = 'STORED', _('Stored')
+        HOUSEHOLD = 'HH', _('Household')
         WISH_LIST = 'WL', _('Wish List')
 
     collection = models.ForeignKey('Collection', on_delete=models.CASCADE)
     set = models.ForeignKey('LegoSet', on_delete=models.CASCADE)
-    missing_pieces = models.CharField(max_length=500, default=None, blank=True, null=True)
+    missing_pieces = models.CharField(max_length=500, default=None, blank=True,
+                                      null=True)
     build_status = models.CharField(max_length=50, choices=Status.choices)
     set_location = models.CharField(max_length=100, blank=True, null=True)
     favourited = models.BooleanField()
-    shared = models.CharField(max_length=20, default=None, blank=True, null=True)
+    shared = models.CharField(max_length=20, default=None, blank=True,
+                              null=True)
 
     class Meta:
         ordering = ['id']
