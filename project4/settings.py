@@ -37,7 +37,7 @@ if development:
     ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
     CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1', 'https://0.0.0.0']
 else:
-    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME'), os.environ.get('DO_URL'), os.environ.get('DROPLET_IP')]
+    ALLOWED_HOSTS = ['localhost', os.environ.get('HEROKU_HOSTNAME'), os.environ.get('DO_URL'), os.environ.get('DROPLET_IP')]
     CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('HEROKU_HOSTNAME'), 'https://' + os.environ.get('DO_URL'), 'https://' + os.environ.get('DROPLET_IP')]
 
 # Application definition
