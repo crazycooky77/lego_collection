@@ -34,11 +34,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 DEBUG = development
 
 if development:
-    ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '164.92.228.175']
-    CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1', 'https://0.0.0.0', 'https://164.92.228.175']
+    ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
+    CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1', 'https://0.0.0.0']
 else:
-    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
-    CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('HEROKU_HOSTNAME')]
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME'), '164.92.228.175']
+    CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('HEROKU_HOSTNAME'), 'https://164.92.228.175']
 
 # Application definition
 INSTALLED_APPS = [
