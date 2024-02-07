@@ -29,6 +29,8 @@ This site is made for avid Lego collectors! You can keep track of your sets, the
       3. [PEP8](#pep8)
    4. [Bugs](#bugs)
 5. [Deployment](#deployment)
+   1. [Heroku](#heroku)
+   2. [Droplet](#droplet)
 6. [Credits](#credits)
 
 ## User Experience
@@ -262,7 +264,10 @@ Fixed bugs can also be found in the [project's Issues](https://github.com/crazyc
 _Insert image_
 
 ## Deployment
-The site was deployed via the following steps:
+The site was deployed on both Heroku and using a [Digital Ocean](https://www.digitalocean.com/) Droplet. This was to keep the site live after the project submission, and due to networking issues caused by Heroku (see [this bug](https://github.com/crazycooky77/ci_project4/issues/44) for additional details).
+
+### Heroku
+For Heroku, the following steps were used for deployment:
 1. Cloned the basic repository from [Code Institute](https://github.com/Code-Institute-Org/ci-full-template)
    1. Code > Open with GitHub Desktop
 2. Created new repository in [own GitHub](https://github.com/crazycooky77/ci_project4) for the cloned repository
@@ -279,8 +284,135 @@ The site was deployed via the following steps:
 6. Added python buildpack in the Settings > Buildpacks section
 7. Added necessary Config Vars
 
+### Droplet
+To deploy the project using a Digital Ocean Droplet, these steps were followed:
+1. In your settings.py in GitHub for ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS:
+   1. Ensure "localhost" and "https://localhost" are added
+   2. Add environment variables for your DROPLET_IP and your public domain name (if applicable)
+2. Create Droplet in Digital Ocean project
+   1. Select the nearest Datacenter and preferred OS
+   2. Leave Droplet Type as Basic (Shared CPU)
+   3. Select Regular > $4/mo CPU options (choose a more expensive plan if desired)
+   4. Select the Authentication Method
+   5. Enter the name for your Droplet (or use the default one provided)
+   6. Create Droplet
+   7. Click "Enable now" for Reserved IP within the Droplet
+   8. Click "Assign Reserved IP"
+      1. If you have a public domain name you want to use, ensure you add your reserved Droplet IP to your URL forwarding
+   9. Within Networking > Firewalls, "Create Firewall"
+      1. Enter a name for your firewall
+      2. New rule under SSH
+         1. HTTP
+      3. New rule under SSH
+         1. HTTPS
+      4. Search for your Droplet name under Apply to Droplets
+      5. "Create Firewall"
+3. Open the Droplet Console and clone your GitHub repository with the Django project
+   1. In the GitHub repository, click Code and copy the HTTPS link
+   2. In the Droplet console: ```git clone <HTTPS_LINK>```
+4. Update and install the necessary packages via the console
+   1. ```sudo apt-get update```
+   2. ```sudo apt-get dist-upgrade```
+   3. ```sudo reboot```
+   4. ```apt install python3-pip python3.11-venv nginx``` (replace with your python version as needed)
+   5. ```sudo snap install core; sudo snap refresh core```
+   6. ```sudo snap install --classic certbot```
+   7. ```cd <CLONED_GITHUB_PROJECT_FOLDER>```
+   8. If you have/need a .env file, you can copy it via your local machine's console using:
+      1. ```scp LOCAL_FOLDER/.env DROPLET_USER@DROPLET_IP:/root/DROPLET_DIRECTORY```
+      2. Remember to add your environment variables for your Droplet IP and public domain name (if applicable)
+   9. ```python3 -m venv .venv```
+   10. ```source .venv/bin/activate```
+   11. ```python3 -m pip install -r requirements.txt```
+   12. ```deactivate```
+5. Some files on the Droplet now need to be edited, and services enabled and started, so that your site will constantly run without having to manually runserver
+   1. In your Droplet's console: ```vi /etc/systemd/system/gunicorn.socket```
+   2. ```i``` (for "insert")
+   3. Paste:
+    ```
+    [Unit]
+    Description=gunicorn socket
+    
+    [Socket]
+    ListenStream=/run/gunicorn.sock
+    
+    [Install]
+    WantedBy=sockets.target
+    ```
+   4. Press the Escape key
+   5. Type: ```:wq``` and press Enter ("write quit")
+   6. ```vi /etc/systemd/system/gunicorn.service```
+   7. ```i```
+   8. Paste:
+   ```
+    [Unit]
+    Description=gunicorn daemon
+    Requires=gunicorn.socket
+    After=network.target
+    
+    [Service]
+    User=root
+    Group=www-data
+    WorkingDirectory=/root/<GITHUB_PROJECT_FOLDER>
+    EnvironmentFile=/root/<GITHUB_PROJECT_FOLDER>/.env
+    ExecStart=/root/<GITHUB_PROJECT_FOLDER>/.venv/bin/gunicorn \
+              --access-logfile - \
+              --workers 1 \
+              --timeout 120 \
+              --bind unix:/run/gunicorn.sock \
+              <DJANGO_PROJECT_NAME>.wsgi:application
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+   9. Escape key
+   10. ```:wq``` and Enter
+   11. ```vi /etc/nginx/sites-available/<GITHUB_PROJECT_FOLDER>```
+   12. ```i```
+   13. Paste:
+   ```
+    server {
+        listen 80;
+        server_name <PUBLIC_DOMAIN_NAME>;
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location /<STATIC_ROOT_FOLDER_FROM_SETTINGS_PY>/ {
+            root /root/<GITHUB_PROJECT_FOLDER>>;
+        }
+
+        location / {
+            include proxy_params;
+            proxy_pass http://unix:/run/gunicorn.sock;
+        }
+    }
+    ```
+   14. Escape key
+   15. ```:wq``` and Enter
+   16. ```systemctl enable gunicorn.socket```
+   17. ```systemctl enable gunicorn.service```
+   18. ```systemctl start gunicorn.service```
+   19. ```systemctl start gunicorn.socket```
+   20. ```vi /etc/nginx/nginx.conf```
+   21. Use your arrow key to move your text cursor to the empty line above "sendfile on;"
+   22. ```o```
+   23. ```client_max_body_size 10M;``` (change 10M to a larger number if you want to allow larger file sizes)
+   24. Escape key
+   25. ```:wq``` and Enter
+   26. ```sudo ln -s /etc/nginx/sites-available/<GITHUB_FOLDER> /etc/nginx/sites-enabled```
+   27. ```nginx -t```
+       1. You want to see a "test is successful" here to ensure the previous steps were correctly followed and without typos
+6. Adjust settings as below to enable encryption on your webpage via letsencrypt. This only works if you own the domain yourself and is automatically renewed every 90 days.
+   1. ```sudo ln -s /snap/bin/certbot /usr/bin/certbot```
+   2. ```certbot --nginx -d <YOUR_PUBLIC_DOMAIN_NAME>```
+      1. Enter an email address, as required by the console
+      2. ```Y``` to agree to terms of service
+      3. ```N``` to decline sharing your email address
+   3. ```sudo systemctl restart nginx```
+
+
+
 ## Credits
-The base template was cloned from the [Code Institute GitHub repository](https://github.com/Code-Institute-Org/ci-full-template). Various other resources were used for different features. They are all listed below, categorised accordingly.
+The base template was cloned from the [Code Institute GitHub repository](https://github.com/Code-Institute-Org/ci-full-template). Various other resources were used for different features. They are all listed below, categorised accordingly. Special thanks to [my husband](https://twitter.com/fbuechsel) who helped with troubleshooting and figuring out the Droplet setup, and [my mentor](https://github.com/CluelessBiker) for her various resources and constant reminders to document **everything**.
 
 #### CustomUser Documentation
 - [Django authentication](https://docs.djangoproject.com/en/5.0/topics/auth/default/)
@@ -313,3 +445,10 @@ The base template was cloned from the [Code Institute GitHub repository](https:/
 - [HTML select option checkboxes](https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-option)
 - [Display column based on checkboxes](https://stackoverflow.com/questions/60344393/how-to-display-hide-columns-when-checkboxes-are-checked)
 - [Hide columns based on checkboxes](https://www.sitepoint.com/community/t/hide-table-column-whose-checkbox-is-not-checked-on-page-load/242783)
+
+#### Droplet Setup
+- [Update Kernel](https://docs.digitalocean.com/products/droplets/how-to/kernel/upgrade/)
+- [Installing requirements](https://stackoverflow.com/questions/75602063/pip-install-r-requirements-txt-is-failing-this-environment-is-externally-mana)
+- [Setup instructions](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-22-04)
+- [Error fix for file upload](https://www.cyberciti.biz/faq/linux-unix-bsd-nginx-413-request-entity-too-large/)
+- [Encrypting pages](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-22-04)
