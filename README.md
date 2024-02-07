@@ -408,6 +408,7 @@ To deploy the project using a Digital Ocean Droplet, these steps were followed:
       2. ```Y``` to agree to terms of service
       3. ```N``` to decline sharing your email address
    3. ```sudo systemctl restart nginx```
+7. When making changes in GitHub, you will need to ```git pull``` in the Droplet console and ```systemctl restart gunicorn.service```
 
 
 
