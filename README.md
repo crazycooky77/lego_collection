@@ -287,7 +287,7 @@ For Heroku, the following steps were used for deployment:
 ### Droplet
 To deploy the project using a Digital Ocean Droplet, these steps were followed:
 1. In your settings.py in GitHub for ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS:
-   1. Ensure "localhost" and "https://localhost" are added
+   1. Ensure "localhost" and "https\://localhost" are added
    2. Add environment variables for your DROPLET_IP and your public domain name (if applicable)
 2. Create Droplet in Digital Ocean project
    1. Select the nearest Datacenter and preferred OS
