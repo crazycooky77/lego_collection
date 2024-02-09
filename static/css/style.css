@@ -695,12 +695,16 @@ footer p {
 }
 
 
-/* Media Queries */
 /* For screens 900px wide and less */
 @media screen and (max-width: 900px) {
     /* Hide Home button to save space */
     .non-mobile {
         display: none;
+    }
+
+    /* Navigation buttons */
+    nav button {
+        font-size: 21px;
     }
 
     /* Collection Content in column view */
@@ -791,5 +795,20 @@ footer p {
     /* Create set form fields */
     #id_set_picture {
         width: 85%;
+    }
+}
+
+
+/* Media Queries */
+/* For screens 400px wide and less */
+@media screen and (max-width: 400px) {
+    /* Decrease global font size */
+    * {
+        font-size: 18px;
+    }
+
+    /* Navigation buttons */
+    nav button {
+        font-size: 21px;
     }
 }
