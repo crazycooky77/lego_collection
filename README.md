@@ -1,7 +1,7 @@
 # Online Lego Collection
 This site is made for avid Lego collectors! You can keep track of your sets, their status, and where they are (like your attic, or spare room). You can Favourite sets, or add sets you don't own yet to build out a wish list. But the Lego page has a wish list, you say? Unfortunately you can't share that one! While sharing features are not yet implemented on this page, they will be soon, and you can then share your entire collection, and your wish list, with friends and family (or even strangers if you like)! Your Online Lego Collection also has a field to keep track of missing pieces in your sets, when needed, and you can sort and filter your collection to be able to easily access that information and more. This is your one-stop-shop to keep track of all your sets and what's happening with them.
 
-<img src='static/images/am-i-responsive.webp' alt='Am I Responsive Image'>
+<img src='static/images/readme/amiresponsive.webp' alt='Am I Responsive Image'>
 
 1. [User Experience](#user-experience)
    1. [User Stores](#user-stories)
@@ -408,9 +408,7 @@ To deploy the project using a Digital Ocean Droplet, these steps were followed:
       2. ```Y``` to agree to terms of service
       3. ```N``` to decline sharing your email address
    3. ```sudo systemctl restart nginx```
-7. When making changes in GitHub, you will need to ```git pull``` in the Droplet console and ```systemctl restart gunicorn.service```
-
-
+7. After making changes in GitHub, you will need to ```git pull``` in the Droplet console and ```systemctl restart gunicorn.service```
 
 ## Credits
 The base template was cloned from the [Code Institute GitHub repository](https://github.com/Code-Institute-Org/ci-full-template). Various other resources were used for different features. They are all listed below, categorised accordingly. Special thanks to [my husband](https://twitter.com/fbuechsel) who helped with troubleshooting and figuring out the Droplet setup, and [my mentor](https://github.com/CluelessBiker) for her various resources and constant reminders to document **everything**.
