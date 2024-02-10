@@ -811,4 +811,10 @@ footer p {
     nav button {
         font-size: 21px;
     }
+
+    /* Set images */
+    .set-img {
+        max-height: 40px;
+        max-width: 40px;
+    }
 }
