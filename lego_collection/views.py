@@ -151,6 +151,12 @@ def sort_filter_collection(request):
         elif filter_by == 'bnext':
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all(), build_status='BN')
+        elif filter_by == 'built':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), build_status='B')
+        elif filter_by == 'extra':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), build_status='EX')
         elif filter_by == 'new':
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all(), build_status='NEW')
