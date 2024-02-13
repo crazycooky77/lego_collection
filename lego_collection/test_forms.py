@@ -6,6 +6,17 @@ class TestUpdateUsername(TestCase):
     """
     Testing form for updating usernames
     """
+    def setUp(self):
+        """
+        Create test user for test cases
+        """
+        self.user = CustomUser.objects.create_user(
+            username='test_user_exists',
+            password='t€$T951',
+            email='test_user_exists@test.com',
+            privacy='PRV'
+        )
+
     def test_form_is_valid(self):
         """
         Check if overall change username form is valid
@@ -21,6 +32,14 @@ class TestUpdateUsername(TestCase):
         update_user_form = UpdateUsername({'username': ''})
         self.assertFalse(update_user_form.is_valid(),
                          msg='Failed: Invalid username change form')
+
+    def test_user_exists(self):
+        """
+        See if the username already exists in the database
+        """
+        update_user_form = UpdateUsername({'username': 'test_user_exists'})
+        self.assertFalse(update_user_form.is_valid(),
+                         msg='Failed: Username exists check')
 
 
 class TestUpdatePrivacy(TestCase):
@@ -135,6 +154,13 @@ class TestCreateSet(TestCase):
     """
     Testing form for creating sets
     """
+    def setUp(self):
+        """
+        Create test set for test cases
+        """
+        self.user = LegoSet.objects.create(
+            set_number=98765, set_name='Test Set Exists')
+
     def test_form_is_valid(self):
         """
         Check if overall create set form is valid
@@ -170,6 +196,15 @@ class TestCreateSet(TestCase):
             {'set_number': 12345, 'set_name': ''})
         self.assertFalse(create_set_form.is_valid(),
                          msg='Failed: Invalid create set (set name) form')
+
+    def test_set_exists(self):
+        """
+        See if the set number already exists in the database
+        """
+        create_set_form = CreateSet({'set_number': 98765,
+                                     'set_name': 'Test Set Exists'})
+        self.assertFalse(create_set_form.is_valid(),
+                         msg='Failed: Set exists check')
 
 
 class TestAddSet(TestCase):
