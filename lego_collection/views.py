@@ -196,6 +196,7 @@ def collections_view(request):
             if request.method == 'POST':
                 if request.POST.get("delete-col-button"):
                     collection.delete()
+                    messages.success(request, 'Collection successfully deleted')
         else:
             owned, wishlist = profile_widget(request)
             return render(request, 'collections.html',
@@ -328,9 +329,9 @@ def edit_collection(request):
                     for form in update_col_form:
                         if form.is_valid:
                             set_del_pk = request.POST.getlist("delete-set")
+                            form.save()
                             LegoCollection.objects.filter(
                                 pk__in=set_del_pk).delete()
-                            form.save()
                     messages.success(request,
                                      'Collection updated successfully.')
                     return redirect(to='collections')
