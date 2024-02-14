@@ -6,6 +6,7 @@ if (window.location.pathname === '/collections/' || window.location.pathname ===
             let filterObject = {
                 "# Pieces": ["<500", "<1000", ">500", ">1000", ">2500", ">5000"],
                 "Build Status": ["Build Next", "Built", "Extra", "New", "Stored", "Wish List"],
+                "Set Location": ["With Location", "No Location"],
                 "Missing Pieces": ["Yes", "No"],
                 "Favourite": ["Yes", "No"]
             };
@@ -179,6 +180,14 @@ function changeFilter(val) {
         }
         else if (val === '5') {
             window.location = '?filter=wishlist';
+        }
+    }
+    else if (filter === 'Set Location') {
+        if (val === '0') {
+            window.location = '?filter=loc-yes';
+        }
+        else if (val === '1') {
+            window.location = '?filter=loc-no';
         }
     }
     else if (filter === 'Missing Pieces') {

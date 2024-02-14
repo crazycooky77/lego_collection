@@ -167,6 +167,12 @@ def sort_filter_collection(request):
         elif filter_by == 'wishlist':
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all(), build_status='WL')
+        elif filter_by == 'loc-yes':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), set_location__isnull=False)
+        elif filter_by == 'loc-no':
+            sets = LegoCollection.objects.filter(
+                collection_id__in=col_id.all(), set_location__isnull=True)
         elif filter_by == 'miss-yes':
             sets = LegoCollection.objects.filter(
                 collection_id__in=col_id.all(), missing_pieces__isnull=False)
