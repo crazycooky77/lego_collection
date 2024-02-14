@@ -133,7 +133,7 @@ input[type="file"]::file-selector-button:active {
 
 /* Pagination styling for collections */
 .pagination {
-    margin: auto auto 25px auto;
+    margin: 10px auto 25px auto;
 }
 
 .step-links .visible-link {

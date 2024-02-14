@@ -63,6 +63,9 @@
                                     <div id="mini-edit-table-toggle"></div>
                                 {% endif %}
                             </div>
+                            <div>
+                                <em>Max file size 10MB</em>
+                            </div>
                             <div class="col-sets">
                                 <!-- Display set details if the collection has any -->
                                 {% if sets %}
@@ -71,8 +74,10 @@
                                         <span class="step-links">
                                             <span class="current">
                                                 Page {{ sets.number }} of {{ sets.paginator.num_pages }}
-                                                <br>
-                                                <em>Important: Save your changes before switching pages!</em>
+                                                {% if sets.has_previous or sets.has_next %}
+                                                    <br>
+                                                    <em>Important: Save your changes before switching pages!</em>
+                                                {% endif %}
                                             </span>
                                             {% if sets.has_previous %}
                                                 <br>
