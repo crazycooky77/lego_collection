@@ -131,9 +131,18 @@ input[type="file"]::file-selector-button:active {
     color: white;
 }
 
+/* Pagination styling for collections */
+.pagination {
+    margin: auto auto 25px auto;
+}
+
+.step-links .visible-link {
+    margin: auto 5px;
+}
+
 /* Table styling for collections */
 table {
-    margin: 0 20px 20px 20px;
+    margin: auto auto 20px auto;
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
@@ -444,6 +453,7 @@ footer p {
 
 .col-sets {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     max-width: 100%;

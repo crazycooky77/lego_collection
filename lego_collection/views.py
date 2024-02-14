@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.generic.edit import CreateView
@@ -197,7 +198,9 @@ def collections_view(request):
             collection = Collection.objects.filter(
                 collection_owner=request.user)
 
-            sets = sort_filter_collection(request)
+            sets = Paginator(sort_filter_collection(request), 50)
+            page_number = request.GET.get('page')
+            paginated_sets = sets.get_page(page_number)
 
             if request.method == 'POST':
                 if request.POST.get("delete-col-button"):
@@ -208,7 +211,7 @@ def collections_view(request):
             return render(request, 'collections.html',
                           {'owned': owned, 'wishlist': wishlist})
         return render(request, 'collections.html',
-                      {'collection': collection, 'sets': sets, 'owned': owned,
+                      {'collection': collection, 'sets': paginated_sets, 'owned': owned,
                        'wishlist': wishlist})
     else:
         return render(request, 'collections.html')
@@ -318,8 +321,10 @@ def edit_collection(request):
             col_id = Collection.objects.filter(
                 collection_owner=request.user).values_list('collection_id',
                                                            flat=True)
-            sets = LegoCollection.objects.filter(
-                collection_id__in=col_id.all())
+            sets = Paginator(LegoCollection.objects.filter(
+                collection_id__in=col_id.all()), 50)
+            page_number = request.GET.get('page')
+            paginated_sets = sets.get_page(page_number)
 
             if request.method == 'POST':
                 edit_col_form = EditCollection(request.POST, request.FILES,
@@ -328,7 +333,7 @@ def edit_collection(request):
                 update_col_form = [
                     UpdateCol(request.POST, prefix=str(lset.id),
                               instance=LegoCollection.objects.get(
-                                  pk=lset.id)) for lset in sets]
+                                  pk=lset.id)) for lset in paginated_sets]
                 if request.POST.get("update-col-button"):
                     if edit_col_form.is_valid():
                         edit_col_form.save()
@@ -348,11 +353,11 @@ def edit_collection(request):
                 update_col_form = [
                     UpdateCol(prefix=str(lset.id),
                               instance=LegoCollection.objects.get(
-                                  pk=lset.id)) for lset in sets]
+                                  pk=lset.id)) for lset in paginated_sets]
             return render(request, 'edit_collection.html',
-                          {'form_set': zip(update_col_form, sets),
+                          {'form_set': zip(update_col_form, paginated_sets),
                            'edit_col_form': edit_col_form,
-                           'collection': collection, 'sets': sets,
+                           'collection': collection, 'sets': paginated_sets,
                            'owned': owned, 'wishlist': wishlist})
     else:
         return render(request, 'collections.html')
