@@ -5,7 +5,7 @@ if (window.location.pathname === '/collections/' || window.location.pathname ===
             /* Create lists for cascading dropdowns */
             let filterObject = {
                 "# Pieces": ["<500", "<1000", ">500", ">1000", ">2500", ">5000"],
-                "Build Status": ["Build Next", "New", "Stored", "Wish List"],
+                "Build Status": ["Build Next", "Built", "Extra", "New", "Stored", "Wish List"],
                 "Missing Pieces": ["Yes", "No"],
                 "Favourite": ["Yes", "No"]
             };
@@ -165,13 +165,19 @@ function changeFilter(val) {
         if (val === '0') {
             window.location = '?filter=bnext';
         }
-        else if (val === '1') {
-            window.location = '?filter=new';
+       else if (val === '1') {
+            window.location = '?filter=built';
         }
         else if (val === '2') {
-            window.location = '?filter=stored';
+            window.location = '?filter=extra';
         }
         else if (val === '3') {
+            window.location = '?filter=new';
+        }
+        else if (val === '4') {
+            window.location = '?filter=stored';
+        }
+        else if (val === '5') {
             window.location = '?filter=wishlist';
         }
     }
