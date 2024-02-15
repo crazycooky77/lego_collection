@@ -384,7 +384,8 @@ def create_set(request):
                     create_set_form.save()
                     messages.success(
                         request,
-                        'You successfully created a set. You can now search for and save it to your collection.')
+                        'You successfully created a set. You can' +
+                        ' now search for and save it to your collection.')
                     return redirect('add_set')
         else:
             create_set_form = CreateSet()

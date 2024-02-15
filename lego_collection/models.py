@@ -89,7 +89,8 @@ class Collection(models.Model):
         ordering = ['collection_id']
 
     def __str__(self):
-        return f'{self.collection_id} | {self.collection_name} | {self.collection_owner}'
+        return (f'{self.collection_id} | '
+                f'{self.collection_name} | {self.collection_owner}')
 
 
 class LegoCollection(models.Model):

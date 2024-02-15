@@ -77,7 +77,9 @@ def validate_set_exists(value):
     """
     set = LegoSet.objects.filter(set_number=value)
     if set:
-        raise ValidationError('This set number already exists. Please "Cancel" and search for it using "Add Set".')
+        raise ValidationError(
+            'This set number already exists. ' +
+            'Please "Cancel" and search for it using "Add Set".')
 
 
 class CreateSet(forms.ModelForm):
