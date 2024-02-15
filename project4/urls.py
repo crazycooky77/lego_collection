@@ -35,5 +35,5 @@ urlpatterns = [
     path('profile/', profile_view, name='profile'),
     path('select2/', include('django_select2.urls')),
     path('shared/', shared_view, name='shared'),
-    path('sign-up/', CreateUser.as_view(), name='sign_up')
+    path('signup/', CreateUser.as_view(), name='sign_up')
 ]

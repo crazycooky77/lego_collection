@@ -217,7 +217,9 @@ def collections_view(request):
             return render(request, 'collections.html',
                           {'owned': owned, 'wishlist': wishlist})
         return render(request, 'collections.html',
-                      {'collection': collection, 'sets': paginated_sets, 'owned': owned,
+                      {'collection': collection,
+                       'sets': paginated_sets,
+                       'owned': owned,
                        'wishlist': wishlist})
     else:
         return render(request, 'collections.html')
@@ -228,6 +230,13 @@ def profile_view(request):
     View for the user's profile page
     """
     if request.user.is_authenticated:
+        col_id = Collection.objects.filter(
+            collection_owner=request.user).values_list('collection_id',
+                                                       flat=True)
+        owned = LegoCollection.objects.filter(
+            collection_id__in=col_id.all()).exclude(build_status='WL')
+        wishlist = LegoCollection.objects.filter(
+            collection_id__in=col_id.all(), build_status='WL')
         if request.method == 'POST':
             username_form = UpdateUsername(request.POST, instance=request.user)
             prv_form = UpdatePrivacy(request.POST, instance=request.user)
@@ -259,13 +268,6 @@ def profile_view(request):
                     logout(request)
                     messages.success(request, 'Account successfully deleted')
         else:
-            col_id = Collection.objects.filter(
-                collection_owner=request.user).values_list('collection_id',
-                                                           flat=True)
-            owned = LegoCollection.objects.filter(
-                collection_id__in=col_id.all()).exclude(build_status='WL')
-            wishlist = LegoCollection.objects.filter(
-                collection_id__in=col_id.all(), build_status='WL')
             username_form = UpdateUsername(instance=request.user)
             prv_form = UpdatePrivacy(instance=request.user)
             del_form = DeleteAccount()
@@ -320,6 +322,7 @@ def edit_collection(request):
     View for page to edit existing collections
     """
     if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
         if Collection.objects.filter(
                 collection_owner__exact=request.user).exists():
             collection = Collection.objects.filter(
@@ -353,7 +356,6 @@ def edit_collection(request):
                                      'Collection updated successfully.')
                     return redirect(to='collections')
             else:
-                owned, wishlist = profile_widget(request)
                 edit_col_form = EditCollection(
                     instance=Collection.objects.get(pk=col_id[0]))
                 update_col_form = [
@@ -398,6 +400,7 @@ def add_set(request):
     View to add a lego set to an existing collection
     """
     if request.user.is_authenticated:
+        owned, wishlist = profile_widget(request)
         if request.method == 'POST':
             add_set_form = AddSet(request.POST)
             if request.POST.get("add-set-button"):
@@ -412,7 +415,6 @@ def add_set(request):
                         request, 'Set successfully added to your collection.')
                     return redirect('collections')
         else:
-            owned, wishlist = profile_widget(request)
             add_set_form = AddSet()
         return render(request, 'add_set.html',
                       {'add_set_form': add_set_form, 'owned': owned,
