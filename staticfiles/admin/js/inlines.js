@@ -340,7 +340,7 @@
     };
 
     $(document).ready(function() {
-        $(".script-inline-admin-formset").each(function() {
+        $(".js-inline-admin-formset").each(function() {
             const data = $(this).data(),
                 inlineOptions = data.inlineFormset;
             let selector;

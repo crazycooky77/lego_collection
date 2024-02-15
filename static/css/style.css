@@ -229,8 +229,7 @@ footer p {
     justify-content: center;
     border: solid black 2px;
     border-radius: 0.2em;
-    margin-right: 15px;
-    margin-top: 20px;
+    margin: 20px 8px 0 8px;
     padding: 20px;
 }
 
@@ -461,7 +460,8 @@ footer p {
 
 .col-set-button, .edit-set-button {
     display: flex;
-    align-content: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
 .col-set-button .button, .edit-set-button .button {
@@ -625,6 +625,50 @@ footer p {
         margin-bottom: 19px;
     }
 
+    /* Table with sets */
+    .set-img {
+        max-height: 75px;
+        max-width: 75px;
+    }
+
+    /* Edit collection page styling */
+    #id_collection_pic {
+        width: 220px;
+    }
+
+    .col-edit-opt {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .col-edit-opt input {
+        margin: 7px 10px;
+        width: 150px;
+    }
+
+    .edit-set-button {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .edit-set-button .button {
+        margin: 7px auto 7px 10px;
+    }
+}
+
+
+/* For screens 900px wide and less */
+@media screen and (max-width: 900px) {
+    /* Hide Home button to save space */
+    .non-mobile {
+        display: none;
+    }
+
+    /* Navigation buttons */
+    nav button {
+        font-size: 21px;
+    }
+
     /* Hamburger menu for collection options */
     #hamburger {
         display: block;
@@ -673,50 +717,6 @@ footer p {
         display: none;
     }
 
-    /* Table with sets */
-    .set-img {
-        max-height: 75px;
-        max-width: 75px;
-    }
-
-    /* Edit collection page styling */
-    #id_collection_pic {
-        width: 220px;
-    }
-
-    .col-edit-opt {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .col-edit-opt input {
-        margin: 7px 10px;
-        width: 150px;
-    }
-
-    .edit-set-button {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .edit-set-button .button {
-        margin: 7px auto 7px 10px;
-    }
-}
-
-
-/* For screens 900px wide and less */
-@media screen and (max-width: 900px) {
-    /* Hide Home button to save space */
-    .non-mobile {
-        display: none;
-    }
-
-    /* Navigation buttons */
-    nav button {
-        font-size: 21px;
-    }
-
     /* Collection Content in column view */
     .flex-hor {
         display: flex;
@@ -742,7 +742,7 @@ footer p {
     }
 
     .select-col-box select {
-        width: 100%;
+        max-width: 100%;
     }
 
     /* Adjustments to vertically-align collection buttons and hamburger menu */
@@ -812,9 +812,16 @@ footer p {
 /* Media Queries */
 /* For screens 400px wide and less */
 @media screen and (max-width: 400px) {
-    /* Decrease global font size */
+    /* Decrease global font size and enable overflow */
     * {
         font-size: 18px;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+    /* Exclude set-filter from overflow */
+    .set-filter {
+        overflow: unset;
     }
 
     /* Navigation buttons */
