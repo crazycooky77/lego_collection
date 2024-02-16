@@ -71,7 +71,7 @@ AI-generated images were used throughout. [Stable Diffusion](https://github.com/
 ### Site Planning
 
 #### Lucidchart
-Lucidchart was used to plan out the database models.
+Lucidchart was used to plan out the database models. An additional "Build Status" was later added ("Extra").
 
 <img src='static/images/readme/lucid.webp' alt='Lucidchart image'>
 
@@ -86,7 +86,7 @@ Logged out:
 <img src='static/images/readme/home-logged-out.webp' alt='Homepage wireframe (logged out)'>
 
 #### Collections
-Main page with collection - slight adjustments to buttons were made for better styling:
+Main page with collection - slight adjustments to buttons were made for better styling and added pagination:
 <img src='static/images/readme/col.webp' alt='Collection wireframe'>
 
 Main page without collections:
@@ -141,11 +141,11 @@ _insert image_
 - [Heroku](https://heroku.com/) to deploy the app and have it available for use online
 - [Python](https://www.python.org/) for project functionality
   - [Cloudinary](https://cloudinary.com/documentation/django_integration) for image upload and management
-  - [Coverage](https://coverage.readthedocs.io/en/7.4.1/) ???
+  - [Coverage](https://coverage.readthedocs.io/en/7.4.1/) to check test coverage for the project
   - [dj-database-url](https://pypi.org/project/dj-database-url/) for easier database configuration
   - [django-allauth](https://docs.allauth.org/en/latest/) for user creation, authentication, and management
   - [Django-Select2](https://django-select2.readthedocs.io/en/latest/) to enable database searching within a dropdown
-  - [Gunicorn](https://gunicorn.org/) ???
+  - [Gunicorn](https://gunicorn.org/) to enable web services
   - [Pillow](https://pypi.org/project/pillow/) for image processing
   - [Whitenoise](https://whitenoise.readthedocs.io/en/latest/) for static files
 - [JavaScript](https://www.javascript.com/) for site functions
@@ -162,9 +162,58 @@ _insert image_
 ## Testing
 
 ### Manual Testing
-Responsiveness (screen pixel width), different browsers and devices_
+All manual testing in the below table was done using Microsoft Edge, Chrome, and Safari browsers, on MacOS, Windows 11, AndroidOS, and iOS.
+
+| Function                                              | Expectation | Pass     |
+|-------------------------------------------------------|:-----------:|:---------|
+| Homepage view (logged out)                            |             | &check;  |
+| Collections view (logged out)                         |             |          |
+| Profile view (logged out)                             |             |          |
+| Shared view (logged out)                              |             |          |
+| Create Account                                        |             |          |
+| Sign In from Create Account                           |             |          |
+| Reset password from Create Account                    |             |          |
+| Sign Up from Create Account                           |             |          |
+| Forgot Login/Password from Log In                     |             |          |
+| Log In                                                |             |          |
+| Homepage view (logged in)                             |             |          |
+| Shared view (logged in)                               |             |          |
+| Profile view (logged in)                              |             |          |
+| Change Username                                       |             |          |
+| Change Email                                          |             |          |
+| Update account Privacy                                |             |          |
+| Change Password                                       |             |          |
+| Manage Emails                                         |             |          |
+| Delete Account                                        |             |          |
+| Collections view (logged in, no collection)           |             |          |
+| Collections view (logged in, no sets)                 |             |          |
+| Collections view (logged in, with sets)               |             |          |
+| Create Collection (with custom picture)               |             |          |
+| Create Collection (without picture)                   |             |          |
+| Sorting                                               |             |          |
+| Filtering                                             |             |          |
+| Add Set (Collection view)                             |             |          |
+| Create New Set (Collection view, without picture)     |             |          |
+| Create New Set (Collection view, with custom picture) |             |          |
+| Edit Collection                                       |             |          |
+| Change Collection Picture                             |             |          |
+| Change Collection Name                                |             |          |
+| Add Set (from Edit)                                   |             |          |
+| Create New Set (from Edit)                            |             |          |
+| Update Build Status                                   |             |          |
+| Update Set Location                                   |             |          |
+| Update Missing Pieces                                 |             |          |
+| Favourite Set                                         |             |          |
+| Delete Set                                            |             |          |
+| Save Changes                                          |             |          |
+| Discard Changes                                       |             |          |
+| Delete Collection                                     |             |          |
+| Log Out                                               |             |          |
 
 ### Automated Testing
+X automated tests were created to ensure forms and views perform as intended. These tests provide X% coverage for the project and all tests pass.
+
+_Terminal images of coverage run manage.py test and coverage report -m_
 
 ### Validator Testing
 _http://eightshapes.com/_
@@ -187,7 +236,6 @@ All pages were checked with WAVE. There are some Alerts, however nothing unexpec
 
 #### Lighthouse
 Lighthouse was run on all pages for the site and issues identified were resolved, where possible.
-
 - Images were all converted from png to webp
 - Missing meta header details were added
 - JavaScript console errors resolved
@@ -411,7 +459,9 @@ To deploy the project using a Digital Ocean Droplet, these steps were followed:
 7. After making changes in GitHub, you will need to ```git pull``` in the Droplet console and ```systemctl restart gunicorn.service```
 
 ## Credits
-The base template was cloned from the [Code Institute GitHub repository](https://github.com/Code-Institute-Org/ci-full-template). Various other resources were used for different features. They are all listed below, categorised accordingly. Special thanks to [my husband](https://twitter.com/fbuechsel) who helped with troubleshooting and figuring out the Droplet setup, and [my mentor](https://github.com/CluelessBiker) for her various resources and constant reminders to document **everything**.
+The base template was cloned from the [Code Institute GitHub repository](https://github.com/Code-Institute-Org/ci-full-template). Various other resources were used for different features. They are all listed below, categorised accordingly.
+
+Special thanks to [my husband](https://twitter.com/fbuechsel) who helped with troubleshooting and figuring out the Droplet setup, and [my mentor](https://github.com/CluelessBiker) for her various resources and constant reminders to document **everything**. Also thank you to Tutor Support for helping with my complicated questions, even if the topic was out-of-scope.
 
 #### CustomUser Documentation
 - [Django authentication](https://docs.djangoproject.com/en/5.0/topics/auth/default/)
@@ -439,6 +489,7 @@ The base template was cloned from the [Code Institute GitHub repository](https:/
 - [Javascript redirect bugfix for sorting and filtering](https://stackoverflow.com/questions/8898998/window-location-replace-not-working-to-redirect-browser)
 - [Edit multiple objects at once (for sets in collections)](https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/)
 - [Cascading dropdowns for filter](https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp)
+- [Pagination](https://docs.djangoproject.com/en/5.0/topics/pagination/)
 
 #### Collection Mobile View
 - [HTML select option checkboxes](https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-option)
