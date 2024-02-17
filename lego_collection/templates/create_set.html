@@ -7,10 +7,9 @@
             {% csrf_token %}
             <!-- Form to create a new lego set -->
             {{ create_set_form.as_p }}
-            <em>Max file size 10MB</em>
+            <p class="small-note">Max file size 10MB</p>
             <div class="mid-buttons">
                 <!-- Buttons to save the set or cancel -->
-                <br>
                 <button type="submit" name="create-set-button" value="create-set-button">Save</button>
                 <a href="/collections" class="button">Cancel</a>
             </div>
