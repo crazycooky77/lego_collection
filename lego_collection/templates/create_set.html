@@ -3,17 +3,23 @@
 
 {% block content %}
     <div class="mid">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <!-- Form to create a new lego set -->
-            {{ create_set_form.as_p }}
-            <p class="small-note">Max file size 10MB</p>
-            <div class="mid-buttons">
-                <!-- Buttons to save the set or cancel -->
-                <button type="submit" name="create-set-button" value="create-set-button">Save</button>
-                <a href="/collections" class="button">Cancel</a>
-            </div>
-        </form>
+        <!-- Include the template to create a set if the user is logged in -->
+        {% if request.user.is_authenticated %}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- Form to create a new lego set -->
+                {{ create_set_form.as_p }}
+                <p class="small-note">Max file size 10MB</p>
+                <div class="mid-buttons">
+                    <!-- Buttons to save the set or cancel -->
+                    <button type="submit" name="create-set-button" value="create-set-button">Save</button>
+                    <a href="/collections" class="button">Cancel</a>
+                </div>
+            </form>
+        <!-- Advise the user to log in or create an account if they're not logged in -->
+        {% else %}
+            <p><a href="/login/" class="visible-link">Log in</a> or <a href="/signup/" class="visible-link">create an account</a> to save and view your Lego collections!</p>
+        {% endif %}
     </div>
     <div class="hide-profile">
         <!-- Include mini profile widget -->

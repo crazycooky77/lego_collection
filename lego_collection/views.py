@@ -393,7 +393,7 @@ def create_set(request):
                       {'create_set_form': create_set_form, 'owned': owned,
                        'wishlist': wishlist})
     else:
-        return render(request, 'add_set.html')
+        return render(request, 'create_set.html')
 
 
 def add_set(request):
