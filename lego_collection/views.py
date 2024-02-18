@@ -344,17 +344,17 @@ def edit_collection(request):
                               instance=LegoCollection.objects.get(
                                   pk=lset.id)) for lset in paginated_sets]
                 if request.POST.get("update-col-button"):
-                    if edit_col_form.is_valid():
-                        edit_col_form.save()
                     for form in update_col_form:
-                        if form.is_valid:
+                        if form.is_valid():
                             set_del_pk = request.POST.getlist("delete-set")
                             form.save()
                             LegoCollection.objects.filter(
                                 pk__in=set_del_pk).delete()
-                    messages.success(request,
-                                     'Collection updated successfully.')
-                    return redirect(to='collections')
+                    if edit_col_form.is_valid():
+                        edit_col_form.save()
+                        messages.success(request,
+                                         'Collection updated successfully.')
+                        return redirect(to='collections')
             else:
                 edit_col_form = EditCollection(
                     instance=Collection.objects.get(pk=col_id[0]))
