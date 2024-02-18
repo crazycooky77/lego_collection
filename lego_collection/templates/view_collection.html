@@ -130,15 +130,42 @@
                                     <span class="current">
                                         Page {{ sets.number }} of {{ sets.paginator.num_pages }}
                                     </span>
-                                    {% if sets.has_previous %}
-                                        <br>
-                                        <a href="?page=1" class="visible-link">&laquo; first</a>
-                                        <a href="?page={{ sets.previous_page_number }}" class="visible-link">&lt; previous</a>
-                                    {% endif %}
-                                    {% if sets.has_next %}
-                                        <br>
-                                        <a href="?page={{ sets.next_page_number }}" class="visible-link">next &gt;</a>
-                                        <a href="?page={{ sets.paginator.num_pages }}" class="visible-link">last &raquo;</a>
+                                    <!-- Link format for sorted or filtered sets -->
+                                    {% if 'page' not in request.get_full_path and '?' in request.get_full_path %}
+                                        {% if sets.has_previous %}
+                                            <br>
+                                            <a href="{{ request.get_full_path }}&page=1" class="visible-link">&laquo; first</a>
+                                            <a href="{{ request.get_full_path }}&page={{ sets.previous_page_number }}" class="visible-link">&lt; previous</a>
+                                        {% endif %}
+                                        {% if sets.has_next %}
+                                            <br>
+                                            <a href="{{ request.get_full_path }}&page={{ sets.next_page_number }}" class="visible-link">next &gt;</a>
+                                            <a href="{{ request.get_full_path }}&page={{ sets.paginator.num_pages }}" class="visible-link">last &raquo;</a>
+                                        {% endif %}
+                                    <!-- Link format for sorted or filtered sets, in combination with pagination -->
+                                    {% elif '&page' in request.get_full_path and '?' in request.get_full_path %}
+                                        {% if sets.has_previous %}
+                                            <br>
+                                            <a href="{{ request.get_full_path|cut:'&page='|slice:-1 }}&page=1" class="visible-link">&laquo; first</a>
+                                            <a href="{{ request.get_full_path|cut:'&page='|slice:-1 }}&page={{ sets.previous_page_number }}" class="visible-link">&lt; previous</a>
+                                        {% endif %}
+                                        {% if sets.has_next %}
+                                            <br>
+                                            <a href="{{ request.get_full_path|cut:'&page='|slice:-1 }}&page={{ sets.next_page_number }}" class="visible-link">next &gt;</a>
+                                            <a href="{{ request.get_full_path|cut:'&page='|slice:-1 }}&page={{ sets.paginator.num_pages }}" class="visible-link">last &raquo;</a>
+                                        {% endif %}
+                                    <!-- Link format pagination without filter/sorting -->
+                                    {% else %}
+                                        {% if sets.has_previous %}
+                                            <br>
+                                            <a href="?page=1" class="visible-link">&laquo; first</a>
+                                            <a href="?page={{ sets.previous_page_number }}" class="visible-link">&lt; previous</a>
+                                        {% endif %}
+                                        {% if sets.has_next %}
+                                            <br>
+                                            <a href="?page={{ sets.next_page_number }}" class="visible-link">next &gt;</a>
+                                            <a href="?page={{ sets.paginator.num_pages }}" class="visible-link">last &raquo;</a>
+                                        {% endif %}
                                     {% endif %}
                                 </span>
                             </div>
