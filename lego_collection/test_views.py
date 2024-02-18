@@ -1470,6 +1470,7 @@ class TestEditCollection(TestCase):
             collection_name='Test Collection',
             collection_owner=CustomUser.objects.get(username='test_user'))
         LegoCollection.objects.create(
+            pk=1,
             collection=Collection.objects.get(
                 collection_owner=CustomUser.objects.get(
                     username='test_user')),
@@ -1504,32 +1505,48 @@ class TestEditCollection(TestCase):
         Test valid edit collection
         """
         self.client.login(username='test_user', password='t€$T951')
-        # response = self.client.get(reverse('edit_collection'))
         response = self.client.post(reverse('edit_collection'),
                                     {'collection_name': 'test_collection',
-                                     'id': 1,
-                                     'build_status': 'EX',
-                                     'set_location': 'loc test',
-                                     'missing_pieces': 'pieces test',
-                                     'favourited': 1,
+                                     '1-build_status': 'EX',
+                                     '1-set_location': 'loc test',
+                                     '1-missing_pieces': 'pieces test',
+                                     '1-favourited': 1,
                                      'update-col-button': True},
                                     follow=True)
-        print(response.content)
-        # self.assertIn(b'Collection updated successfully.',
-        #               response.content,
-        #               msg='Failed: Valid collection edit (all)')
+        self.assertIn(b'Collection updated successfully.',
+                      response.content)
+        self.assertIn(b'<td class="set-status-col">Extra</td>',
+                      response.content,
+                      msg='Failed: Valid collection edit')
 
-    # def test_edit_col_details_invalid(self):
-    #     """
-    #     Test invalid edit collection
-    #     """
-    #     self.client.login(username='test_user', password='t€$T951')
-    #     create_col_form = CreateCollection(
-    #         {'collection_name': ''})
-    #     self.assertFalse(create_col_form.is_valid(),
-    #                     msg='Failed: Invalid create collection form')
+    def test_edit_col_details_invalid(self):
+        """
+        Test invalid edit collection
+        """
+        self.client.login(username='test_user', password='t€$T951')
+        response = self.client.post(reverse('edit_collection'),
+                                    {'collection_name': 'test_collection',
+                                     '1-build_status': '',
+                                     'update-col-button': True},
+                                    follow=True)
+        self.assertIn(b'<td class="set-status-col">New (Owned)</td>',
+                      response.content,
+                      msg='Failed: Invalid create collection form')
 
-    # Delete set test
+    def test_edit_col_delete_set(self):
+        """
+        Test set deletion in edit collection
+        """
+        self.client.login(username='test_user', password='t€$T951')
+        response = self.client.post(reverse('edit_collection'),
+                                    {'collection_name': 'test_collection',
+                                     '1-build_status': 'EX',
+                                     'delete-set': 1,
+                                     'update-col-button': True},
+                                    follow=True)
+        self.assertIn(b'No sets in (filtered) collection.',
+                      response.content,
+                      msg='Failed: Valid collection set deletion')
 
 
 class TestCreateSet(TestCase):
