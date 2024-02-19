@@ -59,7 +59,7 @@ nav button:active {
 }
 
 button {
-    margin: 0 20px;
+    margin: 7px 20px;
 }
 
 main .button, main button {
@@ -210,7 +210,7 @@ footer p {
     margin-top: 15px;
 }
 
-#email_radio_0 {
+.profile p input {
     width: auto;
 }
 
