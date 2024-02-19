@@ -77,18 +77,25 @@
             {% endslot %}
             <!-- Button to re-send verification emails if there are unverified email addresses -->
             {% slot actions %}
-                {% for radio in emailaddress_radios %}
-                    {% with emailaddress=radio.emailaddress %}
-                        {% if not emailaddress.verified %}
-                            <div class="email-buttons">
-                                {% element button tags="secondary" type="submit" name="action_send" %}
-                                    {% trans 'Re-send Verification' %}
-                                {% endelement %}
-                            </div>
-                            {{ break}}
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
+                {% if emailaddresses|length > 1 %}
+                    <div class="email-buttons">
+                        {% element button tags="secondary" type="submit" name="action_send" %}
+                            {% trans 'Re-send Verification' %}
+                        {% endelement %}
+                    </div>
+                {% else %}
+                    {% for radio in emailaddress_radios %}
+                        {% with emailaddress=radio.emailaddress %}
+                            {% if not emailaddress.verified %}
+                                <div class="email-buttons">
+                                    {% element button tags="secondary" type="submit" name="action_send" %}
+                                        {% trans 'Re-send Verification' %}
+                                    {% endelement %}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                {% endif %}
                 <!-- Button to remove an (unverified) email address if there are more than 1 -->
                 {% if emailaddresses|length > 1 %}
                     <div class="email-buttons">
