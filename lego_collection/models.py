@@ -24,6 +24,9 @@ class UserManager(BaseUserManager):
 
         return self.create_user(**extra_fields)
 
+    def get_by_natural_key(self, username):
+        return self.get(username__iexact=username)
+
 
 class CustomUser(AbstractUser):
     """
