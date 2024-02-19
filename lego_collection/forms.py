@@ -21,7 +21,7 @@ class UpdateUsername(forms.ModelForm):
     def clean_username(self):
         username = self.cleaned_data["username"]
         try:
-            CustomUser.objects.get(username=username)
+            CustomUser.objects.get(username__iexact=username)
         except CustomUser.DoesNotExist:
             return username
         raise forms.ValidationError(
