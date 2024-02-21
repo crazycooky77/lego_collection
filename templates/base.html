@@ -9,46 +9,46 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Metadata for the site -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="A site for Lego collectors to save, view, and manage the sets in their collection or wish list">
-    <!-- Link to the stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Site title -->
-    <title>Lego Collection</title>
-    <!-- Load favicon -->
-    <link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
-</head>
-<body>
-    <!-- Site header -->
-    <a href="/"><h1>Welcome to Your Online Lego Collection</h1></a>
-    <nav>
-    <!-- Nav bar with gradient -->
-        <div id="grad">
-            <!-- Nav buttons -->
-            <div class="nav-buttons">
-                <button onclick="location.href='/'" class="non-mobile">Home</button>
-                <button onclick="location.href='/collections'">Collections</button>
-                <button onclick="location.href='/profile'">Profile</button>
-                <button onclick="location.href='/shared'">Shared</button>
+    <head>
+        <!-- Metadata for the site -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="A site for Lego collectors to save, view, and manage the sets in their collection or wish list">
+        <!-- Link to the stylesheet -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- Site title -->
+        <title>Lego Collection</title>
+        <!-- Load favicon -->
+        <link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+    </head>
+    <body>
+        <!-- Site header -->
+        <a href="/"><h1>Welcome to Your Online Lego Collection</h1></a>
+        <nav>
+        <!-- Nav bar with gradient -->
+            <div id="grad">
+                <!-- Nav buttons -->
+                <div class="nav-buttons">
+                    <button onclick="location.href='/'" class="non-mobile">Home</button>
+                    <button onclick="location.href='/collections'">Collections</button>
+                    <button onclick="location.href='/profile'">Profile</button>
+                    <button onclick="location.href='/shared'">Shared</button>
+                </div>
             </div>
-        </div>
-    </nav>
-    <main>
-        <div class="container">
-            {% block content %}
-            <!-- Main site content -->
-            {% endblock content %}
-        </div>
-    </main>
-</body>
-<footer>
-        <!-- Footer for copyright -->
-        {% block copyright %}
-            Made by CrazyCooky
-        {% endblock copyright %}
-</footer>
+        </nav>
+        <main>
+            <div class="container">
+                {% block content %}
+                <!-- Main site content -->
+                {% endblock content %}
+            </div>
+        </main>
+        <footer>
+                <!-- Footer for copyright -->
+                {% block copyright %}
+                    Made by CrazyCooky
+                {% endblock copyright %}
+        </footer>
+    </body>
 </html>

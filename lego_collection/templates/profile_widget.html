@@ -63,9 +63,9 @@
         </form>
         <!-- Signup and password reset buttons -->
         <div class="widget-buttons">
-            <button><a href="{% url 'account_signup' %}">Create Account</a></button>
+            <button onclick="location={% url 'account_signup' %}">Create Account</button>
             <br>
-            <button><a href="{% url 'account_reset_password' %}">Forgot Login/Password</a></button>
+            <button onclick="location={% url 'account_reset_password' %}">Forgot Login/Password</button>
         </div>
     {% endif %}
 </div>
