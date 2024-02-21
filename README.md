@@ -55,8 +55,6 @@ _*Once Sharing features are enabled_
 ### User Stories
 All implemented, detailed EPICs and related user stories are available in [project Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+is%3Aclosed+-label%3Abug+-label%3Adocumentation+-label%3Awont-have+-label%3Awontfix+-label%3Aenhancement).
 
-_insert image_
-
 ### Design
 
 #### Colour Palette
@@ -119,17 +117,11 @@ Logged out (public collection link):
 ## Features
 All features have been planned and outlined in the [Kanban board](https://github.com/users/crazycooky77/projects/1) for the project using Issues. The implemented features are available [here](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+is%3Aclosed+-label%3Abug+-label%3Awont-have+-label%3Awontfix+-label%3Adocumentation).
 
-_image_
-
 ### To Be Implemented
-Features not yet implemented are available in the [project's Kanban board](https://github.com/users/crazycooky77/projects/1) in the To Do and In Progress columns.
-
-_insert image_
+Features not yet implemented are available in the [project's Kanban board](https://github.com/users/crazycooky77/projects/1) in the To Do and In Progress columns, as well as [these EPICs](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aopen+is%3Aissue+label%3AEPIC).
 
 ### Closed Enhancements
 Closed enhancements can be found [here](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+label%3Aenhancement+is%3Aclosed). If an enhancement is labelled as "wont-have", it was not and will not be implemented.
-
-_insert image_
 
 ## Technologies
 - [Lucidchart](https://www.lucidchart.com/pages) to create the entity relationship diagram
@@ -224,20 +216,34 @@ All manual testing in the below table was done using Microsoft Edge, Chrome, and
 <img src='static/images/readme/coverage-report.webp' alt='Coverage report'>
 
 ### Validator Testing
-_http://eightshapes.com/_
 
 #### HTML
-_https://validator.w3.org/#validate_by_input_
+All pages were put through the [W3 HTML Validator](https://validator.w3.org/#validate_by_input) and all issues identified were resolved, where possible. There are a few below that could not be resolved.
+
+The **Add Set** page has an error, however this is from django-select2:
+
+`Error: A select element with a required attribute, and without a multiple attribute, and without a size attribute whose value is greater than 1, must have a child option element.`
+
+**Edit Collection** has an error for duplicate element IDs ("delete-set"). This is because there is a for loop with a label and an input checkbox, that repeats the label and input for each Lego set in the collection. The view then gathers all checked elements with this ID to delete them all from the database.
+
+The **Profile** page has an error for:
+1. an empty label, which is caused by the Django allauth email change form.
+2. an unclosed div element, as it starts within an {% element %} and {% slot body %}, and ends outside of the {% endelement %} and {% endslot %} tags.
+3. an end form tag with open elements, for the same reason as point 2.
 
 #### CSS
-_https://jigsaw.w3.org/css-validator/#validate_by_input_
+CSS code was put through [W3C](https://jigsaw.w3.org/css-validator/#validate_by_input) and no errors are found.
 
 #### JSHint
-_https://jshint.com/_
+[JSHint](https://jshint.com/) was used to validate the JavaScript used. There are no legitimate errors found.
+
+- The validator twice shows the error "The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype."
+  - The lines in question are, however, wrapped in if statements
+- "$" is mentioned as an undefined variable several times, however these are from JQuery.
+- 3 unused variables mentioned are used in templates
 
 #### PEP8
-<img src='static/images/pep8.webp' alt='PEP8 result'>
-_https://pep8ci.herokuapp.com/_
+Some spacing issues (lines too long) were identified by [PEP8](https://pep8ci.herokuapp.com/), but these were all resolved except for settings.py, where one of the Django password validator names is too long.
 
 #### WAVE
 All pages were checked with WAVE. There are some Alerts, however nothing unexpected. Some Errors are logged on the Edit Collection, Profile, Change Password, and Manage Emails pages. These errors are due to missing labels for form fields from Django forms.
@@ -311,13 +317,9 @@ Shared page
 
 
 ### Bugs
-Known bugs are all listed in the [project's Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aopen+is%3Aissue+label%3Abug) with the label "bug". The current list can also be viewed below.
+Known bugs are all listed in these [project's Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aopen+is%3Aissue+label%3Abug) with the label "bug".
 
-_Insert image_
-
-Fixed bugs can also be found in the [project's Issues](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+label%3Abug+is%3Aclosed).
-
-_Insert image_
+Fixed bugs can also be found in the [project's Issues here](https://github.com/crazycooky77/ci_project4/issues?q=is%3Aissue+label%3Abug+is%3Aclosed).
 
 ## Deployment
 The site was deployed on both Heroku and using a [Digital Ocean](https://www.digitalocean.com/) Droplet. This was to keep the site live after the project submission, and due to networking issues caused by Heroku (see [this bug](https://github.com/crazycooky77/ci_project4/issues/44) for additional details).
