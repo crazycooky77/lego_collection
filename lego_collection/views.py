@@ -211,7 +211,8 @@ def collections_view(request):
             if request.method == 'POST':
                 if request.POST.get("delete-col-button"):
                     collection.delete()
-                    messages.success(request, 'Collection successfully deleted')
+                    messages.success(request,
+                                     'Collection successfully deleted')
         else:
             owned, wishlist = profile_widget(request)
             return render(request, 'collections.html',

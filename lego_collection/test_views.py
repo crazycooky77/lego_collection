@@ -953,9 +953,10 @@ class TestProfileWidget(TestCase):
             b'Sets owned: 0',
             response.content,
             msg='Failed: Valid collections widget no collection (sets)')
-        self.assertIn(b'Wish list: 0',
-                      response.content,
-                      msg='Failed: Valid collections widget no collection (wl)')
+        self.assertIn(
+            b'Wish list: 0',
+            response.content,
+            msg='Failed: Valid collections widget no collection (wl)')
 
     def test_profile_no_col(self):
         """
@@ -1060,12 +1061,14 @@ class TestProfileWidget(TestCase):
         self.client.login(username='test_set', password='t€$T951')
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Sets owned: 1',
-                      response.content,
-                      msg='Failed: Valid homepage widget with owned set (sets)')
-        self.assertIn(b'Wish list: 0',
-                      response.content,
-                      msg='Failed: Valid homepage widget with owned set (wl)')
+        self.assertIn(
+            b'Sets owned: 1',
+            response.content,
+            msg='Failed: Valid homepage widget with owned set (sets)')
+        self.assertIn(
+            b'Wish list: 0',
+            response.content,
+            msg='Failed: Valid homepage widget with owned set (wl)')
 
     def test_col_widget_set(self):
         """
@@ -1179,9 +1182,10 @@ class TestProfileWidget(TestCase):
             b'Sets owned: 0',
             response.content,
             msg='Failed: Valid shared widget with wish list set (sets)')
-        self.assertIn(b'Wish list: 1',
-                      response.content,
-                      msg='Failed: Valid shared widget with wish list set (wl)')
+        self.assertIn(
+            b'Wish list: 1',
+            response.content,
+            msg='Failed: Valid shared widget with wish list set (wl)')
 
     def test_home_widget_sets_wl(self):
         """
@@ -1334,8 +1338,9 @@ class TestProfile(TestCase):
         Test account deletion
         """
         self.client.login(username='test_user', password='t€$T951')
-        response = self.client.post(reverse('profile'), {'delete': 1,
-                                                         'delete-button': True})
+        response = self.client.post(reverse('profile'), {
+            'delete': 1,
+            'delete-button': True})
         self.assertIn(b'Account successfully deleted',
                       response.content,
                       msg='Failed: Valid account deletion')
