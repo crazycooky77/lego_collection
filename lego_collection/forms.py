@@ -91,6 +91,7 @@ class CreateSet(forms.ModelForm):
     set_picture = CloudinaryFileField(
         options={'crop': 'fit', 'max-width': 100, 'max-height': 100},
         required=False)
+    lego_link = forms.URLField(initial='https://')
 
     class Meta:
         model = LegoSet
