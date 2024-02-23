@@ -1,8 +1,8 @@
-// Functions to filter and sort collections in collection view
+/* Functions to filter and sort collections in collection view */
 if (window.location.pathname === '/collections/' || window.location.pathname === '/edit-collection/') {
     window.onload = function () {
         if (window.location.pathname === '/collections/') {
-            /* Create lists for cascading dropdowns */
+            // Create lists for cascading dropdowns
             let filterObject = {
                 "# Pieces": ["<500", "<1000", ">500", ">1000", ">2500", ">5000"],
                 "Build Status": ["Build Next", "Built", "Extra", "New", "Stored", "Wish List"],
@@ -10,25 +10,25 @@ if (window.location.pathname === '/collections/' || window.location.pathname ===
                 "Missing Pieces": ["Yes", "No"],
                 "Favourite": ["Yes", "No"]
             };
-            /* Locate cascading filter elements */
+            // Locate cascading filter elements
             let filterSel = document.getElementById("set-filter");
             let subFilter = document.getElementById("sub-filter");
-            /* Set the options for the initial filter dropdown */
+            // Set the options for the initial filter dropdown
             if (document.getElementsByClassName('col-no-sets').length === 0) {
                 for (let filter in filterObject) {
                     filterSel.options[filterSel.options.length] = new Option(filter, filter);
                 }
-                /* When the initial dropdown selection is done ... */
+                // When the initial dropdown selection is done ...
                 filterSel.onchange = function () {
                     subFilter.length = 1;
-                    /* Set the options for the relevant cascading dropdown */
+                    // Set the options for the relevant cascading dropdown
                     for (let subfilter in filterObject[this.value]) {
                         subFilter.options[subFilter.options.length] = new Option(filterObject[this.value][subfilter], subfilter);
                     }
                 };
             }
         }
-        /* Onclick function for hamburger menu on screens smaller than 1300px */
+        // Onclick function for hamburger menu on screens smaller than 1300px
         if (window.innerWidth <= 1300) {
             // Variables for function to toggle the table column selection checkboxes onclick
             let divCheckboxes = document.querySelector('#multiselect');
@@ -213,7 +213,7 @@ function changeFilter(val) {
 if ((window.innerWidth <= 900) && (window.location.pathname === '/collections/' || window.location.pathname === '/edit-collection/')) {
     if (document.getElementsByClassName('col-no-sets').length === 0) {
 
-        /* Insert form for user to select table columns in collections view */
+        // Insert form for user to select table columns in collections view
         if (window.location.pathname === '/collections/') {
             document.getElementById('mini-table-toggle').innerHTML = `<form class="col-toggle">
                                                                                 <div id="multiselect">
@@ -240,7 +240,7 @@ if ((window.innerWidth <= 900) && (window.location.pathname === '/collections/' 
                                                                                     </div>
                                                                                 </div>
                                                                             </form>`;
-            /* Insert form for user to select table columns in collections view */
+            // Insert form for user to select table columns in collections view
         } else if (window.location.pathname === '/edit-collection/') {
             document.getElementById('mini-edit-table-toggle').innerHTML = `<form class="col-toggle">
                                                                                     <div id="multiselect">
@@ -264,7 +264,7 @@ if ((window.innerWidth <= 900) && (window.location.pathname === '/collections/' 
                                                                                     </div>
                                                                                 </form>`;
         }
-        /* Function to show/hide columns in mobile view based on checkboxes */
+        // Function to show/hide columns in mobile view based on checkboxes
         $(document).ready(function () {
             function toggleColumn(el) {
                 // Get variables

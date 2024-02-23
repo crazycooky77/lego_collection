@@ -146,7 +146,7 @@ class AddSet(forms.ModelForm):
         model = LegoCollection
         fields = ['set', 'build_status', 'set_location', 'favourited',
                   'missing_pieces']
-        widgets = {'set': SetWidget()}
+        widgets = {'set': SetWidget(attrs={'size': '6'})}
 
 
 class UpdateCol(forms.ModelForm):

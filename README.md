@@ -218,13 +218,9 @@ All manual testing in the below table was done using Microsoft Edge, Chrome, and
 ### Validator Testing
 
 #### HTML
-All pages were put through the [W3 HTML Validator](https://validator.w3.org/#validate_by_input) and all issues identified were resolved, where possible. There is 1 issue below that could not be resolved.
+All pages were put through the [W3 HTML Validator](https://validator.w3.org/#validate_by_input) and all issues identified were resolved.
 
 <img src='static/images/readme/validator-w3.webp' alt='W3 Validator Results'>
-
-The **Add Set** page has an error, however this is from django-select2:
-
-`Error: A select element with a required attribute, and without a multiple attribute, and without a size attribute whose value is greater than 1, must have a child option element.`
 
 #### CSS
 CSS code was put through [W3C](https://jigsaw.w3.org/css-validator/#validate_by_input) and no errors are found.
