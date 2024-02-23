@@ -52,7 +52,7 @@
                             <div class="set-sort-filter">
                                 <div class="set-sort">
                                     <!-- Dropdown for sorting sets -->
-                                    <label for="set-sort" hidden="hidden">Sort Sets</label>
+                                    <label for="set-sort" aria-label="Sort Sets"></label>
                                     <select id="set-sort" name="set-sort" onChange=changeSort(this.value)>
                                         <option value="instruction" selected="selected" disabled>Sort Sets</option>
                                         <option value="nr">Set Number</option>
@@ -72,13 +72,13 @@
                                 </div>
                                 <div class="set-filter">
                                     <!-- Dropdown to filter the set data -->
-                                    <label for="set-filter" hidden="hidden">Set Filter</label>
+                                    <label for="set-filter" aria-label="Set Filter"></label>
                                     <select id="set-filter" name="set-filter">
                                         <option selected="selected" disabled>Filter Sets</option>
                                     </select>
                                     <br>
                                     <!-- Dropdown for the subfilter to filter set data -->
-                                    <label for="sub-filter" hidden="hidden">Set Subfilter</label>
+                                    <label for="sub-filter" aria-label="Set Subfilter"></label>
                                     <select id="sub-filter" name="sub-filter" onChange=changeFilter(this.value)>
                                         <option selected="selected">Set Filter Details</option>
                                     </select>
