@@ -1,7 +1,7 @@
 from cloudinary.forms import CloudinaryFileField
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import ImageField, FileInput
+from django.forms import ImageField, FileInput, TextInput, CheckboxInput
 from django_select2 import forms as s2forms
 from .models import CustomUser, Collection, LegoCollection, LegoSet
 
@@ -85,7 +85,10 @@ class EditCollection(forms.ModelForm):
     Form for editing basic collection details
     """
     required_css_class = 'required'
-    collection_pic = ImageField(widget=FileInput, required=False)
+    collection_name = forms.CharField(widget=TextInput(attrs={
+        'aria-label': 'Collection Name'}))
+    collection_pic = ImageField(widget=FileInput(attrs={
+        'aria-label': 'Collection Picture'}), required=False)
 
     class Meta:
         model = Collection
@@ -150,6 +153,13 @@ class UpdateCol(forms.ModelForm):
     """
     Form for updating sets in collections
     """
+    set_location = forms.CharField(widget=TextInput(attrs={
+        'aria-label': 'Set Location'}))
+    missing_pieces = forms.CharField(widget=TextInput(attrs={
+        'aria-label': 'Missing Pieces'}))
+    favourited = forms.BooleanField(widget=CheckboxInput(attrs={
+        'aria-label': 'Favourited'}))
+
     class Meta:
         model = LegoCollection
         fields = ['build_status', 'set_location', 'missing_pieces',

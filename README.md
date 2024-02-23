@@ -220,11 +220,11 @@ All manual testing in the below table was done using Microsoft Edge, Chrome, and
 #### HTML
 All pages were put through the [W3 HTML Validator](https://validator.w3.org/#validate_by_input) and all issues identified were resolved, where possible. There is 1 issue below that could not be resolved.
 
+<img src='static/images/readme/validator-w3.webp' alt='W3 Validator Results'>
+
 The **Add Set** page has an error, however this is from django-select2:
 
 `Error: A select element with a required attribute, and without a multiple attribute, and without a size attribute whose value is greater than 1, must have a child option element.`
-
-<img src='static/images/readme/validator-w3.webp' alt='W3 Validator Results'>
 
 #### CSS
 CSS code was put through [W3C](https://jigsaw.w3.org/css-validator/#validate_by_input) and no errors are found.
@@ -247,7 +247,7 @@ Some spacing issues (lines too long) were identified by [PEP8](https://pep8ci.he
 <img src='static/images/readme/validator-pep8.webp' alt='PEP8 Validator Results'>
 
 #### WAVE
-All pages were checked with WAVE. There are some Alerts, however nothing unexpected. Errors are logged on the Edit Collection, Profile, Change Password, and Manage Emails pages. These errors are due to missing labels for form fields from Django forms within the table on the site. There are column titles and input placeholders that clearly indicate the purpose of the fields, however. For better styling, it was decided to keep these page as-is.
+All pages were checked with WAVE. There are some Alerts, however nothing unexpected. All errors were resolved.
 
 <img src='static/images/readme/validator-wave.webp' alt='Wave Validator Results'>
 
