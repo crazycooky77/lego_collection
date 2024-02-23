@@ -256,31 +256,14 @@ Lighthouse was run on all pages for the site and issues identified were resolved
 - Images were all converted from png to webp
 - Missing meta header details were added
 - JavaScript console errors resolved
+- Aria-labels added for those fields without labels
 
 Cumulative Layout Shifts caused a lower score in Performance for the pages listed below. This was deemed acceptable, to enable better responsiveness and dynamic resizing.
-- Create Collection
 - Create Set
 - Profile page
 - Change password
 - Change email
-
-Accessibility issues were noted on some pages, due to automatically rendered Django forms:
-- Add Set
-  - ARIA input fields without accessible names (from Django Select2)
-- Collections page with sets
-  - Missing labels noted, but labels are present (though hidden). Text is still provided for these fields
-- Edit Collection
-  - Form/select/input fields are missing labels, from Django forms
-- Profile
-  - Form/select/input fields are missing labels, from Django forms
-
-Best Practice and SEO issues:
-- Collections page with sets
-  - User-entered images are provided with low resolution and incorrect aspect ratios (this is a conscious choice to keep the table layout styled accordingly)
-  - Hamburger links are not crawlable, however they are formatted as normal links
-- Edit Collection
-  - User-entered images are provided with low resolution and incorrect aspect ratios (this is a conscious choice to keep the table layout styled accordingly)
-
+- Create account
 
 Homepage
 <img src='static/images/readme/lh-home.webp' alt='Lighthouse scores for Hhomepage'>
@@ -317,6 +300,18 @@ Change email
 
 Shared page
 <img src='static/images/readme/lh-shared.webp' alt='Lighthouse scores for Shared page'>
+
+Create account
+<img src='static/images/readme/lh-create-acc.webp' alt='Lighthouse scores for Create Account page'>
+
+Forgot Login/Password
+<img src='static/images/readme/lh-pw-reset.webp' alt='Lighthouse scores for Forgot Login/Password page'>
+
+Login page
+<img src='static/images/readme/lh-login.webp' alt='Lighthouse scores for Login page'>
+
+Logged Out Views
+<img src='static/images/readme/lh-logged-out.webp' alt='Lighthouse scores for logged out pages'>
 
 
 ### Bugs
