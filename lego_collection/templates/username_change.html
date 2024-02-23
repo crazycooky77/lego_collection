@@ -2,7 +2,7 @@
     {% csrf_token %}
     <div class="profile-username-form">
         <!-- Username change for profile page -->
-        <label>Username:&nbsp;</label>
+        <label for="id_username">Username:&nbsp;</label>
         <div class="profile-input">
             {{ user_form.username }}
             <button type="submit" name="username-button" value="username-button">Save</button>

@@ -2,7 +2,7 @@
     {% csrf_token %}
     <div class="profile-form">
         <!-- Template to change the email address in the user profile -->
-        <label>Change Email:&nbsp;</label>
+        <label for="id_email">Change Email:&nbsp;</label>
         <div class="profile-input">
             {{ email_form.email }}
             <button type="submit" name="profile-email-button" value="profile-email-button">Save</button>

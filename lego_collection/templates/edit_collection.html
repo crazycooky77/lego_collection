@@ -49,7 +49,9 @@
                                         <img class="col-img" src="{{ col.collection_pic.url }}" alt="collection image">
                                     {% endif %}
                                     <div class="col-edit-opt">
+                                        <label for="id_collection_name" class="edit-col-label">Name:</label>
                                         {{ edit_col_form.collection_name }}
+                                        <label for="id_collection_pic" class="edit-col-label">Image:</label>
                                         {{ edit_col_form.collection_pic }}
                                     </div>
                                 </div>
