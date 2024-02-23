@@ -120,7 +120,7 @@
                                                 <td class="edit-set-loc-col">{{ form.set_location }}</td>
                                                 <td class="edit-set-miss-col">{{ form.missing_pieces }}</td>
                                                 <td class="edit-set-fav-col">{{ form.favourited }}</td>
-                                                <td class="edit-set-del-col"><label for="delete-set"><input type="checkbox" name="delete-set" value="{{ set.id }}" id="delete-set"></label></td>
+                                                <td class="edit-set-del-col"><label for="delete-{{ set.id }}"><input type="checkbox" name="delete-set" value="{{ set.id }}" id="delete-{{ set.id }}"></label></td>
                                             </tr>
                                         {% endfor %}
                                     </table>

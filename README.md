@@ -494,6 +494,7 @@ Special thanks to [my husband](https://twitter.com/fbuechsel) who helped with tr
 - [Allauth account templates (to assist in template customisation)](https://github.com/pennersr/django-allauth/tree/main/allauth/templates/account)
 - [Updating user profiles](https://dev.to/earthcomfy/django-update-user-profile-33ho)
 - [User-led account deletion](https://stackoverflow.com/questions/38047408/how-to-allow-user-to-delete-account-in-django-allauth)
+- [Fixing stray django-added tags](https://stackoverflow.com/questions/63455725/remove-unwanted-th-td-and-tr-tags-from-django-generated-form)
 
 #### Collection Sort, Filter, Edit
 - [Assign values to objects for inserting into database (collection owner from collection model for lego_collection model)](https://forum.djangoproject.com/t/automatically-get-user-id-to-assignate-to-form-when-submitting/5333/7)

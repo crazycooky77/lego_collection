@@ -28,6 +28,28 @@ class UpdateUsername(forms.ModelForm):
             "A user with that username already exists.")
 
 
+class UpdateEmail(forms.ModelForm):
+    """
+    Form for updating email addresses
+    """
+    email = forms.EmailField(required=True,
+                             widget=forms.EmailInput(
+                                 attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = CustomUser
+        fields = ['email']
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        try:
+            CustomUser.objects.get(email__iexact=email)
+        except CustomUser.DoesNotExist:
+            return email
+        raise forms.ValidationError(
+            "A user with that email address already exists.")
+
+
 class UpdatePrivacy(forms.ModelForm):
     """
     Form for updating user privacy

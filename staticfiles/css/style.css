@@ -204,16 +204,6 @@ footer {
     display: none;
 }
 
-/* Profile page styling for some email fields */
-#id_email {
-    margin-right: 25px;
-    margin-top: 15px;
-}
-
-.profile p input {
-    width: auto;
-}
-
 /* Main styling for page sections */
 .container {
     display: flex;
@@ -262,6 +252,7 @@ footer {
 .form-error {
     color: darkred;
     text-align: center;
+    margin-top: 15px;
 }
 
 .form-confirm {
@@ -317,6 +308,13 @@ footer {
 .profile-form {
     display: flex;
     flex-direction: row;
+    align-items: baseline;
+}
+
+.profile-username-form {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
     margin-top: 20px;
 }
 
@@ -371,16 +369,22 @@ footer {
     margin-right: 10px;
 }
 
-.profile-email .button {
-    margin-left: 25px;
-}
-
 .email-buttons .button, .mid .button {
     margin-bottom: 15px;
 }
 
+.delete-buttons {
+    display: flex;
+    align-items: baseline;
+}
+
 .delete-buttons input {
     width: auto;
+    margin: auto;
+}
+
+.delete-buttons button {
+    margin: auto auto auto 7px;
 }
 
 .profile .partial-border, .mini-profile .partial-border {
@@ -394,11 +398,8 @@ footer {
     margin-top: -15px;
 }
 
-.profile-email {
-    display: flex;
-    align-items: baseline;
-    margin-right: 45px;
-    margin-bottom: -40px;
+.current-email {
+    margin: 5px auto 15px auto;
 }
 
 .pass-req {
@@ -591,9 +592,9 @@ footer {
         margin: auto auto -40px auto;
     }
 
-    .profile-email .button {
-        margin: auto auto 37px 20px;
-    }
+    /*.profile-email .button {*/
+    /*    margin: auto auto 37px 20px;*/
+    /*}*/
 
     .delete-buttons input {
         width: auto;
@@ -819,9 +820,10 @@ footer {
         overflow-x: auto;
     }
 
-    /* Exclude set-filter from overflow */
-    .set-filter, .select2, .select2-container {
+    /* Exclude certain elements from overflow */
+    button, input, .profile-input, .set-filter, .select2, .select2-container {
         overflow: unset;
+        margin: auto;
     }
 
     /* Navigation buttons */

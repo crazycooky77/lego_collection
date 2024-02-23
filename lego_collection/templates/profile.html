@@ -44,22 +44,12 @@
                 {% element form method="post" action=action_url %}
                     {% slot body %}
                         {% csrf_token %}
-                        <!-- Current email and email change option -->
-                        Current Email: {{request.user.email}}
-                        <div class="profile-email">
-                            {% element field name="email" value=form.email.value errors=form.email.errors type="email" %}
-                                {% slot label %}
-                                    {% translate "Change Email" %}:
-                                {% endslot %}
-                            {% endelement %}
-                            {% slot actions %}
-                                {% element button name="action_add" type="submit" %}
-                                    {% trans "Save" %}
-                                {% endelement %}
-                            {% endslot %}
+                        <!-- Current email -->
+                        <p class="current-email">Current Email: {{request.user.email}}</p>
                     {% endslot %}
                 {% endelement %}
-                        </div>
+                <!-- Email change option -->
+                {% include 'profile_email_change.html' %}
                 <!-- Include template to change account privacy -->
                 {% include 'privacy_change.html' %}
                 <!-- Set details for the user -->
@@ -68,7 +58,7 @@
                 <p>Viewable collections: Coming Soon</p>
                 <div class="profile-buttons">
                     <!-- Profile page buttons -->
-                    <a href="{% url 'account_change_password' %}"><button>Change Password</button></a>
+                    <button onclick="location=/password\change/">Change Password</button>
                     <a href="/email" class="button">Manage Emails</a>
                     <form method="POST" action="{% url 'account_logout' %}">
                         {% csrf_token %}

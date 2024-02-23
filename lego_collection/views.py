@@ -7,7 +7,8 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from .models import CustomUser, Collection, LegoCollection
 from .forms import (AddSet, CreateCollection, CreateSet, DeleteAccount,
-                    EditCollection, UpdateCol, UpdatePrivacy, UpdateUsername)
+                    EditCollection, UpdateCol, UpdateEmail, UpdatePrivacy,
+                    UpdateUsername)
 
 
 class CreateUser(CreateView):
@@ -240,6 +241,7 @@ def profile_view(request):
             collection_id__in=col_id.all(), build_status='WL')
         if request.method == 'POST':
             username_form = UpdateUsername(request.POST, instance=request.user)
+            email_form = UpdateEmail(request.POST, instance=request.user)
             prv_form = UpdatePrivacy(request.POST, instance=request.user)
             del_form = DeleteAccount(request.POST)
 
@@ -254,6 +256,26 @@ def profile_view(request):
                     messages.error(
                         request,
                         "An account with that username already exists.")
+                    username_form = UpdateUsername(instance=request.user)
+                    email_form = UpdateEmail(instance=request.user)
+                    prv_form = UpdatePrivacy(instance=request.user)
+                    del_form = DeleteAccount()
+            # Email change form functions
+            if request.POST.get("profile-email-button"):
+                if email_form.is_valid():
+                    email_form.save()
+                    messages.success(
+                        request,
+                        'Your email address has been successfully updated')
+                    return redirect(to='profile')
+                else:
+                    messages.error(
+                        request,
+                        "An account with that email address already exists.")
+                    username_form = UpdateUsername(instance=request.user)
+                    email_form = UpdateEmail(instance=request.user)
+                    prv_form = UpdatePrivacy(instance=request.user)
+                    del_form = DeleteAccount()
             # Privacy settings change form function
             if request.POST.get("privacy-button"):
                 if prv_form.is_valid():
@@ -270,10 +292,13 @@ def profile_view(request):
                     messages.success(request, 'Account successfully deleted')
         else:
             username_form = UpdateUsername(instance=request.user)
+            email_form = UpdateEmail(instance=request.user)
             prv_form = UpdatePrivacy(instance=request.user)
             del_form = DeleteAccount()
         return render(request, 'profile.html',
-                      {'user_form': username_form, 'privacy_form': prv_form,
+                      {'user_form': username_form,
+                       'email_form': email_form,
+                       'privacy_form': prv_form,
                        'del_form': del_form, 'owned': owned,
                        'wishlist': wishlist})
     else:
