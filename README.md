@@ -218,21 +218,18 @@ All manual testing in the below table was done using Microsoft Edge, Chrome, and
 ### Validator Testing
 
 #### HTML
-All pages were put through the [W3 HTML Validator](https://validator.w3.org/#validate_by_input) and all issues identified were resolved, where possible. There are a few below that could not be resolved.
+All pages were put through the [W3 HTML Validator](https://validator.w3.org/#validate_by_input) and all issues identified were resolved, where possible. There is 1 issue below that could not be resolved.
 
 The **Add Set** page has an error, however this is from django-select2:
 
 `Error: A select element with a required attribute, and without a multiple attribute, and without a size attribute whose value is greater than 1, must have a child option element.`
 
-**Edit Collection** has an error for duplicate element IDs ("delete-set"). This is because there is a for loop with a label and an input checkbox, that repeats the label and input for each Lego set in the collection. The view then gathers all checked elements with this ID to delete them all from the database.
-
-The **Profile** page has an error for:
-1. an empty label, which is caused by the Django allauth email change form.
-2. an unclosed div element, as it starts within an {% element %} and {% slot body %}, and ends outside of the {% endelement %} and {% endslot %} tags.
-3. an end form tag with open elements, for the same reason as point 2.
+<img src='static/images/readme/validator-w3.webp' alt='W3 Validator Results'>
 
 #### CSS
 CSS code was put through [W3C](https://jigsaw.w3.org/css-validator/#validate_by_input) and no errors are found.
+
+<img src='static/images/readme/validator-w3c.webp' alt='W3C Validator Results'>
 
 #### JSHint
 [JSHint](https://jshint.com/) was used to validate the JavaScript used. There are no legitimate errors found.
@@ -242,11 +239,17 @@ CSS code was put through [W3C](https://jigsaw.w3.org/css-validator/#validate_by_
 - "$" is mentioned as an undefined variable several times, however these are from JQuery.
 - 3 unused variables mentioned are used in templates
 
+<img src='static/images/readme/validator-jshint.webp' alt='JSHint Validator Results'>
+
 #### PEP8
 Some spacing issues (lines too long) were identified by [PEP8](https://pep8ci.herokuapp.com/), but these were all resolved except for settings.py, where one of the Django password validator names is too long.
 
+<img src='static/images/readme/validator-pep8.webp' alt='PEP8 Validator Results'>
+
 #### WAVE
-All pages were checked with WAVE. There are some Alerts, however nothing unexpected. Some Errors are logged on the Edit Collection, Profile, Change Password, and Manage Emails pages. These errors are due to missing labels for form fields from Django forms.
+All pages were checked with WAVE. There are some Alerts, however nothing unexpected. Errors are logged on the Edit Collection page. These errors are due to missing labels for form fields from Django forms within the table on the site. There is a column name for each to indicate the "label".
+
+<img src='static/images/readme/validator-wave.webp' alt='Wave Validator Results'>
 
 #### Lighthouse
 Lighthouse was run on all pages for the site and issues identified were resolved, where possible.
