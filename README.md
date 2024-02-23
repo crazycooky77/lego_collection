@@ -247,7 +247,7 @@ Some spacing issues (lines too long) were identified by [PEP8](https://pep8ci.he
 <img src='static/images/readme/validator-pep8.webp' alt='PEP8 Validator Results'>
 
 #### WAVE
-All pages were checked with WAVE. There are some Alerts, however nothing unexpected. Errors are logged on the Edit Collection page. These errors are due to missing labels for form fields from Django forms within the table on the site. There is a column name for each to indicate the "label".
+All pages were checked with WAVE. There are some Alerts, however nothing unexpected. Errors are logged on the Edit Collection, Profile, Change Password, and Manage Emails pages. These errors are due to missing labels for form fields from Django forms within the table on the site. There are column titles and input placeholders that clearly indicate the purpose of the fields, however. For better styling, it was decided to keep these page as-is.
 
 <img src='static/images/readme/validator-wave.webp' alt='Wave Validator Results'>
 
