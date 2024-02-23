@@ -181,7 +181,6 @@ footer {
 
 /* Styling for collection image */
 #id_collection_pic {
-    margin-left: 10px;
     width: 300px;
 }
 
@@ -522,6 +521,10 @@ footer {
 }
 
 /* Edit collection styling */
+.edit-col-label {
+    margin-left: 10px;
+}
+
 .del-col-button {
     margin-left: 20px;
 }
@@ -634,6 +637,7 @@ footer {
 
     /* Edit collection page styling */
     #id_collection_pic {
+        margin-top: 10px;
         width: 220px;
     }
 
@@ -777,8 +781,9 @@ footer {
         flex-direction: column;
     }
 
-    #id_collection_pic {
-        margin: auto;
+    .edit-col-label {
+        text-align: center;
+        margin-top: 10px;
     }
 
     .col-edit-opt {
@@ -786,7 +791,7 @@ footer {
     }
 
     .col-edit-opt input {
-        margin: 15px auto;
+        margin: 10px auto auto auto;
     }
 
     .edit-set-button {
