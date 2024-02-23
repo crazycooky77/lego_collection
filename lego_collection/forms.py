@@ -153,6 +153,8 @@ class UpdateCol(forms.ModelForm):
     """
     Form for updating sets in collections
     """
+    build_status = forms.ChoiceField(widget=TextInput(attrs={
+        'aria-label': 'Build Status'}))
     set_location = forms.CharField(widget=TextInput(attrs={
         'aria-label': 'Set Location'}))
     missing_pieces = forms.CharField(widget=TextInput(attrs={
