@@ -117,7 +117,7 @@ class CreateSet(forms.ModelForm):
         options={'crop': 'fit', 'max-width': 100, 'max-height': 100},
         required=False)
     lego_link = forms.URLField(widget=forms.TextInput(attrs={
-        'placeholder': 'https://'}))
+        'placeholder': 'https://'}), required=False)
 
     class Meta:
         model = LegoSet
@@ -156,11 +156,11 @@ class UpdateCol(forms.ModelForm):
     build_status = forms.ChoiceField(widget=TextInput(attrs={
         'aria-label': 'Build Status'}))
     set_location = forms.CharField(widget=TextInput(attrs={
-        'aria-label': 'Set Location'}))
+        'aria-label': 'Set Location'}), required=False)
     missing_pieces = forms.CharField(widget=TextInput(attrs={
-        'aria-label': 'Missing Pieces'}))
+        'aria-label': 'Missing Pieces'}), required=False)
     favourited = forms.BooleanField(widget=CheckboxInput(attrs={
-        'aria-label': 'Favourited'}))
+        'aria-label': 'Favourited'}), required=False)
 
     class Meta:
         model = LegoCollection
