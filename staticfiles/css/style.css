@@ -297,8 +297,8 @@ footer {
     width: 200px;
 }
 
-#email_radio_0 {
-    width: auto;
+input[type="radio"] {
+    width: auto !important;
 }
 
 .mini-profile input {
