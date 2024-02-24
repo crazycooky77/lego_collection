@@ -74,7 +74,7 @@ Lucidchart was used to plan out the database models. An additional "Build Status
 <img src='static/images/readme/lucid.webp' alt='Lucidchart image'>
 
 #### Wireframes
-Wireframes were used to plan out the pages for the site.
+Wireframes were used to plan out the pages for the site. Minor styling adjustments were made, based on user feedback, such as putting at the nav bar above the site header.
 
 ##### Homepage
 Logged in:
@@ -210,7 +210,7 @@ All manual testing in the below table was done using Microsoft Edge, Chrome, and
 | Log Out                                     |                                                                                                                                                                                                     When a user logs out, they are logged out and redirected to the homepage                                                                                                                                                                                                     | &check;      | &check;    | &check;       | &check;         | &check;          |
 
 ### Automated Testing
-115 automated tests were created to ensure forms and views perform as intended. These tests provide 99% coverage for the project and all tests pass.
+117 automated tests were created to ensure forms and views perform as intended. These tests provide 99% coverage for the project and all tests pass.
 
 <img src='static/images/readme/coverage-run.webp' alt='Coverage test run'>
 <img src='static/images/readme/coverage-report.webp' alt='Coverage report'>
@@ -243,7 +243,7 @@ Some spacing issues (lines too long) were identified by [PEP8](https://pep8ci.he
 <img src='static/images/readme/validator-pep8.webp' alt='PEP8 Validator Results'>
 
 #### WAVE
-All pages were checked with WAVE. There are some Alerts, however nothing unexpected. All errors were resolved.
+All pages were checked with WAVE. There are Alerts on some pages, however nothing unexpected. All errors were resolved.
 
 <img src='static/images/readme/validator-wave.webp' alt='Wave Validator Results'>
 
