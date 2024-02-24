@@ -811,10 +811,12 @@ button[name="delete-button"] {
     .set-sort-filter {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .set-filter {
         margin: auto;
+        width: 100%;
     }
 
     .set-sort {
