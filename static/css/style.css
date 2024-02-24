@@ -249,7 +249,7 @@ footer {
 }
 
 /* Styling for all form errors and confirmation messages */
-.errorlist {
+.errorlist * {
     list-style: none;
     color: darkred;
     text-align: center;
