@@ -6,24 +6,27 @@
 * {
     font-family: 'Londrina Solid', sans-serif;
     font-size: 24px;
+    color: #b5b3ba;
 }
 
 /* Background style for the whole page body */
 body {
-    background: rgba(255, 192, 203, 0.5) url('../images/background.webp');
+    background: #201836;
+    max-width: 1800px;
+    margin: auto;
 }
 
 /* Styling for site header */
 h1 {
     font-family: 'Londrina Outline', sans-serif;
-    font-size: 75px;
+    font-size: 50px;
     text-align: center;
 }
 
 /* Styling for all "standard" links */
 a {
     text-decoration: none;
-    color: black
+    color: black;
 }
 
 /* Styling for navigation bar and buttons*/
@@ -31,53 +34,65 @@ nav div {
     display: flex;
     text-align: center;
     justify-content: center;
+    margin-top: 20px;
 }
 
 nav button {
     font-size: 35px;
     margin: 20px 10px 20px 10px;
-    background: transparent;
-    border: solid black 3px;
-    border-top: dashed black 10px;
+    background: #b5b3ba;
+    border: solid #201836 3px;
+    border-top: dashed #201836 10px;
 }
 
 nav button:hover {
-    border-top: solid black 3px;
-    border-bottom: dashed black 10px;
+    border-top: solid #201836 3px;
+    border-bottom: dashed #201836 10px;
 }
 
 nav button:active {
-    color: white;
-    border: solid white 3px;
-    border-bottom: dashed white 10px;
+    color: #b5b3ba;
+    border: solid #b5b3ba 3px;
+    border-bottom: dashed #b5b3ba 10px;
+    background: #201836;
 }
 
 /* Styling for main page content buttons */
+select {
+    color: black;
+}
+
+input {
+    color: black;
+}
+
 .button {
     padding: 0 7px;
     text-align: center;
+    color: black;
 }
 
 button {
     margin: 7px 20px;
+    color: black;
 }
 
 main .button, main button {
-    background-color: hotpink;
+    background-color: #a393c9;
     border: solid black 1px;
     border-radius: 0.2em;
 }
 
 main .button:hover, main button:hover {
-    background-color: #FF0080FF;
+    background-color: #8364cc;
     border: solid black 1px;
     border-radius: 0.2em;
 }
 
 main .button:active, main button:active {
-    border: solid white 1px;
+    border: solid #b5b3ba 1px;
     border-radius: 0.2em;
-    color: white;
+    color: #b5b3ba;
 }
 
 /* Adding asterisks for required items in forms */
@@ -92,12 +107,12 @@ li {
 
 /* Style for horizontal line elements (content separators) */
 hr {
-    border-top: solid black 2px;
+    border-top: solid #b5b3ba 2px;
 }
 
 /* Styling for various input fields */
 input:valid, input:invalid, select {
-    background-color: pink;
+    background-color: #a393c9;
 }
 
 input[type="file"] {
@@ -106,12 +121,12 @@ input[type="file"] {
 }
 
 input[type="file"]:hover {
-    background-color: #FF0080FF;
+    background-color: #8364cc;
 }
 
 input[type="file"]:active {
-    border: 1px solid white;
-    color: white;
+    border: 1px solid #b5b3ba;
+    color: #b5b3ba;
 }
 
 input[type="file"]::file-selector-button {
@@ -119,16 +134,16 @@ input[type="file"]::file-selector-button {
     border: none;
     border-right: 1px solid black;
     border-radius: 0.2em;
-    background-color: hotpink;
+    background-color: #8364cc;
 }
 
 input[type="file"]::file-selector-button:hover {
-    background-color: #FF0080FF;
+    background-color: #8364cc;
 }
 
 input[type="file"]::file-selector-button:active {
-    border-right: 1px solid white;
-    color: white;
+    border-right: 1px solid #b5b3ba;
+    color: #b5b3ba;
 }
 
 /* Pagination styling for collections */
@@ -150,7 +165,7 @@ table {
 
 td, th {
     padding: 5px 5px;
-    border: 1px solid grey;
+    border: 1px solid darkgrey;
     word-wrap: break-word;
     width: 100%;
     max-width: 0;
@@ -167,16 +182,6 @@ td select {
 /* Footer styling */
 footer {
     font-size: 16px;
-}
-
-/* Navigation bar background gradient */
-#grad {
-    height: 100px;
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(to left, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5),  rgba(255,105,180,0.5)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5), rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,165,0,0.5) , rgba(255,255,0,0.5), rgba(0,128,0,0.5), rgba(255,255,0,0.5), rgba(0,0,255,0.5), rgba(147,112,219,0.5), rgba(255,105,180,0.5)); /* Standard syntax (must be last) */
 }
 
 /* Styling for collection image */
@@ -216,7 +221,7 @@ footer {
     display: flex;
     width: 80%;
     justify-content: center;
-    border: solid black 2px;
+    border: solid #b5b3ba 2px;
     border-radius: 0.2em;
     margin: 20px 8px 0 8px;
     padding: 20px;
@@ -263,7 +268,7 @@ footer {
 /* Styling for all links meant to be visible (overriding global a styling) */
 .visible-link {
     text-decoration: underline;
-    color: darkred;
+    color: #4429d9;
 }
 
 /* Profile styling */
@@ -300,7 +305,7 @@ footer {
 }
 
 .profile h2, .profile form, .mini-profile h2, .mini-profile form {
-    border: solid black 2px;
+    border: solid #b5b3ba 2px;
     border-radius: 0.2em;
 }
 
@@ -322,14 +327,14 @@ footer {
 }
 
 .profile-details {
-    border: solid black 2px;
+    border: solid #b5b3ba 2px;
     border-radius: 0.2em;
     padding: 0 15px 15px 15px;
     text-align: left;
 }
 
 .profile .border, .mini-profile .border {
-    border: solid black 2px;
+    border: solid #b5b3ba 2px;
     border-radius: 0.2em;
     padding: 10px;
 }
@@ -391,7 +396,7 @@ footer {
 }
 
 .profile .partial-border, .mini-profile .partial-border {
-    border: solid black 2px;
+    border: solid #b5b3ba 2px;
     border-bottom: none;
     border-radius: 0.2em;
     padding: 10px;
@@ -498,11 +503,11 @@ footer {
 /* Styling for select2 field used to search for and add sets to collections */
 .select2, .select2-container, .select2-container--default, .select2-container--below, .select2-container--open {
     width: 100% !important;
-    background-color: pink !important;
+    background-color: #a393c9 !important;
 }
 
 .select2-selection__arrow, .select2-container--default, .select2-selection--single, .select2-selection, .select2-results__option, .select2-search--dropdown {
-    background-color: pink !important;
+    background-color: #a393c9 !important;
 }
 
 .select2-container--default, .select2-selection--single, .select2-selection__rendered {
@@ -510,17 +515,17 @@ footer {
 }
 
 .select2-search--dropdown, .select2-search__field {
-    border: 1px solid black;
+    border: 1px solid #b5b3ba;
     border-top: none;
 }
 
 .select2-container--default .select2-selection--single {
-    border: 1px solid black !important;
+    border: 1px solid #b5b3ba !important;
     border-radius: 0 !important;
 }
 
 #select2-id_set-results {
-    border: 1px solid black;
+    border: 1px solid #b5b3ba;
     border-top: none;
 }
 
@@ -550,7 +555,7 @@ footer {
 
     h1 {
         font-size: 40px;
-        margin: auto;
+        margin: 15px auto;
     }
 
     /* Gradient for navigation bar background */
@@ -680,7 +685,7 @@ footer {
         display: block;
         font-size: 30px;
         cursor: pointer;
-        color: black;
+        color: #b5b3ba;
     }
 
     #ham-menu {
@@ -693,7 +698,7 @@ footer {
     #ham-menu-links {
         display: none;
         text-align: left;
-        background: pink;
+        background: #a393c9;
         border: solid 1px black;
         padding: 10px;
         z-index: 2;
@@ -744,7 +749,7 @@ footer {
     }
 
     #col-toggle-checkboxes label:hover {
-        background-color: pink;
+        background-color: #a393c9;
     }
 
     .select-col-box select {

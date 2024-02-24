@@ -23,20 +23,20 @@
         <link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
     </head>
     <body>
+        <nav>
+            <!-- Nav bar -->
+                <div class="nav-div">
+                    <!-- Nav buttons -->
+                    <div class="nav-buttons">
+                        <button onclick="location.href='/'" class="non-mobile">Home</button>
+                        <button onclick="location.href='/collections'">Collections</button>
+                        <button onclick="location.href='/profile'">Profile</button>
+                        <button onclick="location.href='/shared'">Shared</button>
+                    </div>
+                </div>
+            </nav>
         <!-- Site header -->
         <a href="/"><h1>Welcome to Your Online Lego Collection</h1></a>
-        <nav>
-        <!-- Nav bar with gradient -->
-            <div id="grad">
-                <!-- Nav buttons -->
-                <div class="nav-buttons">
-                    <button onclick="location.href='/'" class="non-mobile">Home</button>
-                    <button onclick="location.href='/collections'">Collections</button>
-                    <button onclick="location.href='/profile'">Profile</button>
-                    <button onclick="location.href='/shared'">Shared</button>
-                </div>
-            </div>
-        </nav>
         <main>
             <div class="container">
                 {% block content %}
