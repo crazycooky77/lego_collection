@@ -68,6 +68,11 @@ input {
     color: black;
 }
 
+::placeholder {
+    color: #474746;
+    opacity: 1;
+}
+
 .button {
     padding: 0 7px;
     text-align: center;
