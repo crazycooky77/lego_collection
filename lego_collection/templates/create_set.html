@@ -5,7 +5,7 @@
     <div class="mid">
         <!-- Include the template to create a set if the user is logged in -->
         {% if request.user.is_authenticated %}
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" class="set-form">
                 {% csrf_token %}
                 <!-- Form to create a new lego set -->
                 {{ create_set_form.as_p }}

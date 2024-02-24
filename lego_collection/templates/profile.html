@@ -45,7 +45,9 @@
                     {% slot body %}
                         {% csrf_token %}
                         <!-- Current email -->
-                        <p class="current-email">Current Email: {{request.user.email}}</p>
+                        <p class="current-email">Current Email:
+                            <br>
+                            {{request.user.email}}</p>
                     {% endslot %}
                 {% endelement %}
                 <!-- Email change option -->

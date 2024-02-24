@@ -263,6 +263,11 @@ footer {
 .mid form {
     text-align: left;
     max-width: 100%;
+    width: 100%;
+}
+
+.set-form {
+    max-width: 700px !important;
 }
 
 .mid form input[type="text"] {
@@ -325,14 +330,26 @@ footer {
 .profile {
     display: flex;
     min-width: 25%;
-    max-width: 600px;
+    max-width: 700px;
+    width: 100%;
     justify-content: center;
     flex-direction: column;
 }
 
 .profile-input {
+    display: flex;
     justify-content: space-between;
     align-items: baseline;
+}
+
+.profile-input button {
+    display: flex;
+    width: auto;
+    margin-left: 10px;
+}
+
+.profile-input select {
+    width: 100%;
 }
 
 .profile input {
@@ -359,16 +376,12 @@ input[type="radio"] {
 }
 
 .profile-form {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
+    margin-top: 20px;
 }
 
 .profile-username-form {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .profile-details {
@@ -388,6 +401,7 @@ input[type="radio"] {
     border: none;
     border-radius: 0.2em;
     padding: 0;
+    width: 100%;
 }
 
 .mini-profile .button {
@@ -405,8 +419,8 @@ input[type="radio"] {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-right: 15px;
-    align-items: baseline;
+    margin: auto;
+    align-items: center;
 }
 
 .profile-input .button {
@@ -418,9 +432,8 @@ input[type="radio"] {
     margin-right: 10px;
 }
 
-.delete-buttons {
-    display: flex;
-    align-items: baseline;
+button[name="delete-button"] {
+    width: 85%;
 }
 
 .delete-buttons input {
@@ -429,7 +442,8 @@ input[type="radio"] {
 }
 
 .delete-buttons button {
-    margin: auto auto auto 7px;
+    margin: auto;
+    width: 100%;
 }
 
 .profile .partial-border, .mini-profile .partial-border {

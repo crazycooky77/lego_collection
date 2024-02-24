@@ -4,7 +4,7 @@
 {% block content %}
     <div class="mid">
         {{ add_set_form.media.css }}
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" class="set-form">
             {% csrf_token %}
             <!-- Form error messages -->
             {% if form.errors %}
