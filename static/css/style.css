@@ -350,7 +350,7 @@ footer {
 }
 
 .widget-buttons {
-    border: solid black 2px;
+    border: solid #b5b3ba 2px;
     border-top: none;
     border-radius: 0.2em;
     padding-bottom: 15px;
