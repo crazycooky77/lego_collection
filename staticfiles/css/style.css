@@ -13,7 +13,7 @@
 body {
     background: #201836;
     max-width: 1800px;
-    margin: auto;
+    margin: auto 10px;
 }
 
 /* Styling for site header */
