@@ -681,6 +681,11 @@ input[type="radio"] {
 
 /* For screens 900px wide and less */
 @media screen and (max-width: 900px) {
+    /* Reduce header size */
+    h1 {
+        font-size: 35px;
+    }
+
     /* Hide Home button to save space */
     .non-mobile {
         display: none;
@@ -835,6 +840,11 @@ input[type="radio"] {
         font-size: 18px;
         overflow-y: hidden;
         overflow-x: auto;
+    }
+
+    /* Reduce header size */
+    h1 {
+        font-size: 30px;
     }
 
     /* Exclude certain elements from overflow */
