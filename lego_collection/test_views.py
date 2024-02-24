@@ -78,7 +78,7 @@ class TestHomepage(TestCase):
         self.client.logout()
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'<button>Forgot Login/Password</button>',
+        self.assertIn(b'Forgot Login/Password',
                       response.content,
                       msg='Failed: Valid homepage widget logged out view')
 
@@ -1279,7 +1279,7 @@ class TestProfile(TestCase):
         self.client.logout()
         response = self.client.get(reverse('profile'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'<button>Forgot Login/Password</button>',
+        self.assertIn(b'Forgot Login/Password',
                       response.content,
                       msg='Failed: Valid profile logged out view')
 
@@ -1319,6 +1319,32 @@ class TestProfile(TestCase):
         self.assertIn(b'An account with that username already exists.',
                       response.content,
                       msg='Failed: Invalid username change')
+
+    def test_email_change_valid(self):
+        """
+        Test email update
+        """
+        self.client.login(username='test_user', password='t€$T951')
+        response = self.client.post(reverse('profile'),
+                                    {'email': 'test_change@test.com',
+                                     'profile-email-button': True},
+                                    follow=True)
+        self.assertIn(b'Your email address has been successfully updated',
+                      response.content,
+                      msg='Failed: Valid email change')
+
+    def test_email_change_invalid(self):
+        """
+        Test email update
+        """
+        self.client.login(username='test_user', password='t€$T951')
+        response = self.client.post(reverse('profile'),
+                                    {'email': 'test_user@test.com',
+                                     'profile-email-button': True},
+                                    follow=True)
+        self.assertIn(b'An account with that email address already exists.',
+                      response.content,
+                      msg='Failed: Invalid email change')
 
     def test_privacy_change(self):
         """
@@ -1369,7 +1395,7 @@ class TestShared(TestCase):
         self.client.logout()
         response = self.client.get(reverse('shared'))
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'<button>Forgot Login/Password</button>',
+        self.assertIn(b'Forgot Login/Password',
                       response.content,
                       msg='Failed: Valid Shared logged out view')
 
