@@ -12,10 +12,14 @@
 /* Background style for the whole page body */
 body {
     background: #201836;
-    max-width: 1800px;
     margin: auto;
+}
+
+main {
+    max-width: 1800px;
     padding-right: 10px;
     padding-left: 10px;
+    margin: auto;
 }
 
 /* Styling for site header */
@@ -36,20 +40,21 @@ nav div {
     display: flex;
     text-align: center;
     justify-content: center;
-    margin-top: 20px;
+    background-color: #0f0d21;
+    padding: 5px;
 }
 
 nav button {
     font-size: 35px;
     margin: 20px 10px 20px 10px;
     background: #b5b3ba;
-    border: solid #201836 3px;
-    border-top: dashed #201836 10px;
+    border: solid #09052b 3px;
+    border-top: dashed #09052b 10px;
 }
 
 nav button:hover {
-    border-top: solid #201836 3px;
-    border-bottom: dashed #201836 10px;
+    border-top: solid #09052b 3px;
+    border-bottom: dashed #09052b 10px;
 }
 
 nav button:active {
@@ -66,6 +71,15 @@ select {
 
 input {
     color: black;
+    width: 98%;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+input[type="file"] {
+    width: 99%;
 }
 
 ::placeholder {
@@ -74,24 +88,28 @@ input {
 }
 
 .button {
-    padding: 0 7px;
     text-align: center;
     color: black;
+    width: 100%;
 }
 
 button {
     margin: 7px 20px;
     color: black;
+    width: 100%;
 }
 
 main .button, main button {
-    background-color: #a393c9;
+    display: inline-block;
+    background-color: #8364cc;
     border: solid black 1px;
     border-radius: 0.2em;
+    width: 100%;
+    margin: 7px auto;
 }
 
 main .button:hover, main button:hover {
-    background-color: #8364cc;
+    background-color: #a393c9;
     border: solid black 1px;
     border-radius: 0.2em;
 }
@@ -179,7 +197,7 @@ td, th {
 }
 
 td input {
-    width: 80%;
+    width: 80% !important;
 }
 
 td select {
@@ -189,21 +207,28 @@ td select {
 /* Footer styling */
 footer {
     font-size: 16px;
-    margin-top: 20px;
+    margin: 20px 8px;
 }
 
 /* Styling for collection image */
 #id_collection_pic {
-    width: 300px;
+    margin-top: 15px;
 }
 
 /* Styling for collection sorting and filters */
 #set-sort, #set-filter, #sub-filter {
+    width: 100%;
     margin-bottom: 15px;
 }
 
 #reverse-sort-btn {
     margin: auto auto 15px auto;
+}
+
+/* Styling for adding sets */
+#id_build_status {
+    display: block;
+    width: 99%;
 }
 
 /* Hide hamburger menu (only used for smaller screens) */
@@ -240,8 +265,15 @@ footer {
     max-width: 100%;
 }
 
+.mid form input[type="text"] {
+    width: 98%;
+}
+
 .mid-buttons {
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .mid-buttons .button, .mid-buttons button {
@@ -280,6 +312,10 @@ footer {
 }
 
 /* Profile styling */
+#id_email {
+    display: block;
+}
+
 .mini-profile {
     display: flex;
     justify-content: center;
@@ -289,6 +325,7 @@ footer {
 .profile {
     display: flex;
     min-width: 25%;
+    max-width: 600px;
     justify-content: center;
     flex-direction: column;
 }
@@ -299,8 +336,8 @@ footer {
 }
 
 .profile input {
-    margin-bottom: 15px;
-    width: 200px;
+    margin: 7px auto;
+    width: 97%;
 }
 
 input[type="radio"] {
@@ -308,8 +345,8 @@ input[type="radio"] {
 }
 
 .mini-profile input {
-    margin-bottom: 15px;
-    width: 90%;
+    margin: 7px auto;
+    width: 97%;
 }
 
 .profile h2, .profile form, .mini-profile h2, .mini-profile form {
@@ -361,11 +398,7 @@ input[type="radio"] {
     border: solid #b5b3ba 2px;
     border-top: none;
     border-radius: 0.2em;
-    padding-bottom: 15px;
-}
-
-.widget-buttons button {
-    margin-top: 20px;
+    padding: 15px;
 }
 
 .profile-buttons {
@@ -383,10 +416,6 @@ input[type="radio"] {
 .profile-buttons .button {
     margin-left: 10px;
     margin-right: 10px;
-}
-
-.email-buttons .button, .mid .button {
-    margin-bottom: 15px;
 }
 
 .delete-buttons {
@@ -421,7 +450,7 @@ input[type="radio"] {
 .pass-req {
     text-align: left;
     margin-bottom: -20px;
-    margin-top: 0;
+    margin-top: 15px;
 }
 
 /* Collection styling */
@@ -476,13 +505,13 @@ input[type="radio"] {
 }
 
 .col-set-button, .edit-set-button {
-    display: flex;
+    width: 250px;
     justify-content: center;
     align-items: center;
 }
 
 .col-set-button .button, .edit-set-button .button {
-    margin: 0 10px;
+    margin: 10px 10px;
 }
 
 .set-img {
@@ -510,7 +539,7 @@ input[type="radio"] {
 
 /* Styling for select2 field used to search for and add sets to collections */
 .select2, .select2-container, .select2-container--default, .select2-container--below, .select2-container--open {
-    width: 100% !important;
+    width: 99% !important;
     background-color: #a393c9 !important;
 }
 
@@ -575,12 +604,6 @@ input[type="radio"] {
         margin: 15px auto;
     }
 
-    /* Gradient for navigation bar background */
-    #grad {
-        height: 60px;
-        margin-top: 10px;
-    }
-
     /* Navigation buttons */
     nav button {
         font-size: 25px;
@@ -606,21 +629,9 @@ input[type="radio"] {
         max-width: 300px;
     }
 
-    .profile-input input {
-        width: 150px;
-    }
-
-    .profile input {
-        width: 130px;
-    }
-
     .profile-email {
         margin: auto auto -40px auto;
     }
-
-    /*.profile-email .button {*/
-    /*    margin: auto auto 37px 20px;*/
-    /*}*/
 
     .delete-buttons input {
         width: auto;
@@ -725,7 +736,7 @@ input[type="radio"] {
         padding: 10px;
         z-index: 2;
         margin-top: 10px;
-        text-decoration: underline;
+        text-decoration: black underline;
         text-decoration-thickness: 1px;
     }
 
@@ -734,8 +745,7 @@ input[type="radio"] {
         background-color: inherit;
         text-decoration: inherit;
         border-radius: inherit;
-        margin-left: -6px;
-        margin-bottom: inherit;
+        margin: auto;
     }
 
     .ham-icon {
@@ -747,7 +757,11 @@ input[type="radio"] {
     }
 
     .set-sort-btn, .set-filter-btn, .col-set-button {
-        display: none;
+        display: none !important;
+    }
+
+    #mini-table-toggle, .select-col-box, .select-col-box select {
+        width: 100%;
     }
 
     /* Collection Content in column view */
@@ -758,7 +772,7 @@ input[type="radio"] {
 
     /* Column toggle menu for collection edit/view for small screens */
     #multiselect {
-        width: 150px;
+        width: 100%;
     }
 
     #col-toggle-checkboxes {
@@ -774,15 +788,10 @@ input[type="radio"] {
         background-color: #a393c9;
     }
 
-    .select-col-box select {
-        max-width: 100%;
-    }
-
     /* Adjustments to vertically-align collection buttons and hamburger menu */
-    #set-filter, #sub-filter {
-        margin: -20px 5px auto 5px;
+    #set-sort, #set-filter {
+        margin: 5px auto;
         width: 100%;
-
     }
 
     .set-sort-filter {
@@ -791,12 +800,12 @@ input[type="radio"] {
     }
 
     .set-filter {
-        display: flex;
-        flex-direction: row;
+        margin: auto;
     }
 
     .set-sort {
         margin: auto;
+        width: 100%;
     }
 
     .ham-icon {
@@ -829,11 +838,6 @@ input[type="radio"] {
     .set-img {
         max-height: 50px;
         max-width: 50px;
-    }
-
-    /* Create set form fields */
-    #id_set_picture {
-        width: 85%;
     }
 }
 
