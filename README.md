@@ -218,7 +218,7 @@ All manual testing in the below table was done using Microsoft Edge, Chrome, and
 ### Validator Testing
 
 #### HTML
-All pages were put through the [W3 HTML Validator](https://validator.w3.org/#validate_by_input) and all issues identified were resolved.
+All pages were put through the [W3 HTML Validator](https://validator.w3.org/#validate_by_input) and all issues identified were resolved. One issue (`Error: A select element with a required attribute, and without a multiple attribute, and without a size attribute whose value is greater than 1, must have a child option element.`) was related to django-select2 and resolved by adding a size attribute greater than 1 to the widget in the form.
 
 <img src='static/images/readme/validator-w3.webp' alt='W3 Validator Results'>
 
