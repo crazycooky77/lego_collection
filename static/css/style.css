@@ -13,7 +13,9 @@
 body {
     background: #201836;
     max-width: 1800px;
-    margin: auto 10px;
+    margin: auto;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 /* Styling for site header */
@@ -223,7 +225,7 @@ footer {
     justify-content: center;
     border: solid #b5b3ba 2px;
     border-radius: 0.2em;
-    margin: 20px 8px 0 8px;
+    margin: 20px 8px 0 0;
     padding: 20px;
 }
 
