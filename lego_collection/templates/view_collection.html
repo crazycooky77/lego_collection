@@ -63,7 +63,6 @@
                                         <option value="missing">Missing Pieces</option>
                                         <option value="fav">Favourite</option>
                                     </select>
-                                    <br>
                                     <!-- Button to reverse the selected sorting -->
                                     <button id='reverse-sort-btn' class="set-sort-btn" onclick=reverseSort()>Reverse Sort</button>
                                     <br>
@@ -76,7 +75,6 @@
                                     <select id="set-filter" name="set-filter">
                                         <option selected="selected" disabled>Filter Sets</option>
                                     </select>
-                                    <br>
                                     <!-- Dropdown for the subfilter to filter set data -->
                                     <label for="sub-filter" aria-label="Set Subfilter"></label>
                                     <select id="sub-filter" name="sub-filter" onChange=changeFilter(this.value)>
