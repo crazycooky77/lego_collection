@@ -684,6 +684,10 @@ button[name="delete-button"] {
     }
 
     /* Edit collection page styling */
+    #id_collection_name {
+        width: 215px;
+    }
+
     #id_collection_pic {
         margin-top: 10px;
         width: 220px;
