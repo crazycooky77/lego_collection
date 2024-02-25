@@ -520,6 +520,7 @@ button[name="delete-button"] {
 
 .col-set-button, .edit-set-button {
     width: 250px;
+    margin-left: 20px;
     justify-content: center;
     align-items: center;
 }
