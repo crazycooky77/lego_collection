@@ -1,5 +1,5 @@
 # Online Lego Collection
-This site is made for avid Lego collectors! You can keep track of your sets, their status, and where they are (like your attic, or spare room). You can Favourite sets, or add sets you don't own yet to build out a wish list. But the Lego page has a wish list, you say? Unfortunately you can't share that one! While sharing features are not yet implemented on this page, they will be soon, and you can then share your entire collection, and your wish list, with friends and family (or even strangers if you like)! Your Online Lego Collection also has a field to keep track of missing pieces in your sets, when needed, and you can sort and filter your collection to be able to easily access that information and more. This is your one-stop-shop to keep track of all your sets and what's happening with them.
+This site is made for avid Lego collectors! You can keep track of your sets, their status, and where they are (like your attic, or spare room). You can Favourite sets, or add sets you don't own yet to build out a wish list. While sharing features are not yet implemented on this page, they will be soon, and you can then share your entire collection, and your wish list, with friends and family (or even strangers if you like)! Your Online Lego Collection also has a field to keep track of missing pieces in your sets, when needed, and you can sort and filter your collection to be able to easily access that information and more. This is your one-stop-shop to keep track of all your sets and what's happening with them.
 
 <img src='static/images/readme/amiresponsive.webp' alt='Am I Responsive Image'>
 
@@ -74,7 +74,7 @@ Lucidchart was used to plan out the database models. An additional "Build Status
 <img src='static/images/readme/lucid.webp' alt='Lucidchart image'>
 
 #### Wireframes
-Wireframes were used to plan out the pages for the site. Minor styling adjustments were made, based on user feedback, such as putting at the nav bar above the site header.
+Wireframes were used to plan out the pages for the site. Minor styling adjustments were made, based on user feedback, such as putting the nav bar above the site header.
 
 ##### Homepage
 Logged in:
@@ -131,6 +131,7 @@ Closed enhancements can be found [here](https://github.com/crazycooky77/ci_proje
 - [GitHub](https://github.com/) to store the code and for version-control
 - [GitHub Desktop](https://desktop.github.com/) to be able to commit changes to the code without having to use the web-based tool
 - [Heroku](https://heroku.com/) to deploy the app and have it available for use online
+- [DigitalOcean Droplet](https://www.digitalocean.com/products/droplets) to deploy the app and use it after project submission
 - [Python](https://www.python.org/) for project functionality
   - [Cloudinary](https://cloudinary.com/documentation/django_integration) for image upload and management
   - [Coverage](https://coverage.readthedocs.io/en/7.4.1/) to check test coverage for the project
@@ -453,7 +454,7 @@ To deploy the project using a Digital Ocean Droplet, these steps were followed:
    26. ```sudo ln -s /etc/nginx/sites-available/<GITHUB_FOLDER> /etc/nginx/sites-enabled```
    27. ```nginx -t```
        1. You want to see a "test is successful" here to ensure the previous steps were correctly followed and without typos
-6. Adjust settings as below to enable encryption on your webpage via letsencrypt. This only works if you own the domain yourself and is automatically renewed every 90 days.
+6. Adjust settings as below to enable encryption on your webpage via letsencrypt. This only works if you own the domain yourself and it's automatically renewed every 90 days.
    1. ```sudo ln -s /snap/bin/certbot /usr/bin/certbot```
    2. ```certbot --nginx -d <YOUR_PUBLIC_DOMAIN_NAME>```
       1. Enter an email address, as required by the console
@@ -475,7 +476,7 @@ Special thanks to [my husband](https://twitter.com/fbuechsel) who helped with tr
 - [Case-insensitive usernames](https://stackoverflow.com/questions/13190758/django-case-insensitive-matching-of-username-from-auth-user)
 
 #### CSS
-- [Rainbow gradient](https://stackoverflow.com/questions/40557461/rainbow-gradient-on-text-in-css)
+- [Rainbow gradient](https://stackoverflow.com/questions/40557461/rainbow-gradient-on-text-in-css) (removed during styling update)
 
 #### Custom Form Messages
 - [Custom invalid login messages](https://stackoverflow.com/questions/47923952/python-django-how-to-display-error-messages-on-invalid-login)
