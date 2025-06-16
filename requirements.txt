@@ -6,9 +6,9 @@ Django==4.2.1
 django-allauth==0.59.0
 django-select2==8.1.2
 gunicorn==21.2.0
-pillow==10.1.0
+pillow==11.2.1
 postgres==4.0
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.10
 psycopg2-pool==1.1
 pytz==2023.3.post1
 urllib3==1.26.6
