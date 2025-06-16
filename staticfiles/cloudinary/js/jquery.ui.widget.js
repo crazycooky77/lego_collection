@@ -1,6 +1,6 @@
 /*! jQuery UI - v1.12.1+CommonJS - 2018-02-10
  * http://jqueryui.com
- * Includes: widget.script
+ * Includes: widget.js
  * Copyright jQuery Foundation and other contributors; Licensed MIT */
 
 (function( factory ) {

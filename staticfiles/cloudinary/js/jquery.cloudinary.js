@@ -2000,7 +2000,7 @@ var slice = [].slice,
     /**
      * Initialize Cloudinary from the `CLOUDINARY_URL` environment variable.
      *
-     * This function will only run under Node.script environment.
+     * This function will only run under Node.js environment.
      * @function Configuration#fromEnvironment
      * @requires Node.js
      */

@@ -29,10 +29,10 @@
         // Node/CommonJS:
         factory(
             require('jquery'),
-            require('blueimp-load-image/script/load-image'),
-            require('blueimp-load-image/script/load-image-meta'),
-            require('blueimp-load-image/script/load-image-scale'),
-            require('blueimp-load-image/script/load-image-exif'),
+            require('blueimp-load-image/js/load-image'),
+            require('blueimp-load-image/js/load-image-meta'),
+            require('blueimp-load-image/js/load-image-scale'),
+            require('blueimp-load-image/js/load-image-exif'),
             require('blueimp-canvas-to-blob'),
             require('./jquery.fileupload-process')
         );
