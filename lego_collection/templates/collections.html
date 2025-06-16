@@ -1,5 +1,6 @@
-<!-- Load the base html file -->
+<!-- Load the base html file and static folders -->
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
     <div class="mid">
@@ -15,4 +16,7 @@
         <!-- Include mini profile widget -->
         {% include 'profile_widget.html' %}
     </div>
+    <!-- Load Jquery scripts that enable sorting and filtering of sets -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
