@@ -70,27 +70,11 @@
                                 <!-- Display set details if the collection has any -->
                                 {% if sets %}
                                     <!-- Page selection for sets -->
-                                    <div class="pagination">
-                                        <span class="step-links">
-                                            <span class="current">
-                                                Page {{ sets.number }} of {{ sets.paginator.num_pages }}
-                                                {% if sets.has_previous or sets.has_next %}
-                                                    <br>
-                                                    <em>Important: Save your changes before switching pages!</em>
-                                                {% endif %}
-                                            </span>
-                                            {% if sets.has_previous %}
-                                                <br>
-                                                <a href="?page=1" class="visible-link">&laquo; first</a>
-                                                <a href="?page={{ sets.previous_page_number }}" class="visible-link">&lt; previous</a>
-                                            {% endif %}
-                                            {% if sets.has_next %}
-                                                <br>
-                                                <a href="?page={{ sets.next_page_number }}" class="visible-link">next &gt;</a>
-                                                <a href="?page={{ sets.paginator.num_pages }}" class="visible-link">last &raquo;</a>
-                                            {% endif %}
-                                        </span>
-                                    </div>
+                                    {% include 'pagination.html' %}
+                                    <!-- Search function -->
+                                    {% include 'search_sets.html' %}
+                                    <!-- Buttons to save/cancel changes -->
+                                    {% include 'edit_buttons.html' %}
                                     <table>
                                         <tr>
                                             <th class="mob-hide">Set Image</th>
@@ -125,17 +109,16 @@
                                         {% endfor %}
                                     </table>
                                 <!-- If no sets are in the collection, advise the user to add them -->
+                                {% elif not sets and search_by %}
+                                    <p class="col-no-sets">No sets matching your search, or your search was invalid. <button id="empty-reset" name="empty-reset" value="empty-reset" class="visible-link" type="submit" formaction="/edit-collection/">Click here to go back to editing your collection.</button></p>
                                 {% else %}
                                     <p class="col-no-sets">No sets in collection. Add a set in the upper right.</p>
                                 {% endif %}
                             </div>
                         </div>
                     {% endfor %}
-                    <div class="mid-buttons">
-                        <!-- Buttons to save/discard changes when editing collection details -->
-                        <button type="submit" name="update-col-button" value="update-col-button">Save Changes</button>
-                        <a href="/collections" class="button">Discard Changes</a>
-                    </div>
+                    <!-- Buttons to save/cancel changes -->
+                    {% include 'edit_buttons.html' %}
                 <!-- If there is no collection, show a create collection button -->
                 {% else %}
                     <a href="/create-collection" class="button">Create Collection</a>
