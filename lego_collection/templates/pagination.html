@@ -1,0 +1,21 @@
+<div class="pagination">
+    <span class="step-links">
+        <span class="current">
+            Page {{ sets.number }} of {{ sets.paginator.num_pages }}
+            {% if 'edit' in request.get_full_path and sets.paginator.num_pages > 1 %}
+                <br>
+                <em>Important: Save your changes before switching pages!</em>
+            {% endif %}
+        </span>
+        {% if sets.has_previous %}
+            <br>
+            <a href="?page=1" class="visible-link">&laquo; first</a>
+            <a href="?page={{ sets.previous_page_number }}" class="visible-link">&lt; previous</a>
+        {% endif %}
+        {% if sets.has_next %}
+            <br>
+            <a href="?page={{ sets.next_page_number }}" class="visible-link">next &gt;</a>
+            <a href="?page={{ sets.paginator.num_pages }}" class="visible-link">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
