@@ -1,0 +1,11 @@
+<div class="search">
+    <label for="search-value"></label>
+    <input type="text" name="search-value" id="search-value" onkeydown="if (event.key === 'Enter') {event.preventDefault(); document.getElementById('search-button').click();}">
+    <button type="submit" id="search-button" name="search-button" value="search-button" formaction="{{ request.path }}">Search</button>
+    {% if search_by == 'INVALID_SEARCH' %}
+        <p class="search-invalid">Your search was invalid, please only use alphanumeric characters and hyphens, and a minimum of 2 non-whitespace characters</p>
+    {% elif search_by %}
+        <button type="submit" id="reset-search" name="reset-search" value="reset-search" formaction="{{ request.path }}">Reset</button>
+        <p class="search-tooltip">Showing results for "{{ search_by }}"</p>
+    {% endif %}
+</div>
