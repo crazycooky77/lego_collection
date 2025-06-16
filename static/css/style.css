@@ -173,7 +173,7 @@ input[type="file"]::file-selector-button:active {
 
 /* Pagination styling for collections */
 .pagination {
-    margin: 10px auto 25px auto;
+    margin: 10px auto 15px auto;
 }
 
 .step-links .visible-link {
@@ -182,7 +182,7 @@ input[type="file"]::file-selector-button:active {
 
 /* Table styling for collections */
 table {
-    margin: auto auto 20px auto;
+    margin: 20px auto;
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
@@ -311,9 +311,13 @@ footer {
 }
 
 /* Styling for all links meant to be visible (overriding global a styling) */
-.visible-link {
+.visible-link, #empty-reset {
     text-decoration: underline;
     color: #846eff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
 }
 
 /* Profile styling */
@@ -603,6 +607,33 @@ button[name="delete-button"] {
 .edit-img-title input {
     margin-right: 20px;
     margin-left: 15px;
+}
+
+.col-sets > .mid-buttons {
+    margin-top: 15px;
+}
+
+#search-value {
+    max-width: 250px;
+    margin-right: 15px;
+}
+
+button[name="search-button"], button[name="reset-search"] {
+    width: fit-content;
+}
+
+button[name="reset-search"] {
+    margin-left: 10px;
+}
+
+.search-tooltip {
+    margin: 15px 0 0 0;
+    color: green;
+}
+
+.search-invalid {
+    margin: 15px 0 0 0;
+    color: red;
 }
 
 
