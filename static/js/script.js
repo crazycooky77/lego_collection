@@ -240,7 +240,7 @@ if ((window.innerWidth <= 900) && (window.location.pathname === '/collections/' 
                                                                                     </div>
                                                                                 </div>
                                                                             </form>`;
-            // Insert form for user to select table columns in collections view
+        // Insert form for user to select table columns in collections view
         } else if (window.location.pathname === '/edit-collection/') {
             document.getElementById('mini-edit-table-toggle').innerHTML = `<form class="col-toggle">
                                                                                     <div id="multiselect">
