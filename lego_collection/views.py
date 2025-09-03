@@ -59,7 +59,7 @@ def get_search_value(request):
         request.session['search_by'] = None
     elif request.POST.get('search-value'):
         request.session['search_by'] = request.POST['search-value']
-    elif request.path == '/collections/' and '/collections' not in request.META.get('HTTP_REFERER') and request.session.get('search_by'):
+    elif request.path == '/collections/' and request.META.get('HTTP_REFERER') and '/collections' not in request.META.get('HTTP_REFERER') and request.session.get('search_by'):
         request.session['search_by'] = None
     else:
         request.session['search_by'] = request.session.get('search_by', None)

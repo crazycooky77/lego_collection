@@ -35,8 +35,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 DEBUG = development
 
 if development:
-    ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
-    CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1', 'https://0.0.0.0']
+    ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost']
+    CSRF_TRUSTED_ORIGINS = ['https://127.0.0.1', 'https://0.0.0.0', 'https://localhost']
 else:
     ALLOWED_HOSTS = ['localhost',
                      os.environ.get('DO_URL'),
